@@ -4,6 +4,9 @@ extends Node2D
 @export var wave: int = 0
 
 @export_group("Zombie waves")
+@export var announcer_fade_duration: float = 1
+@export var announcer_remain_duration: float = 1.5
+
 @export_subgroup("Number", "nb_zombies")
 @export var nb_zombies_base: int = 5
 @export var nb_zombies_linear: float = 2
@@ -28,8 +31,6 @@ var Zombie = preload("res://scenes/Zombie.tscn")
 @onready var walls = $World/Walls
 
 @onready var announcer_label := $CanvasLayer/Announcer
-@onready var announcer_remain_timer := $CanvasLayer/Announcer/AnnouncerRemainTimer
-@onready var announcer_fade_timer := $CanvasLayer/Announcer/AnnouncerFadeTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,11 +40,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var announcement_color = announcer_label.label_settings.font_color
-	if announcer_fade_timer.is_stopped():
-		announcer_label.label_settings.font_color = Color(announcement_color, 1)
-	else:
-		announcer_label.label_settings.font_color = Color(announcement_color, announcer_fade_timer.time_left / announcer_fade_timer.wait_time)
+	pass
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -92,9 +89,10 @@ func get_spawn_time() -> int:
 
 func announce(text) -> void:
 	announcer_label.text = text
+	
+	var tween = get_tree().create_tween()
 	announcer_label.show()
-	announcer_remain_timer.start()
-	await announcer_remain_timer.timeout
-	announcer_fade_timer.start()
-	await announcer_fade_timer.timeout
-	announcer_label.hide()
+	tween.tween_property(announcer_label, "modulate", Color.WHITE, announcer_fade_duration)
+	tween.tween_interval(announcer_remain_duration)
+	tween.tween_property(announcer_label, "modulate", Color.TRANSPARENT, announcer_fade_duration)
+	tween.tween_callback(func(): announcer_label.hide())

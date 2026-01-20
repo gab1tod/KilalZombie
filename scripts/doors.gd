@@ -27,6 +27,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	left_door_animator.scale.x = -1 if flip_h else 1
+	right_door_animator.scale.x = -1 if flip_h else 1
 	cost_label.visible = not (players.is_empty() or is_open) 
 	
 	cost_label.text = '%d$' % cost
