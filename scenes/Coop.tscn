@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpn7i14wbejpd"]
+
+[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/main.gd" id="1_ipa8u"]
+[ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://scenes/Player.tscn" id="2_5p23f"]
+[ext_resource type="PackedScene" uid="uid://bgmn3p41i16tg" path="res://scenes/weapons/Revolver.tscn" id="3_qfh36"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rarhs"]
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-1, 1)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("world")]
+texture_filter = 1
+script = ExtResource("1_ipa8u")
+world = NodePath("ViewportPlayer1/Viewport/World")
+
+[node name="ViewportPlayer1" type="SubViewportContainer" parent="."]
+texture_filter = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 1152.0
+offset_bottom = 324.0
+grow_horizontal = 2
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="ViewportPlayer1"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 324)
+render_target_update_mode = 4
+
+[node name="World" type="Node2D" parent="ViewportPlayer1/Viewport"]
+y_sort_enabled = true
+
+[node name="Player1" parent="ViewportPlayer1/Viewport/World" instance=ExtResource("2_5p23f")]
+position = Vector2(-16, 0)
+
+[node name="Weapon" parent="ViewportPlayer1/Viewport/World/Player1" instance=ExtResource("3_qfh36")]
+bullet_speed = 800.0
+fire_rate = 10.0
+
+[node name="Camera2D" type="Camera2D" parent="ViewportPlayer1/Viewport/World/Player1"]
+texture_filter = 1
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+
+[node name="ViewportPlayer2" type="SubViewportContainer" parent="."]
+texture_filter = 1
+offset_top = 324.0
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="ViewportPlayer2"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 324)
+render_target_update_mode = 4
+
+[node name="Player2" parent="ViewportPlayer2/Viewport" instance=ExtResource("2_5p23f")]
+position = Vector2(16, 0)
+device_id = 1
+
+[node name="Weapon" parent="ViewportPlayer2/Viewport/Player2" instance=ExtResource("3_qfh36")]
+bullet_speed = 800.0
+fire_rate = 10.0
+
+[node name="Camera2D" type="Camera2D" parent="ViewportPlayer2/Viewport/Player2"]
+texture_filter = 1
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -39.0
+offset_right = 68.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "Score: "
+label_settings = SubResource("LabelSettings_rarhs")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

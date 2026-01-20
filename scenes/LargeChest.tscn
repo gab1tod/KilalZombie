@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://bg0ikyrie3dj5"]
+
+[ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="1_cjixx"]
+[ext_resource type="Script" uid="uid://di0lw3ih7hvkw" path="res://scripts/chest.gd" id="1_s2tek"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2tek"]
+atlas = ExtResource("1_cjixx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkgax"]
+atlas = ExtResource("1_cjixx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psq76"]
+atlas = ExtResource("1_cjixx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpyr1"]
+atlas = ExtResource("1_cjixx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw0c0"]
+atlas = ExtResource("1_cjixx")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v84rw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2tek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkgax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psq76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpyr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw0c0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_matvi"]
+size = Vector2(28, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjixx"]
+size = Vector2(54, 44)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2tek"]
+font_size = 12
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rkgax"]
+font_size = 8
+font_color = Color(0.9490196, 0.85490197, 0.24705882, 1)
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_s2tek")
+interaction_time = 0.4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_v84rw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_matvi")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_cjixx")
+
+[node name="Label" type="VBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -40.0
+offset_right = 34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -2
+
+[node name="Item" type="Label" parent="Label"]
+layout_mode = 2
+text = "Item"
+label_settings = SubResource("LabelSettings_s2tek")
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Label"]
+layout_mode = 2
+text = "cost"
+label_settings = SubResource("LabelSettings_rkgax")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

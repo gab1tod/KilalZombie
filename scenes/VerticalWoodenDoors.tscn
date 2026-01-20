@@ -1,0 +1,136 @@
+[gd_scene load_steps=19 format=3 uid="uid://ctjxsrxt0rvo5"]
+
+[ext_resource type="Script" uid="uid://b35vi6rc6bqrb" path="res://scripts/doors.gd" id="1_amhr0"]
+[ext_resource type="Texture2D" uid="uid://nrye4jgx685e" path="res://assets/WoodenDoor.png" id="2_18pmu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amhr0"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(0, 32, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18pmu"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(32, 32, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnn4j"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(64, 32, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdfql"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(96, 32, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgceu"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(128, 32, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41o0r"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(160, 32, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fqg6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amhr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18pmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnn4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdfql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgceu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41o0r")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rttkv"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(0, 72, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3f2i"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(32, 72, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qulvr"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(64, 72, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wehe7"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(96, 72, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dpcs"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(128, 72, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wtr5"]
+atlas = ExtResource("2_18pmu")
+region = Rect2(160, 72, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q5h7k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rttkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3f2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qulvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wehe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dpcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wtr5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4rrw"]
+size = Vector2(9, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pymq8"]
+size = Vector2(31, 39)
+
+[node name="WoodenDoors" type="StaticBody2D"]
+script = ExtResource("1_amhr0")
+
+[node name="RightDoorAnimator" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 12)
+sprite_frames = SubResource("SpriteFrames_3fqg6")
+offset = Vector2(-11, -16)
+
+[node name="LeftDoorAnimator" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_q5h7k")
+offset = Vector2(-11, -4)
+
+[node name="CentralCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_g4rrw")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_pymq8")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgmn3p41i16tg"]
+
+[ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_wkycj"]
+[ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="3_fly7g"]
+[ext_resource type="Texture2D" uid="uid://c1yvxnb0p3afc" path="res://assets/weapons_spritesheet.png" id="3_jkuln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4pqw"]
+atlas = ExtResource("3_jkuln")
+region = Rect2(48, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng170"]
+atlas = ExtResource("3_jkuln")
+region = Rect2(96, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di8uw"]
+atlas = ExtResource("3_jkuln")
+region = Rect2(144, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iowp"]
+atlas = ExtResource("3_jkuln")
+region = Rect2(0, 48, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki372"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4pqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng170")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di8uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iowp")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 20.0
+}]
+
+[node name="Weapon" type="Node2D" groups=["Weapons"]]
+script = ExtResource("1_wkycj")
+precision = 0.055
+fire_rate = 4.0
+full_auto = false
+bullet_damage = 20
+
+[node name="CycleTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ki372")
+animation = &"fire"
+frame = 3
+frame_progress = 1.0
+offset = Vector2(21, -4)
+
+[node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
+position = Vector2(8, -4.5)
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(100, 0)
+texture = ExtResource("3_fly7g")
+offset = Vector2(0.5, 0.5)
+
+[connection signal="timeout" from="CycleTimer" to="." method="_on_cycle"]
