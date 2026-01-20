@@ -14,6 +14,7 @@ var interacting_players: Array[Node2D]
 @onready var left_door_animator := $LeftDoorAnimator
 @onready var right_door_animator := $RightDoorAnimator
 @onready var center_collision_shape := $CentralCollisionShape
+@onready var cost_label := $CostLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +27,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	left_door_animator.scale.x = -1 if flip_h else 1
+	cost_label.visible = not (players.is_empty() or is_open) 
+	
+	cost_label.text = '%d$' % cost
 
 
 func open() -> void:

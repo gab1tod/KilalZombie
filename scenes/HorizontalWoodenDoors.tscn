@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://be3ekaf5l7dm3"]
+[gd_scene load_steps=15 format=3 uid="uid://be3ekaf5l7dm3"]
 
 [ext_resource type="Script" uid="uid://b35vi6rc6bqrb" path="res://scripts/doors.gd" id="1_d8wri"]
 [ext_resource type="Texture2D" uid="uid://nrye4jgx685e" path="res://assets/WoodenDoor.png" id="1_pymq8"]
+[ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_p0url"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8wri"]
 atlas = ExtResource("1_pymq8")
@@ -62,6 +63,11 @@ size = Vector2(32, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pymq8"]
 size = Vector2(48, 39)
 
+[sub_resource type="LabelSettings" id="LabelSettings_657j4"]
+font = ExtResource("3_p0url")
+font_size = 8
+font_color = Color(1, 1, 0, 1)
+
 [node name="WoodenDoors" type="StaticBody2D"]
 script = ExtResource("1_d8wri")
 
@@ -91,6 +97,22 @@ shape = SubResource("RectangleShape2D_g4rrw")
 [node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_pymq8")
+
+[node name="CostLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -30.0
+offset_right = 8.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "cost"
+label_settings = SubResource("LabelSettings_657j4")
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

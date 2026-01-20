@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dyt67iu8nuu60"]
+[gd_scene load_steps=22 format=4 uid="uid://dyt67iu8nuu60"]
 
 [ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://scenes/Player.tscn" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/main.gd" id="1_rarhs"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://d0doy4t1m4hj6" path="res://scenes/weapons/Kalashnikov.tscn" id="11_bjd11"]
 [ext_resource type="PackedScene" uid="uid://bmvylkq552c2p" path="res://scenes/weapons/Thompson.tscn" id="11_mwfav"]
 [ext_resource type="PackedScene" uid="uid://ctjxsrxt0rvo5" path="res://scenes/VerticalWoodenDoors.tscn" id="12_qmy6f"]
+[ext_resource type="FontFile" uid="uid://bq3d7xj75nx7m" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="14_cvmbd"]
+[ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="15_3p2gp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vcsgt"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -181,12 +183,14 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_nxtc6")
 
 [sub_resource type="LabelSettings" id="LabelSettings_rarhs"]
-font_size = 12
+font = ExtResource("14_cvmbd")
+font_size = 22
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wp0k4"]
-font_size = 48
+font = ExtResource("15_3p2gp")
+font_size = 64
 shadow_size = 0
 shadow_offset = Vector2(-2, 2)
 
@@ -289,6 +293,7 @@ item_cost = 1500
 
 [node name="WoodenDoors2" parent="World" instance=ExtResource("12_qmy6f")]
 position = Vector2(-128, -128)
+cost = 1000
 
 [node name="WoodenDoors3" parent="World" instance=ExtResource("12_qmy6f")]
 position = Vector2(-289, -256)
@@ -346,7 +351,6 @@ target = NodePath("../../../World/Player1")
 attribute = &"score"
 
 [node name="Announcer" type="Label" parent="CanvasLayer"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -360,6 +364,8 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Wave 1"
 label_settings = SubResource("LabelSettings_wp0k4")
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="AnnouncerRemainTimer" type="Timer" parent="CanvasLayer/Announcer"]

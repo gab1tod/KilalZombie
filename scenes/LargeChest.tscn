@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bg0ikyrie3dj5"]
+[gd_scene load_steps=15 format=3 uid="uid://bg0ikyrie3dj5"]
 
 [ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="1_cjixx"]
 [ext_resource type="Script" uid="uid://di0lw3ih7hvkw" path="res://scripts/chest.gd" id="1_s2tek"]
+[ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_24e62"]
+[ext_resource type="FontFile" uid="uid://bq3d7xj75nx7m" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="3_iq08n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2tek"]
 atlas = ExtResource("1_cjixx")
@@ -53,11 +55,12 @@ size = Vector2(28, 20)
 size = Vector2(54, 44)
 
 [sub_resource type="LabelSettings" id="LabelSettings_s2tek"]
-font_size = 12
-shadow_color = Color(0, 0, 0, 1)
+font = ExtResource("3_iq08n")
+font_size = 11
 shadow_offset = Vector2(-1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rkgax"]
+font = ExtResource("3_24e62")
 font_size = 8
 font_color = Color(0.9490196, 0.85490197, 0.24705882, 1)
 
@@ -78,27 +81,36 @@ shape = SubResource("RectangleShape2D_matvi")
 [node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_cjixx")
 
-[node name="Label" type="VBoxContainer" parent="."]
+[node name="Label" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -34.0
-offset_top = -40.0
-offset_right = 34.0
+offset_left = -32.0
+offset_top = -33.0
+offset_right = 32.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = -2
 
 [node name="Item" type="Label" parent="Label"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 15.0
+grow_horizontal = 2
 text = "Item"
 label_settings = SubResource("LabelSettings_s2tek")
 horizontal_alignment = 1
 
 [node name="Cost" type="Label" parent="Label"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 11.0
+offset_bottom = 21.0
+grow_horizontal = 2
 text = "cost"
 label_settings = SubResource("LabelSettings_rkgax")
 horizontal_alignment = 1
