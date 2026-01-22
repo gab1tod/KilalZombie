@@ -4,13 +4,13 @@ signal on_death
 
 @export var speed: float = 100
 @export var health: int = 100
+@export var hit_highlight_color := Color(18.892, 18.892, 18.892)
 
 @export var separation_radius: float = 24
 @export var separation_force: float = 100
 @export var damage: int = 50
 var hurt := false
 @onready var animator = $AnimatedSprite2D
-@onready var sprite_material := animator.material as ShaderMaterial
 @onready var navigator := $NavigationAgent2D
 @onready var cooldown_timer := $AttackCooldownTimer
 var target: Node2D
@@ -48,9 +48,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if hurt:
-		sprite_material.set_shader_parameter("flash_strength", 1.0)
+		animator.modulate = hit_highlight_color
 		await get_tree().create_timer(0.05).timeout
-		sprite_material.set_shader_parameter("flash_strength", 0.0)
+		animator.modulate = Color.WHITE
 	hurt = false
 
 func handle_animations() -> void:

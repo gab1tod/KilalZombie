@@ -2,14 +2,22 @@ class_name Weapon
 extends Node2D
 
 signal on_shoot
+signal on_reload
+signal on_reload_finished
 
 @export var shooter: Node2D
 @export var precision: float = 0.05 # radians
 @export var fire_rate: float = 2 # bullet/s
 @export var full_auto: bool = true
 var ready_to_shoot: bool = false
+var has_cycled: bool = false
 var is_trigger_reset:bool = true # wether the trigger has been released between two shots
 var is_trigger_pulled: bool = false
+
+@export var magazine_capacity: int = 10
+@export var amo: int = 10
+var must_reload: bool = false
+var is_reloading: bool = false
 
 @export_group("Bullet", "bullet_")
 @export var bullet_speed: float = 1000 # px/s
@@ -27,7 +35,7 @@ var flip_v: bool = false
 
 @onready var crosshair := $Crosshair
 @onready var cycle := $CycleTimer
-@onready var animations := $AnimatedSprite2D
+@onready var animator := $AnimatedSprite2D
 @onready var barrel := $AnimatedSprite2D/Barrel
 
 
@@ -39,25 +47,33 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# animations.flip_v = flip_h
-	animations.scale.x = -1 if flip_h else 1
-	animations.scale.y = -1 if flip_v else 1
-	animations.rotation = aim_angle + (PI if flip_h else 0)
+	animator.scale.x = -1 if flip_h else 1
+	animator.scale.y = -1 if flip_v else 1
+	animator.rotation = aim_angle + (PI if flip_h else 0)
 	
 	var cross_dist = crosshair_distance if crosshair_fixed_distance else aim_distance
 	crosshair.position = Vector2.RIGHT.rotated(aim_angle) * cross_dist
 	
 	if not is_trigger_pulled:
 		is_trigger_reset = true
-		
-	if ready_to_shoot and (is_trigger_reset or full_auto) and is_trigger_pulled:
+	
+	must_reload = amo <= 0
+	ready_to_shoot = has_cycled and (is_trigger_reset or full_auto) and not must_reload
+	
+	if is_trigger_pulled and ready_to_shoot:
 		shoot()
+	elif is_trigger_pulled and is_trigger_reset and not is_reloading:
+		reload(magazine_capacity)
 
 func shoot() -> void:
-	ready_to_shoot = false
+	if not ready_to_shoot:
+		return
+	
+	has_cycled = false
 	is_trigger_reset = false
 	cycle.start(1/fire_rate)
-	animations.frame = 0
-	animations.play()
+	animator.frame = 0
+	animator.play("fire")
 	
 	var b = bullet.instantiate()
 	get_parent().get_parent().add_child(b)
@@ -69,6 +85,27 @@ func shoot() -> void:
 	b.last_position = barrel.global_position
 	
 	on_shoot.emit()
+	amo -= 1
+	if amo == 0:
+		await animator.animation_finished
+		animator.animation = "reload"
+		animator.frame = 0
+
+func reload(bullets: int) -> void:
+	if not must_reload or bullets <= 0:
+		return
+	
+	is_reloading = true
+	
+	animator.frame = 0
+	animator.play("reload")
+	on_reload.emit()
+	await animator.animation_finished
+	animator.animation = "fire"
+	animator.frame = animator.sprite_frames.get_frame_count("fire") - 1
+	amo += bullets
+	is_reloading = false
+	on_reload_finished.emit()
 
 func _on_cycle() -> void:
-	ready_to_shoot = true
+	has_cycled = true

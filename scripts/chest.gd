@@ -4,6 +4,7 @@ extends StaticBody2D
 @export_group("Animation")
 @export var interaction_time: float = 0.3
 @export var opening_duration: float = 0.5
+@export var interaction_highlight_color := Color(1.27, 1.27, 0.92)
 
 @export_group("Item", "item_")
 @export var item_resource: PackedScene
@@ -35,10 +36,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if players.is_empty():
-		label.hide()
-	else:
-		label.show()
+	var buyable = not (players.is_empty() or is_open)
+	label.visible = buyable
+	
+	var modulate_color = interaction_highlight_color if buyable else Color.WHITE
+	animator.modulate = modulate_color
 
 
 func update_labels():

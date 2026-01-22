@@ -3,6 +3,8 @@ extends CharacterBody2D
 signal on_interaction_start
 signal on_interaction_stop
 
+@export var hit_highlight_color := Color.RED
+
 @export_group("Movements")
 var flip_h: bool = false:
 	set(value):
@@ -24,7 +26,6 @@ var hurt: bool = false
 var dead: bool = false
 
 @onready var animator := $AnimatedSprite2D
-@onready var animator_material := animator.material as ShaderMaterial
 @onready var camera := $Camera2D
 @onready var weapon_socket := $WeaponSocket
 
@@ -142,9 +143,11 @@ func take_damage(damage: int) -> void:
 	hurt = true
 	if aim_mode == AimMode.GAMEPAD:
 		Input.start_joy_vibration(device_id, 0, 1, 0.1)
-	animator_material.set_shader_parameter("flash_strength", 1.0)
+	animator.modulate = hit_highlight_color
+	# animator_material.set_shader_parameter("flash_strength", 1.0)
 	await get_tree().create_timer(0.05).timeout
-	animator_material.set_shader_parameter("flash_strength", 0.0)
+	animator.modulate = Color.WHITE
+	# animator_material.set_shader_parameter("flash_strength", 0.0)
 		
 	if health <= 0:
 		die()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg0ikyrie3dj5"]
+[gd_scene load_steps=16 format=3 uid="uid://bg0ikyrie3dj5"]
 
 [ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="1_cjixx"]
 [ext_resource type="Script" uid="uid://di0lw3ih7hvkw" path="res://scripts/chest.gd" id="1_s2tek"]
@@ -25,6 +25,10 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("1_cjixx")
 region = Rect2(128, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq08n"]
+atlas = ExtResource("1_cjixx")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_v84rw"]
 animations = [{
 "frames": [{
@@ -42,6 +46,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uw0c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq08n")
 }],
 "loop": false,
 "name": &"default",

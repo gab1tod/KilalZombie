@@ -1,13 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://ch0wyjtx6icrd"]
+[gd_scene load_steps=29 format=3 uid="uid://ch0wyjtx6icrd"]
 
 [ext_resource type="Script" uid="uid://d2tm3ktnottty" path="res://scripts/zombie.gd" id="1_t3ikf"]
-[ext_resource type="Shader" uid="uid://c2mqj2jcsl8ia" path="res://shaders/HitFlash.gdshader" id="2_yaogc"]
 [ext_resource type="Texture2D" uid="uid://bps7lteatv62v" path="res://assets/ZombieRework.png" id="3_yaogc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_siap5"]
-resource_local_to_scene = true
-shader = ExtResource("2_yaogc")
-shader_parameter/flash_strength = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_siap5"]
 atlas = ExtResource("3_yaogc")
@@ -212,7 +206,6 @@ speed = 40.0
 separation_radius = 16.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_siap5")
 position = Vector2(0, -12.5)
 sprite_frames = SubResource("SpriteFrames_uff4m")
 animation = &"walk_face"

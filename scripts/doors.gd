@@ -3,10 +3,11 @@ extends StaticBody2D
 signal doors_openinig
 signal doors_closing
 
-@export var flip_h: bool = false
+var flip_h: bool = false
 @export var is_open: bool = false
 @export var cost: int = 750
 @export var interaction_time: float = 0.3
+@export var interaction_highlight_color := Color(1.27, 1.27, 0.92)
 
 var players: Array[Node2D]
 var interacting_players: Array[Node2D]
@@ -28,9 +29,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	left_door_animator.scale.x = -1 if flip_h else 1
 	right_door_animator.scale.x = -1 if flip_h else 1
-	cost_label.visible = not (players.is_empty() or is_open) 
 	
+	var buyable = not (players.is_empty() or is_open)
+	cost_label.visible = buyable
 	cost_label.text = '%d$' % cost
+	
+	var modulate_color = interaction_highlight_color if buyable else Color.WHITE
+	left_door_animator.modulate = modulate_color
+	right_door_animator.modulate = modulate_color
 
 
 func open() -> void:

@@ -1,7 +1,11 @@
 extends Label
 
 @export var target: Node
-@export var attribute: StringName
+@export var attribute_path: StringName:
+	set(value):
+		attribute_path = value
+		path_steps = value.split(".")
+var path_steps: PackedStringArray
 var text_format: String
 
 # Called when the node enters the scene tree for the first time.
@@ -13,4 +17,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	text = text_format % target[attribute]
+	var attribute = null
+	for step in path_steps:
+		attribute = attribute[step] if attribute else target[step]
+	text = text_format % attribute

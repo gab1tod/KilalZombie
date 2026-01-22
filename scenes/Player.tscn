@@ -1,14 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://budp1wl2w7ma1"]
+[gd_scene load_steps=54 format=3 uid="uid://budp1wl2w7ma1"]
 
 [ext_resource type="Script" uid="uid://cf3236egwonxr" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cf0mkt22a3cnr" path="res://assets/TheConvict.png" id="2_v6fml"]
 [ext_resource type="Texture2D" uid="uid://qrrdwp6wjgqs" path="res://assets/MainCharacter.png" id="3_3li8b"]
-[ext_resource type="Shader" uid="uid://c2mqj2jcsl8ia" path="res://shaders/HitFlash.gdshader" id="3_mdl7e"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mdl7e"]
-shader = ExtResource("3_mdl7e")
-shader_parameter/flash_strength = 0.0
-shader_parameter/flash_color = Color(1, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tk6la"]
 atlas = ExtResource("3_3li8b")
@@ -411,7 +405,6 @@ region_enabled = true
 region_rect = Rect2(1107, 3, 4, 4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_mdl7e")
 position = Vector2(0, -12.5)
 sprite_frames = SubResource("SpriteFrames_o4126")
 animation = &"death"

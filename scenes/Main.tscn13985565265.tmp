@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=4 uid="uid://dyt67iu8nuu60"]
+[gd_scene load_steps=21 format=4 uid="uid://dyt67iu8nuu60"]
 
 [ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://scenes/Player.tscn" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/main.gd" id="1_rarhs"]
 [ext_resource type="Texture2D" uid="uid://5o5ag76qh3yj" path="res://assets/tileset.png" id="2_vcsgt"]
-[ext_resource type="PackedScene" uid="uid://c36tdsd2hb6vk" path="res://scenes/weapons/Pistol.tscn" id="3_c01mt"]
 [ext_resource type="Script" uid="uid://bldepu4wqtu8p" path="res://scripts/attribute_label.gd" id="4_rarhs"]
 [ext_resource type="PackedScene" uid="uid://16xk306m0wlw" path="res://scenes/Spawner.tscn" id="5_c01mt"]
 [ext_resource type="PackedScene" uid="uid://bg0ikyrie3dj5" path="res://scenes/LargeChest.tscn" id="7_jlsqs"]
@@ -11,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://5ij13b10trcw" path="res://scenes/Chest.tscn" id="9_lhr70"]
 [ext_resource type="PackedScene" uid="uid://be3ekaf5l7dm3" path="res://scenes/HorizontalDoors.tscn" id="10_bjd11"]
 [ext_resource type="PackedScene" uid="uid://bgmn3p41i16tg" path="res://scenes/weapons/Revolver.tscn" id="10_wp0k4"]
-[ext_resource type="PackedScene" uid="uid://d0doy4t1m4hj6" path="res://scenes/weapons/AK47.tscn" id="11_bjd11"]
+[ext_resource type="PackedScene" uid="uid://d0doy4t1m4hj6" path="res://scenes/weapons/Kalashnikov.tscn" id="11_bjd11"]
 [ext_resource type="PackedScene" uid="uid://bmvylkq552c2p" path="res://scenes/weapons/Thompson.tscn" id="11_mwfav"]
 [ext_resource type="PackedScene" uid="uid://ctjxsrxt0rvo5" path="res://scenes/VerticalLeftDoors.tscn" id="12_qmy6f"]
 [ext_resource type="FontFile" uid="uid://bq3d7xj75nx7m" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="14_cvmbd"]
@@ -223,7 +222,7 @@ score = 10000
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
-[node name="Weapon" parent="World/Player1" instance=ExtResource("3_c01mt")]
+[node name="Weapon" parent="World/Player1" instance=ExtResource("11_mwfav")]
 
 [node name="Walls" type="TileMapLayer" parent="World"]
 z_index = -10
@@ -269,7 +268,7 @@ disabled = true
 [node name="Chest" parent="World" instance=ExtResource("7_jlsqs")]
 position = Vector2(81, -33)
 item_resource = ExtResource("7_wp0k4")
-item_name = "M14"
+item_name = "M14A1"
 item_cost = 750
 
 [node name="Chest2" parent="World" instance=ExtResource("9_lhr70")]
@@ -277,11 +276,6 @@ position = Vector2(94, 37)
 item_resource = ExtResource("10_wp0k4")
 item_name = "Revolver"
 item_cost = 500
-
-[node name="Chest5" parent="World" instance=ExtResource("9_lhr70")]
-position = Vector2(-77, 40)
-item_resource = ExtResource("3_c01mt")
-item_name = "Pistol"
 
 [node name="WoodenDoors" parent="World" instance=ExtResource("10_bjd11")]
 position = Vector2(0, -45)
@@ -344,7 +338,6 @@ text = "Zombies health: %d"
 label_settings = SubResource("LabelSettings_rarhs")
 script = ExtResource("4_rarhs")
 target = NodePath("../../..")
-attribute_path = &"wave_zombies_health"
 
 [node name="Zombies Number" type="Label" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("target")]
 layout_mode = 2
@@ -352,7 +345,6 @@ text = "Zombies: %d"
 label_settings = SubResource("LabelSettings_rarhs")
 script = ExtResource("4_rarhs")
 target = NodePath("../../..")
-attribute_path = &"nb_zombies_to_kill"
 
 [node name="Wave" type="Label" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("target")]
 layout_mode = 2
@@ -360,7 +352,6 @@ text = "Wave: %d"
 label_settings = SubResource("LabelSettings_rarhs")
 script = ExtResource("4_rarhs")
 target = NodePath("../../..")
-attribute_path = &"wave"
 
 [node name="Score" type="Label" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("target")]
 layout_mode = 2
@@ -368,7 +359,6 @@ text = "Score: %d"
 label_settings = SubResource("LabelSettings_rarhs")
 script = ExtResource("4_rarhs")
 target = NodePath("../../../World/Player1")
-attribute_path = &"score"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 3
@@ -383,25 +373,13 @@ offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer2"]
+[node name="Gun amo" type="Label" parent="CanvasLayer/VBoxContainer2" node_paths=PackedStringArray("target")]
 layout_mode = 2
-alignment = 2
-
-[node name="Gun amo" type="Label" parent="CanvasLayer/VBoxContainer2/HBoxContainer" node_paths=PackedStringArray("target")]
-layout_mode = 2
-text = "Gun amo: %d"
+text = "Amo: %d"
 label_settings = SubResource("LabelSettings_rarhs")
 script = ExtResource("4_rarhs")
-target = NodePath("../../../../World/Player1")
-attribute_path = &"weapon.amo"
-
-[node name="Gun capacity" type="Label" parent="CanvasLayer/VBoxContainer2/HBoxContainer" node_paths=PackedStringArray("target")]
-layout_mode = 2
-text = "/%d"
-label_settings = SubResource("LabelSettings_rarhs")
-script = ExtResource("4_rarhs")
-target = NodePath("../../../../World/Player1")
-attribute_path = &"weapon.magazine_capacity"
+target = NodePath("../../..")
+attribute = "weapon.magazine_bullets"
 
 [node name="Announcer" type="Label" parent="CanvasLayer"]
 visible = false
