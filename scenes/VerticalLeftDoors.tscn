@@ -127,15 +127,14 @@ size = Vector2(31, 39)
 [sub_resource type="LabelSettings" id="LabelSettings_dnn4j"]
 font = ExtResource("3_18pmu")
 font_size = 8
-font_color = Color(1, 1, 0, 1)
+font_color = Color(0.9490196, 0.78431374, 0.24705882, 1)
 
 [node name="WoodenDoors" type="StaticBody2D"]
 script = ExtResource("1_amhr0")
 
 [node name="RightDoorAnimator" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 12)
 sprite_frames = SubResource("SpriteFrames_3fqg6")
-offset = Vector2(-7, -12)
+offset = Vector2(-7, 0)
 
 [node name="LeftDoorAnimator" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 24)

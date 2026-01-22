@@ -71,16 +71,16 @@ func grant_item(player) -> void:
 func _on_interaction_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		players.append(body)
-		body.on_interaction_start.connect(_on_player_interaction_start)
-		body.on_interaction_stop.connect(_on_player_interaction_stop)
+		body.interaction_start.connect(_on_player_interaction_start)
+		body.interaction_stop.connect(_on_player_interaction_stop)
 
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Players"):
 		players.erase(body)
 		interacting_players.erase(body)
-		body.on_interaction_start.disconnect(_on_player_interaction_start)
-		body.on_interaction_stop.disconnect(_on_player_interaction_stop)
+		body.interaction_start.disconnect(_on_player_interaction_start)
+		body.interaction_stop.disconnect(_on_player_interaction_stop)
 
 func _on_player_interaction_start(player) -> void:
 	if is_open or player.score < item_cost:

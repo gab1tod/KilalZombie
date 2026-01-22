@@ -199,6 +199,9 @@ script = ExtResource("1_rarhs")
 world = NodePath("World")
 announcer_fade_duration = 0.7
 announcer_remain_duration = 2.0
+hp_zombies_base = 100
+hp_zombies_linear = 20.0
+spawn_time_linear = -0.5
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -100
@@ -217,7 +220,6 @@ y_sort_enabled = true
 
 [node name="Player1" parent="World" instance=ExtResource("1_elqb8")]
 collision_mask = 1
-score = 10000
 
 [node name="Camera2D" type="Camera2D" parent="World/Player1"]
 zoom = Vector2(2, 2)
@@ -270,18 +272,13 @@ disabled = true
 position = Vector2(81, -33)
 item_resource = ExtResource("7_wp0k4")
 item_name = "M14"
-item_cost = 750
+item_cost = 500
 
 [node name="Chest2" parent="World" instance=ExtResource("9_lhr70")]
 position = Vector2(94, 37)
 item_resource = ExtResource("10_wp0k4")
 item_name = "Revolver"
 item_cost = 500
-
-[node name="Chest5" parent="World" instance=ExtResource("9_lhr70")]
-position = Vector2(-77, 40)
-item_resource = ExtResource("3_c01mt")
-item_name = "Pistol"
 
 [node name="WoodenDoors" parent="World" instance=ExtResource("10_bjd11")]
 position = Vector2(0, -45)

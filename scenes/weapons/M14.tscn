@@ -137,7 +137,7 @@ full_auto = false
 magazine_capacity = 20
 amo = 20
 bullet_speed = 1200.0
-bullet_damage = 100
+bullet_damage = 50
 
 [node name="CycleTimer" type="Timer" parent="."]
 wait_time = 0.1

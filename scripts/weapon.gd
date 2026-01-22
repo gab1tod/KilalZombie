@@ -58,12 +58,10 @@ func _process(delta: float) -> void:
 		is_trigger_reset = true
 	
 	must_reload = amo <= 0
-	ready_to_shoot = has_cycled and (is_trigger_reset or full_auto) and not must_reload
+	ready_to_shoot = has_cycled and (is_trigger_reset or full_auto) and not (must_reload or is_reloading)
 	
 	if is_trigger_pulled and ready_to_shoot:
 		shoot()
-	elif is_trigger_pulled and is_trigger_reset and not is_reloading:
-		reload(magazine_capacity)
 
 func shoot() -> void:
 	if not ready_to_shoot:
@@ -90,9 +88,10 @@ func shoot() -> void:
 		await animator.animation_finished
 		animator.animation = "reload"
 		animator.frame = 0
+		reload(magazine_capacity)
 
 func reload(bullets: int) -> void:
-	if not must_reload or bullets <= 0:
+	if is_reloading or amo >= magazine_capacity or bullets <= 0:
 		return
 	
 	is_reloading = true
@@ -103,7 +102,7 @@ func reload(bullets: int) -> void:
 	await animator.animation_finished
 	animator.animation = "fire"
 	animator.frame = animator.sprite_frames.get_frame_count("fire") - 1
-	amo += bullets
+	amo = bullets
 	is_reloading = false
 	on_reload_finished.emit()
 

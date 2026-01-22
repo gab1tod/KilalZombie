@@ -122,7 +122,7 @@ fire_rate = 12.0
 magazine_capacity = 50
 amo = 50
 bullet_speed = 800.0
-bullet_damage = 80
+bullet_damage = 40
 
 [node name="CycleTimer" type="Timer" parent="."]
 wait_time = 0.1

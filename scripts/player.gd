@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-signal on_interaction_start
-signal on_interaction_stop
+signal interaction_start
+signal interaction_stop
 
 @export var hit_highlight_color := Color.RED
 
@@ -44,6 +44,9 @@ func _process(delta: float) -> void:
 	
 	handle_movement()
 	move_and_slide()
+	
+	if Input.is_action_pressed("p%d_reload" % device_id):
+		weapon.reload(weapon.magazine_capacity)
 	
 	if is_instance_valid(weapon):
 		handle_aim()
@@ -108,9 +111,9 @@ func handle_shoot() -> void:
 func handle_interaction():
 	var input = "p%d_interact" % device_id
 	if Input.is_action_just_pressed(input):
-		on_interaction_start.emit(self)
+		interaction_start.emit(self)
 	if Input.is_action_just_released(input):
-		on_interaction_stop.emit(self)
+		interaction_stop.emit(self)
 
 
 func _input(event: InputEvent) -> void:
