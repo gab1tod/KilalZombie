@@ -31,6 +31,7 @@ var Zombie = preload("res://scenes/Zombie.tscn")
 @onready var walls = $World/Walls
 
 @onready var announcer_label := $CanvasLayer/Announcer
+@onready var pause_menu := $PauseMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,7 +48,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause"):
+		pause_menu.open_menu()
 
 
 func _on_spawn_timer_timeout() -> void:

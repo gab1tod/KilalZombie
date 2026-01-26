@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpn7i14wbejpd"]
 
-[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/main.gd" id="1_ipa8u"]
+[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/solo_level.gd" id="1_ipa8u"]
 [ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://scenes/Player.tscn" id="2_5p23f"]
 [ext_resource type="PackedScene" uid="uid://bgmn3p41i16tg" path="res://scenes/weapons/Revolver.tscn" id="3_qfh36"]
 
