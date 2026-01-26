@@ -7,8 +7,14 @@ var flip_h: bool = false
 @export var obenable: bool = true
 @export var is_open: bool = false
 @export var cost: int = 750
+
+@export_group("Interaction", "interaction_")
 @export var interaction_time: float = 0.3
 @export var interaction_highlight_color := Color(1.27, 1.27, 0.92)
+
+@export_group("Tilemap", "tilemap_")
+@export var tilemap_layer: TileMapLayer
+@export var tilemap_tiles: Array[Vector2i]
 
 var players: Array[Node2D]
 var interacting_players: Array[Node2D]
@@ -16,7 +22,6 @@ var interacting_players: Array[Node2D]
 @onready var left_door_animator := $LeftDoorAnimator
 @onready var right_door_animator := $RightDoorAnimator
 @onready var center_collision_shape := $CentralCollisionShape
-@onready var center_nav_obstacle := $CentralNavigationObstacle
 @onready var cost_label := $CostLabel
 
 # Called when the node enters the scene tree for the first time.
@@ -25,7 +30,6 @@ func _ready() -> void:
 		left_door_animator.frame = left_door_animator.sprite_frames.get_frame_count() - 1
 		right_door_animator.frame = right_door_animator.sprite_frames.get_frame_count() - 1
 		center_collision_shape.disabled = true
-		center_nav_obstacle.avoidance_enabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,7 +55,10 @@ func open() -> void:
 	left_door_animator.play()
 	right_door_animator.play()
 	center_collision_shape.disabled = true
-	center_nav_obstacle.avoidance_enabled = false
+	
+	if tilemap_layer and tilemap_tiles and not tilemap_tiles.is_empty():
+		for tile_pos in tilemap_tiles:
+			tilemap_layer.set_cell(tile_pos, 0, Vector2i(6, 0))
 
 func close() -> void:
 	if not is_open:
@@ -63,7 +70,10 @@ func close() -> void:
 	right_door_animator.play_backwards()
 	await left_door_animator.animation_finished
 	center_collision_shape.disabled = false
-	center_nav_obstacle.avoidance_enabled = true
+	
+	if tilemap_layer and tilemap_tiles and not tilemap_tiles.is_empty():
+		for tile_pos in tilemap_tiles:
+			tilemap_layer.erase_cell(tile_pos)
 
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:

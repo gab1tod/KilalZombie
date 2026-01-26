@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Kilal Zombie"
-run/main_scene="uid://cba733jrew60e"
+run/main_scene="uid://dyt67iu8nuu60"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

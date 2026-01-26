@@ -95,7 +95,7 @@ func shoot() -> void:
 		animator.frame = 0
 		reload(magazine_capacity)
 	elif burst_count < burst:
-		await get_tree().create_timer(burst_delay).timeout
+		if burst_delay > 0: get_tree().create_timer(burst_delay).timeout
 		ready_to_shoot = true
 		shoot()
 	else:
@@ -111,6 +111,8 @@ func reload(bullets: int) -> void:
 	animator.play("reload")
 	on_reload.emit()
 	await animator.animation_finished
+	if shooter.aim_mode == shooter.AimMode.GAMEPAD:
+		Input.start_joy_vibration(shooter.device_id, 1, 0, 0.2)
 	animator.animation = "fire"
 	animator.frame = animator.sprite_frames.get_frame_count("fire") - 1
 	amo = bullets

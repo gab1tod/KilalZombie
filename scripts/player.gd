@@ -87,22 +87,23 @@ func handle_aim(delta: float = 0) -> void:
 		aim_target.x = Input.get_axis("p%d_aim_left" % device_id, "p%d_aim_right" % device_id)
 		aim_target.y = Input.get_axis("p%d_aim_up" % device_id, "p%d_aim_down" % device_id)
 		
+		# aim assist
+		if aim_assist:
+			var zombies = get_tree().get_nodes_in_group("Zombies")
+			zombies.sort_custom(func(a, b):
+				var delta_a = (a.global_position - weapon_socket.global_position).length()
+				var delta_b = (b.global_position - weapon_socket.global_position).length()
+				
+				return delta_a < delta_b
+			)
+			for zombie in zombies:
+				var delta_z = zombie.global_position - weapon_socket.global_position
+				var delta_angle = abs(delta_z.angle() - aim_target.angle())
+				if delta_angle <= aim_assist_angle:
+					aim_target = delta_z
+					break
+		
 		if aim_target.length() > aim_deadzone:
-			# aim assist
-			if aim_assist:
-				var zombies = get_tree().get_nodes_in_group("Zombies")
-				zombies.sort_custom(func(a, b):
-					var delta_a = (a.global_position - global_position).length()
-					var delta_b = (b.global_position - global_position).length()
-					
-					return delta_a < delta_b
-				)
-				for zombie in zombies:
-					var delta_z = zombie.global_position - global_position
-					var delta_angle = abs(delta_z.angle() - aim_target.angle())
-					if delta_angle <= aim_assist_angle:
-						aim_target = delta_z
-						break
 				
 			var aim_delta = aim_target.normalized() - aim_direction.normalized()
 			aim_direction = aim_direction.normalized() + aim_delta * aim_speed * delta

@@ -155,9 +155,6 @@ shape = SubResource("RectangleShape2D_k2ejx")
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_g4rrw")
 
-[node name="CentralNavigationObstacle" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(16, 0, -16, 0, -16, -18, 16, -18)
-
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]

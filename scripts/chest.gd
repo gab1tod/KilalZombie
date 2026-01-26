@@ -1,6 +1,10 @@
 extends StaticBody2D
 
 
+signal chest_opening
+signal chest_closing
+
+
 @export_group("Animation")
 @export var interaction_time: float = 0.3
 @export var opening_duration: float = 0.5
@@ -54,10 +58,12 @@ func update_labels():
 
 
 func open() -> void:
+	chest_opening.emit()
 	is_open = true
 	animator.play()
 
 func close() -> void:
+	chest_closing.emit()
 	is_open = false
 	animator.play_backwards()
 

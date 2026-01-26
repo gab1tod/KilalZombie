@@ -133,11 +133,9 @@ animations = [{
 script = ExtResource("1_43wd3")
 fire_rate = 5.0
 full_auto = false
-burst = 3
-magazine_capacity = 6
-amo = 6
+burst = 5
 bullet_speed = 800.0
-bullet_damage = 50
+bullet_damage = 100
 
 [node name="CycleTimer" type="Timer" parent="."]
 wait_time = 0.1

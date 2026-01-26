@@ -8,8 +8,9 @@ signal on_death
 
 @export var separation_radius: float = 24
 @export var separation_force: float = 100
-@export var damage: int = 50
+@export var attack_damage: int = 50
 var hurt := false
+var dead := false
 @onready var animator = $AnimatedSprite2D
 @onready var navigator := $NavigationAgent2D
 @onready var cooldown_timer := $AttackCooldownTimer
@@ -21,14 +22,16 @@ func _ready() -> void:
 	animator.play()
 
 
+@warning_ignore("unused_parameter")
 func  _process(delta: float) -> void:
-	var target_distance = (target.position - position).length() if target else 0
+	var target_distance = (target.position - position).length() if target else 0.0
 	for p in get_tree().get_nodes_in_group("Players"):
 		if not target or (p.position - position).length() < target_distance:
 			target = p
 			target_distance = (target.position - position).length()
 
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	if not target:
 		return
@@ -83,13 +86,17 @@ func get_separation() -> Vector2:
 
 func attack() -> void:
 	if cooldown_timer.is_stopped():
-		target.take_damage(damage)
+		target.take_damage(attack_damage)
 		cooldown_timer.start()
 
 
-func take_damage(damage: int):
+func take_damage(damage: int) -> void:
+	if dead:
+		return
+		
 	health -= damage
 	hurt = true
 	if health <= 0:
+		dead = true
 		on_death.emit()
 		queue_free()
