@@ -9,6 +9,9 @@ signal on_reload_finished
 @export var precision: float = 0.05 # radians
 @export var fire_rate: float = 2 # bullet/s
 @export var full_auto: bool = true
+@export var burst: int = 1
+@export var burst_delay: float = 0
+var burst_count: int = 0
 var ready_to_shoot: bool = false
 var has_cycled: bool = false
 var is_trigger_reset:bool = true # wether the trigger has been released between two shots
@@ -84,11 +87,19 @@ func shoot() -> void:
 	
 	on_shoot.emit()
 	amo -= 1
+	burst_count += 1
 	if amo == 0:
+		burst_count = 0
 		await animator.animation_finished
 		animator.animation = "reload"
 		animator.frame = 0
 		reload(magazine_capacity)
+	elif burst_count < burst:
+		await get_tree().create_timer(burst_delay).timeout
+		ready_to_shoot = true
+		shoot()
+	else:
+		burst_count = 0
 
 func reload(bullets: int) -> void:
 	if is_reloading or amo >= magazine_capacity or bullets <= 0:

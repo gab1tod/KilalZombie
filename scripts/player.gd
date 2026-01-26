@@ -10,6 +10,9 @@ var flip_h: bool = false:
 	set(value):
 		_flip_h(value)
 @export var speed: float = 200
+@export var aim_speed: float = 10
+@export var aim_assist: bool = true
+@export var aim_assist_angle: float = 0.5
 
 @export_group("Game")
 @export var health: int = 100
@@ -21,6 +24,7 @@ var flip_h: bool = false:
 enum AimMode { MOUSE, GAMEPAD }
 @export var aim_mode = AimMode.MOUSE
 @export var aim_deadzone: float = 0.1
+var aim_direction := Vector2.ZERO
 
 var hurt: bool = false
 var dead: bool = false
@@ -49,7 +53,7 @@ func _process(delta: float) -> void:
 		weapon.reload(weapon.magazine_capacity)
 	
 	if is_instance_valid(weapon):
-		handle_aim()
+		handle_aim(delta)
 		handle_shoot()
 	
 	handle_animations()
@@ -77,21 +81,39 @@ func handle_movement() -> void:
 	
 	velocity = direction * speed
 
-func handle_aim() -> void:
+func handle_aim(delta: float = 0) -> void:
 	if aim_mode == AimMode.GAMEPAD:
-		var aim_direction = Vector2.ZERO
-		aim_direction.x = Input.get_axis("p%d_aim_left" % device_id, "p%d_aim_right" % device_id)
-		aim_direction.y = Input.get_axis("p%d_aim_up" % device_id, "p%d_aim_down" % device_id)
+		var aim_target = Vector2.ZERO
+		aim_target.x = Input.get_axis("p%d_aim_left" % device_id, "p%d_aim_right" % device_id)
+		aim_target.y = Input.get_axis("p%d_aim_up" % device_id, "p%d_aim_down" % device_id)
 		
-		flip_h = aim_direction.x < 0
-		
-		if aim_direction.length() > aim_deadzone:
-			aim_direction = aim_direction
+		if aim_target.length() > aim_deadzone:
+			# aim assist
+			if aim_assist:
+				var zombies = get_tree().get_nodes_in_group("Zombies")
+				zombies.sort_custom(func(a, b):
+					var delta_a = (a.global_position - global_position).length()
+					var delta_b = (b.global_position - global_position).length()
+					
+					return delta_a < delta_b
+				)
+				for zombie in zombies:
+					var delta_z = zombie.global_position - global_position
+					var delta_angle = abs(delta_z.angle() - aim_target.angle())
+					if delta_angle <= aim_assist_angle:
+						aim_target = delta_z
+						break
+				
+			var aim_delta = aim_target.normalized() - aim_direction.normalized()
+			aim_direction = aim_direction.normalized() + aim_delta * aim_speed * delta
+			
+			flip_h = aim_direction.x < 0
+			
 			weapon.aim_angle = aim_direction.angle()
 			weapon.aim_distance = aim_direction.length()
 			weapon.crosshair_fixed_distance = true
 	else:
-		var aim_direction = get_global_mouse_position() - weapon_socket.global_position
+		aim_direction = get_global_mouse_position() - weapon_socket.global_position
 		var player_aim_direction = get_global_mouse_position() - global_position
 		flip_h = player_aim_direction.x < 0
 		

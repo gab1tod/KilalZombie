@@ -1,35 +1,35 @@
 [gd_scene load_steps=23 format=3 uid="uid://ctjxsrxt0rvo5"]
 
-[ext_resource type="Script" uid="uid://b35vi6rc6bqrb" path="res://scripts/doors.gd" id="1_amhr0"]
-[ext_resource type="Texture2D" uid="uid://c52c5oo1f3trm" path="res://assets/Doors.png" id="2_r60n6"]
-[ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_18pmu"]
+[ext_resource type="Script" uid="uid://b35vi6rc6bqrb" path="res://scripts/doors.gd" id="1_qv0qu"]
+[ext_resource type="Texture2D" uid="uid://c52c5oo1f3trm" path="res://assets/Doors.png" id="2_nyesd"]
+[ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_4747t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2m233"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(0, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cavsw"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(48, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx6fg"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(96, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vwepa"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(144, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j428o"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(192, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eh1os"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(240, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l8j1i"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(288, 32, 24, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3fqg6"]
@@ -62,31 +62,31 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6h1mu"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(24, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_flt5t"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(72, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_671mv"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(120, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3h1m"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(168, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kw3tq"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(216, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_riutp"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(264, 32, 24, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ko11j"]
-atlas = ExtResource("2_r60n6")
+atlas = ExtResource("2_nyesd")
 region = Rect2(312, 32, 24, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q5h7k"]
@@ -125,12 +125,12 @@ size = Vector2(9, 39)
 size = Vector2(31, 39)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dnn4j"]
-font = ExtResource("3_18pmu")
+font = ExtResource("3_4747t")
 font_size = 8
 font_color = Color(0.9490196, 0.78431374, 0.24705882, 1)
 
 [node name="WoodenDoors" type="StaticBody2D"]
-script = ExtResource("1_amhr0")
+script = ExtResource("1_qv0qu")
 
 [node name="RightDoorAnimator" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3fqg6")
@@ -144,6 +144,9 @@ offset = Vector2(-11, -8)
 [node name="CentralCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 4.5)
 shape = SubResource("RectangleShape2D_g4rrw")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(0, -14, 0, 24, -3, 24, -3, -14)
 
 [node name="InteractionArea" type="Area2D" parent="."]
 

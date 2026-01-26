@@ -1,0 +1,130 @@
+[gd_scene load_steps=16 format=3 uid="uid://ilnb6tpchl0m"]
+
+[ext_resource type="Script" uid="uid://di0lw3ih7hvkw" path="res://scripts/chest.gd" id="1_b8tbq"]
+[ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="2_ruvr2"]
+[ext_resource type="FontFile" uid="uid://bq3d7xj75nx7m" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="3_m6hfl"]
+[ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="4_out8r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipan7"]
+atlas = ExtResource("2_ruvr2")
+region = Rect2(16, 37, 16, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl4mp"]
+atlas = ExtResource("2_ruvr2")
+region = Rect2(48, 37, 16, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7aaj"]
+atlas = ExtResource("2_ruvr2")
+region = Rect2(80, 37, 16, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pttm"]
+atlas = ExtResource("2_ruvr2")
+region = Rect2(112, 37, 16, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkcvf"]
+atlas = ExtResource("2_ruvr2")
+region = Rect2(144, 37, 16, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v260q"]
+atlas = ExtResource("2_ruvr2")
+region = Rect2(176, 37, 16, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v84rw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipan7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl4mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7aaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pttm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkcvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v260q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_matvi"]
+size = Vector2(12, 9.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjixx"]
+size = Vector2(21, 16.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2tek"]
+font = ExtResource("3_m6hfl")
+font_size = 11
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rkgax"]
+font = ExtResource("4_out8r")
+font_size = 8
+font_color = Color(0.95, 0.78596663, 0.247, 1)
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_b8tbq")
+interaction_time = 0.4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -7.5)
+sprite_frames = SubResource("SpriteFrames_v84rw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.75)
+shape = SubResource("RectangleShape2D_matvi")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(4.5, -5.25)
+shape = SubResource("RectangleShape2D_cjixx")
+
+[node name="Label" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -40.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Item" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+text = "Item"
+label_settings = SubResource("LabelSettings_s2tek")
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 11.0
+offset_bottom = 21.0
+grow_horizontal = 2
+text = "cost"
+label_settings = SubResource("LabelSettings_rkgax")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

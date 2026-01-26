@@ -155,6 +155,9 @@ shape = SubResource("RectangleShape2D_k2ejx")
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_g4rrw")
 
+[node name="CentralNavigationObstacle" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(16, 0, -16, 0, -16, -18, 16, -18)
+
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
@@ -168,9 +171,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -8.0
-offset_top = -30.0
+offset_top = -17.0
 offset_right = 8.0
-offset_bottom = -20.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "cost"

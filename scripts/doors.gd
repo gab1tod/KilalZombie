@@ -4,6 +4,7 @@ signal doors_openinig
 signal doors_closing
 
 var flip_h: bool = false
+@export var obenable: bool = true
 @export var is_open: bool = false
 @export var cost: int = 750
 @export var interaction_time: float = 0.3
@@ -15,6 +16,7 @@ var interacting_players: Array[Node2D]
 @onready var left_door_animator := $LeftDoorAnimator
 @onready var right_door_animator := $RightDoorAnimator
 @onready var center_collision_shape := $CentralCollisionShape
+@onready var center_nav_obstacle := $CentralNavigationObstacle
 @onready var cost_label := $CostLabel
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +25,7 @@ func _ready() -> void:
 		left_door_animator.frame = left_door_animator.sprite_frames.get_frame_count() - 1
 		right_door_animator.frame = right_door_animator.sprite_frames.get_frame_count() - 1
 		center_collision_shape.disabled = true
+		center_nav_obstacle.avoidance_enabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +33,7 @@ func _process(delta: float) -> void:
 	left_door_animator.scale.x = -1 if flip_h else 1
 	right_door_animator.scale.x = -1 if flip_h else 1
 	
-	var buyable = not (players.is_empty() or is_open)
+	var buyable = not (players.is_empty() or is_open) and obenable
 	cost_label.visible = buyable
 	cost_label.text = '%d$' % cost
 	
@@ -48,6 +51,7 @@ func open() -> void:
 	left_door_animator.play()
 	right_door_animator.play()
 	center_collision_shape.disabled = true
+	center_nav_obstacle.avoidance_enabled = false
 
 func close() -> void:
 	if not is_open:
@@ -59,6 +63,7 @@ func close() -> void:
 	right_door_animator.play_backwards()
 	await left_door_animator.animation_finished
 	center_collision_shape.disabled = false
+	center_nav_obstacle.avoidance_enabled = true
 
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
@@ -76,7 +81,7 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 	
 
 func _on_player_interaction_start(player) -> void:
-	if is_open or player.score < cost:
+	if is_open or player.score < cost or not obenable:
 		return
 	
 	interacting_players.append(player)
