@@ -26,7 +26,7 @@ func _ready() -> void:
 func  _process(delta: float) -> void:
 	var target_distance = (target.position - position).length() if target else 0.0
 	for p in get_tree().get_nodes_in_group("Players"):
-		if not target or (p.position - position).length() < target_distance:
+		if not target or target.dead or ((p.position - position).length() < target_distance and not p.dead):
 			target = p
 			target_distance = (target.position - position).length()
 

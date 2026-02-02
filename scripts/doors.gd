@@ -81,6 +81,7 @@ func _on_interaction_area_body_entered(body: Node2D) -> void:
 		players.append(body)
 		body.interaction_start.connect(_on_player_interaction_start)
 		body.interaction_stop.connect(_on_player_interaction_stop)
+		update_label_visibility_layer()
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Players"):
@@ -88,6 +89,7 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 		interacting_players.erase(body)
 		body.interaction_start.disconnect(_on_player_interaction_start)
 		body.interaction_stop.disconnect(_on_player_interaction_stop)
+		update_label_visibility_layer()
 	
 
 func _on_player_interaction_start(player) -> void:
@@ -104,3 +106,8 @@ func _on_player_interaction_start(player) -> void:
 
 func _on_player_interaction_stop(player) -> void:
 	interacting_players.erase(player)
+
+func update_label_visibility_layer() -> void:
+	cost_label.visibility_layer = 0
+	for player in players:
+		cost_label.visibility_layer |= 1 << (player.device_id + 1)

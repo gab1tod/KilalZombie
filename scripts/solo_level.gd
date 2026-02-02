@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var splitscreen: bool = false
 @export var world: Node2D
 @export var wave: int = 0
 
@@ -28,7 +29,7 @@ var wave_spawn_time: float = 0
 var Zombie = preload("res://scenes/Zombie.tscn")
 @onready var viewport1 = $ViewportPlayer1/Viewport
 @onready var viewport2 = $ViewportPlayer2/Viewport
-@onready var walls = $World/Walls
+@onready var walls = world.get_node("Walls")
 
 @onready var announcer_label := $CanvasLayer/Announcer
 @onready var pause_menu := $PauseMenu
@@ -36,6 +37,12 @@ var Zombie = preload("res://scenes/Zombie.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+	if splitscreen:
+		var main_subviewport = world.get_parent()
+		for svp in find_subviewports(self):
+			if svp != main_subviewport:
+				svp.world_2d = main_subviewport.world_2d
 	
 	# Make background black
 	$Background.show()
@@ -105,3 +112,11 @@ func announce(text) -> void:
 	tween.tween_interval(announcer_remain_duration)
 	tween.tween_property(announcer_label, "modulate", Color.TRANSPARENT, announcer_fade_duration)
 	tween.tween_callback(func(): announcer_label.hide())
+
+
+func find_subviewports(node: Node, result: Array[SubViewport] = []) -> Array[SubViewport]:
+	if node is SubViewport:
+		result.append(node)
+	for child in node.get_children():
+		find_subviewports(child, result)
+	return result

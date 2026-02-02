@@ -41,6 +41,8 @@ func _ready() -> void:
 		if node.is_in_group("Weapons"):
 			set_weapon(node)
 			break
+	
+	# camera.visibility_layer = 1 | (1 << (device_id + 1))
 
 func _process(delta: float) -> void:
 	if dead:
@@ -62,9 +64,15 @@ func _process(delta: float) -> void:
 func handle_animations() -> void:
 	var anim_name = "walk" if velocity.length() > 0 else "idle"
 	var aim_dir = Vector2.from_angle(weapon.aim_angle)
-	anim_name += "_back" if aim_dir.y < -0.33 else "_face"
+	var looking_back = aim_dir.y < -0.33
+	anim_name += "_back" if looking_back else "_face"
 	if abs(aim_dir.x) > 0.33:
 		anim_name += "_side"
+	
+	if looking_back:
+		move_child(weapon_socket, 0)
+	else:
+		move_child(weapon_socket, get_child_count() - 1)
 	
 	# flip_h = aim_dir.x < 0
 	
@@ -87,24 +95,24 @@ func handle_aim(delta: float = 0) -> void:
 		aim_target.x = Input.get_axis("p%d_aim_left" % device_id, "p%d_aim_right" % device_id)
 		aim_target.y = Input.get_axis("p%d_aim_up" % device_id, "p%d_aim_down" % device_id)
 		
-		# aim assist
-		if aim_assist:
-			var zombies = get_tree().get_nodes_in_group("Zombies")
-			zombies.sort_custom(func(a, b):
-				var delta_a = (a.global_position - weapon_socket.global_position).length()
-				var delta_b = (b.global_position - weapon_socket.global_position).length()
-				
-				return delta_a < delta_b
-			)
-			for zombie in zombies:
-				var delta_z = zombie.global_position - weapon_socket.global_position
-				var delta_angle = abs(delta_z.angle() - aim_target.angle())
-				if delta_angle <= aim_assist_angle:
-					aim_target = delta_z
-					break
 		
 		if aim_target.length() > aim_deadzone:
-				
+			# aim assist
+			if aim_assist:
+				var zombies = get_tree().get_nodes_in_group("Zombies")
+				zombies.sort_custom(func(a, b):
+					var delta_a = (a.global_position - weapon_socket.global_position).length()
+					var delta_b = (b.global_position - weapon_socket.global_position).length()
+					
+					return delta_a < delta_b
+				)
+				for zombie in zombies:
+					var delta_z = zombie.global_position - weapon_socket.global_position
+					var delta_angle = abs(delta_z.angle() - aim_target.angle())
+					if delta_angle <= aim_assist_angle:
+						aim_target = delta_z
+						break
+			
 			var aim_delta = aim_target.normalized() - aim_direction.normalized()
 			aim_direction = aim_direction.normalized() + aim_delta * aim_speed * delta
 			
@@ -197,6 +205,9 @@ func set_weapon(wp: Weapon) -> void:
 	weapon_socket.move_child(weapon, 0)
 	weapon.flip_h = animator.flip_h
 	handle_aim()
+	
+	await get_tree().process_frame
+	weapon.crosshair.visibility_layer = (1 << (device_id + 1))
 
 func remove_weapon() -> void:
 	if not is_instance_valid(weapon):

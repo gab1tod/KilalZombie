@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7t5a30v16j1"]
+[gd_scene load_steps=22 format=3 uid="uid://7t5a30v16j1"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_43wd3"]
 [ext_resource type="Texture2D" uid="uid://don2yka2cl5vt" path="res://assets/Shotgun.png" id="2_43wd3"]
@@ -24,49 +24,53 @@ region = Rect2(192, 0, 48, 24)
 atlas = ExtResource("2_43wd3")
 region = Rect2(0, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8n46d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_43wd3"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(240, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h8t5u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n46d"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(288, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jk5rv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8t5u"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(336, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4m7m5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk5rv"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(384, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ix1g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m7m5"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(432, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvwrf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ix1g"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(480, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kb3vi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvwrf"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(528, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_upgx2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb3vi"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(576, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y0knr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_upgx2"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(624, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpeab"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0knr"]
 atlas = ExtResource("2_43wd3")
 region = Rect2(672, 0, 48, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpeab"]
+atlas = ExtResource("2_43wd3")
+region = Rect2(720, 0, 48, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3e60"]
 atlas = ExtResource("2_43wd3")
-region = Rect2(240, 0, 48, 24)
+region = Rect2(768, 0, 48, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ki372"]
 animations = [{
@@ -92,6 +96,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_43wd3")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8n46d")
 }, {
 "duration": 1.0,
@@ -103,10 +110,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4m7m5")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_2ix1g")
 }, {
-"duration": 3.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bvwrf")
 }, {
 "duration": 1.0,
@@ -126,7 +133,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"reload",
-"speed": 16.0
+"speed": 14.0
 }]
 
 [node name="Weapon" type="Node2D" groups=["Weapons"]]
@@ -144,13 +151,12 @@ autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ki372")
-animation = &"reload"
-frame = 10
-frame_progress = 1.0
-offset = Vector2(14, -2)
+animation = &"fire"
+frame = 4
+offset = Vector2(19, -3)
 
 [node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(21, -3)
+position = Vector2(26, -4)
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 z_index = 10

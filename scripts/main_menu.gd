@@ -18,3 +18,7 @@ func start_solo_game() -> void:
 
 func quit_game() -> void:
 	get_tree().quit()
+
+
+func start_duo_game() -> void:
+	get_tree().change_scene_to_file("res://scenes/levels/TwoPlayersLeve.tscn")

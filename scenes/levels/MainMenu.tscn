@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cba733jrew60e"]
+[gd_scene load_steps=5 format=3 uid="uid://cba733jrew60e"]
 
 [ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="1_4g3rc"]
 [ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="1_4xtjk"]
 [ext_resource type="Script" uid="uid://dk8qnmvw72nyi" path="res://scripts/main_menu.gd" id="1_hyrlu"]
-[ext_resource type="PackedScene" uid="uid://dyt67iu8nuu60" path="res://scenes/levels/SoloLevel.tscn" id="2_agb1x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4g3rc"]
 font = ExtResource("1_4xtjk")
@@ -15,7 +14,6 @@ shadow_offset = Vector2(0, -2)
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_hyrlu")
-solo_game = ExtResource("2_agb1x")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -69,12 +67,27 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = 28.0
+offset_top = -5.0
 offset_right = 50.0
-offset_bottom = 59.0
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start"
+text = "1 Player"
+
+[node name="StartButton2" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 32.0
+offset_right = 50.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2 Players"
 
 [node name="QuitButton" type="Button" parent="NinePatchRect"]
 layout_mode = 1
@@ -92,4 +105,5 @@ grow_vertical = 2
 text = "Quit"
 
 [connection signal="pressed" from="NinePatchRect/StartButton" to="." method="start_solo_game"]
+[connection signal="pressed" from="NinePatchRect/StartButton2" to="." method="start_duo_game"]
 [connection signal="pressed" from="NinePatchRect/QuitButton" to="." method="quit_game"]
