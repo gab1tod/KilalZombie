@@ -18,16 +18,17 @@
 [ext_resource type="PackedScene" uid="uid://dqp7r4yugeymp" path="res://scenes/chests/VLLargeChest.tscn" id="16_d3oy8"]
 [ext_resource type="PackedScene" uid="uid://bmvylkq552c2p" path="res://scenes/weapons/Thompson.tscn" id="17_waevj"]
 [ext_resource type="PackedScene" uid="uid://7t5a30v16j1" path="res://scenes/weapons/Shotgun.tscn" id="18_jssjx"]
-[ext_resource type="FontFile" uid="uid://bq3d7xj75nx7m" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="19_gx5ls"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="19_diifq"]
 [ext_resource type="Script" uid="uid://bldepu4wqtu8p" path="res://scripts/attribute_label.gd" id="20_d3oec"]
 [ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="21_73fxy"]
 [ext_resource type="Script" uid="uid://dukh4yjkdd0bb" path="res://scripts/pause_menu.gd" id="22_iy6pl"]
 [ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="23_xolxb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rarhs"]
-font = ExtResource("19_gx5ls")
-font_size = 22
-shadow_color = Color(0, 0, 0, 1)
+font = ExtResource("19_diifq")
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0.16, 0, 0.034666672, 1)
 shadow_offset = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wp0k4"]
@@ -50,7 +51,7 @@ splitscreen = true
 world = NodePath("CanvasLayer/SplitScreen/P1SubViewportContainer/P1SubViewport/World")
 announcer_fade_duration = 0.7
 announcer_remain_duration = 2.0
-hp_zombies_base = 100
+hp_zombies_base = 90
 hp_zombies_linear = 20.0
 
 [node name="Background" type="CanvasLayer" parent="."]

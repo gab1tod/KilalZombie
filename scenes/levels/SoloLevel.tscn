@@ -17,17 +17,18 @@
 [ext_resource type="PackedScene" uid="uid://7t5a30v16j1" path="res://scenes/weapons/Shotgun.tscn" id="11_amxrn"]
 [ext_resource type="PackedScene" uid="uid://bgmn3p41i16tg" path="res://scenes/weapons/Revolver.tscn" id="11_sgmt6"]
 [ext_resource type="PackedScene" uid="uid://bmvylkq552c2p" path="res://scenes/weapons/Thompson.tscn" id="12_fhv3x"]
-[ext_resource type="FontFile" uid="uid://bq3d7xj75nx7m" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="13_5anhj"]
 [ext_resource type="Script" uid="uid://bldepu4wqtu8p" path="res://scripts/attribute_label.gd" id="14_30g26"]
 [ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="15_mh6bb"]
 [ext_resource type="Script" uid="uid://dukh4yjkdd0bb" path="res://scripts/pause_menu.gd" id="16_tlvns"]
 [ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="17_07p04"]
 [ext_resource type="PackedScene" uid="uid://bg0ikyrie3dj5" path="res://scenes/chests/LargeChest.tscn" id="17_hix62"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="19_u61iy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rarhs"]
-font = ExtResource("13_5anhj")
-font_size = 22
-shadow_color = Color(0, 0, 0, 1)
+font = ExtResource("19_u61iy")
+font_size = 48
+shadow_size = 8
+shadow_color = Color(0.09, 0.036, 0.054899994, 1)
 shadow_offset = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wp0k4"]
@@ -49,7 +50,7 @@ script = ExtResource("1_hix62")
 world = NodePath("World")
 announcer_fade_duration = 0.7
 announcer_remain_duration = 2.0
-hp_zombies_base = 100
+hp_zombies_base = 90
 hp_zombies_linear = 20.0
 
 [node name="Background" type="CanvasLayer" parent="."]
@@ -295,6 +296,17 @@ offset_right = -15.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Health" type="Label" parent="CanvasLayer/VBoxContainer2" node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Health: %d%%"
+label_settings = SubResource("LabelSettings_rarhs")
+horizontal_alignment = 2
+script = ExtResource("14_30g26")
+target = NodePath("../../../World/Player1")
+attribute_path = &"health"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer2"]
 layout_mode = 2

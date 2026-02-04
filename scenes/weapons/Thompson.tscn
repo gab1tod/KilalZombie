@@ -139,10 +139,10 @@ autostart = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ki372")
 animation = &"reload"
-offset = Vector2(24, -1)
+offset = Vector2(15, -1)
 
 [node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(24, -4.5)
+position = Vector2(15, -4.5)
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 z_index = 10

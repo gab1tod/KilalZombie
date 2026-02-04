@@ -140,10 +140,10 @@ sprite_frames = SubResource("SpriteFrames_ki372")
 animation = &"fire"
 frame = 3
 frame_progress = 1.0
-offset = Vector2(23, -2)
+offset = Vector2(16, -2)
 
 [node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(17, -4.5)
+position = Vector2(10, -4.5)
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 z_index = 10

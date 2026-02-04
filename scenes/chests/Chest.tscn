@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="1_cjixx"]
 [ext_resource type="Script" uid="uid://di0lw3ih7hvkw" path="res://scripts/chest.gd" id="1_s2tek"]
-[ext_resource type="FontFile" uid="uid://bq3d7xj75nx7m" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="3_psq76"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="3_82srh"]
 [ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="4_vpyr1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2tek"]
@@ -62,8 +62,7 @@ size = Vector2(14, 15)
 size = Vector2(24, 25)
 
 [sub_resource type="LabelSettings" id="LabelSettings_s2tek"]
-font = ExtResource("3_psq76")
-font_size = 11
+font = ExtResource("3_82srh")
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 1)

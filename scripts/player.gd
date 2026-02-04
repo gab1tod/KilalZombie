@@ -32,6 +32,7 @@ var dead: bool = false
 @onready var animator := $AnimatedSprite2D
 @onready var camera := $Camera2D
 @onready var weapon_socket := $WeaponSocket
+@onready var heal_timer := $HealTimer
 
 
 func _ready() -> void:
@@ -175,6 +176,7 @@ func take_damage(damage: int) -> void:
 	
 	health -= damage
 	hurt = true
+	heal_timer.start()
 	if aim_mode == AimMode.GAMEPAD:
 		Input.start_joy_vibration(device_id, 0, 1, 0.1)
 	animator.modulate = hit_highlight_color
@@ -188,6 +190,7 @@ func take_damage(damage: int) -> void:
 
 func die() -> void:
 	dead = true
+	heal_timer.stop()
 	weapon_socket.hide()
 	animator.play("death")
 
@@ -221,3 +224,8 @@ func remove_weapon() -> void:
 func _on_weapon_shoots() -> void:
 	if aim_mode == AimMode.GAMEPAD:
 		Input.start_joy_vibration(device_id, 0, 1, 0.1)
+
+
+func _on_heal_timer_timeout() -> void:
+	if not dead:
+		health = 100

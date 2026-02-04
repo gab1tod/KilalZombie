@@ -22,6 +22,9 @@ var is_trigger_pulled: bool = false
 var must_reload: bool = false
 var is_reloading: bool = false
 
+var gun_distance: float = 7
+var distance_y_ratio: float = 0.5
+
 @export_group("Bullet", "bullet_")
 @export var bullet_speed: float = 1000 # px/s
 @export var bullet_damage: int = 5
@@ -53,6 +56,10 @@ func _process(delta: float) -> void:
 	animator.scale.x = -1 if flip_h else 1
 	animator.scale.y = -1 if flip_v else 1
 	animator.rotation = aim_angle + (PI if flip_h else 0)
+	
+	var aim_direction := Vector2.from_angle(aim_angle)
+	aim_direction.y *= distance_y_ratio
+	animator.position = aim_direction * gun_distance
 	
 	var cross_dist = crosshair_distance if crosshair_fixed_distance else aim_distance
 	crosshair.position = Vector2.RIGHT.rotated(aim_angle) * cross_dist
