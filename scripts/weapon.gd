@@ -43,6 +43,7 @@ var flip_v: bool = false
 @onready var cycle := $CycleTimer
 @onready var animator := $AnimatedSprite2D
 @onready var barrel := $AnimatedSprite2D/Barrel
+@onready var light := $AnimatedSprite2D/PointLight2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -82,6 +83,7 @@ func shoot() -> void:
 	cycle.start(1/fire_rate)
 	animator.frame = 0
 	animator.play("fire")
+	flash_light()
 	
 	var b = bullet.instantiate()
 	get_parent().get_parent().add_child(b)
@@ -107,6 +109,11 @@ func shoot() -> void:
 		shoot()
 	else:
 		burst_count = 0
+
+func flash_light():
+	light.enabled = true
+	await get_tree().process_frame
+	light.enabled = false
 
 func reload(bullets: int) -> void:
 	if is_reloading or amo >= magazine_capacity or bullets <= 0:

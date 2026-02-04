@@ -72,6 +72,7 @@ offset_right = 50.0
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../QuitButton")
 text = "1 Player"
 
 [node name="StartButton2" type="Button" parent="NinePatchRect"]
@@ -102,6 +103,7 @@ offset_right = 50.0
 offset_bottom = 101.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_bottom = NodePath("../StartButton")
 text = "Quit"
 
 [connection signal="pressed" from="NinePatchRect/StartButton" to="." method="start_solo_game"]

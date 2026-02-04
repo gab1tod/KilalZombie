@@ -30,20 +30,17 @@ var hurt: bool = false
 var dead: bool = false
 
 @onready var animator := $AnimatedSprite2D
-@onready var camera := $Camera2D
 @onready var weapon_socket := $WeaponSocket
 @onready var heal_timer := $HealTimer
+@onready var collision_shape := $CollisionShape2D
 
 
 func _ready() -> void:
 	animator.play()
-	camera.make_current()
 	for node in get_children():
 		if node.is_in_group("Weapons"):
 			set_weapon(node)
 			break
-	
-	# camera.visibility_layer = 1 | (1 << (device_id + 1))
 
 func _process(delta: float) -> void:
 	if dead:
@@ -190,6 +187,7 @@ func take_damage(damage: int) -> void:
 
 func die() -> void:
 	dead = true
+	collision_shape.disabled = true
 	heal_timer.stop()
 	weapon_socket.hide()
 	animator.play("death")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bgmn3p41i16tg"]
+[gd_scene load_steps=24 format=3 uid="uid://bgmn3p41i16tg"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_wkycj"]
 [ext_resource type="Texture2D" uid="uid://cny58rillvn6" path="res://assets/Revolver.png" id="2_n4pqw"]
 [ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="3_fly7g"]
+[ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="3_ng170"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ng170"]
 atlas = ExtResource("2_n4pqw")
@@ -165,6 +166,15 @@ offset = Vector2(14, -3)
 
 [node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
 position = Vector2(11, -4.5)
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+position = Vector2(15, -4.5)
+enabled = false
+color = Color(2.0331757, 1.7362787, 0.54869056, 1)
+energy = 0.75
+shadow_enabled = true
+texture = ExtResource("3_ng170")
+texture_scale = 0.3
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 z_index = 10

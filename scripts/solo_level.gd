@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var splitscreen: bool = false
 @export var world: Node2D
 @export var wave: int = 0
 
@@ -37,12 +36,6 @@ var Zombie = preload("res://scenes/Zombie.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
-	if splitscreen:
-		var main_subviewport = world.get_parent()
-		for svp in find_subviewports(self):
-			if svp != main_subviewport:
-				svp.world_2d = main_subviewport.world_2d
 	
 	# Make background black
 	$Background.show()
