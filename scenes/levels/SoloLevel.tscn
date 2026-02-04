@@ -240,9 +240,9 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="BottomLeft" type="VBoxContainer" parent="HUD"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -251,8 +251,9 @@ offset_top = -114.0
 offset_right = 167.0
 offset_bottom = -10.0
 grow_vertical = 0
+theme_override_constants/separation = -8
 
-[node name="Zombies Health" type="Label" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("target")]
+[node name="Zombies Health" type="Label" parent="HUD/BottomLeft" node_paths=PackedStringArray("target")]
 layout_mode = 2
 text = "Zombies health: %d"
 label_settings = SubResource("LabelSettings_rarhs")
@@ -260,7 +261,7 @@ script = ExtResource("14_30g26")
 target = NodePath("../../..")
 attribute_path = &"wave_zombies_health"
 
-[node name="Zombies Number" type="Label" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("target")]
+[node name="Zombies Number" type="Label" parent="HUD/BottomLeft" node_paths=PackedStringArray("target")]
 layout_mode = 2
 text = "Zombies: %d"
 label_settings = SubResource("LabelSettings_rarhs")
@@ -268,7 +269,7 @@ script = ExtResource("14_30g26")
 target = NodePath("../../..")
 attribute_path = &"nb_zombies_to_kill"
 
-[node name="Wave" type="Label" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("target")]
+[node name="Wave" type="Label" parent="HUD/BottomLeft" node_paths=PackedStringArray("target")]
 layout_mode = 2
 text = "Wave: %d"
 label_settings = SubResource("LabelSettings_rarhs")
@@ -276,7 +277,7 @@ script = ExtResource("14_30g26")
 target = NodePath("../../..")
 attribute_path = &"wave"
 
-[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer" node_paths=PackedStringArray("target")]
+[node name="Score" type="Label" parent="HUD/BottomLeft" node_paths=PackedStringArray("target")]
 layout_mode = 2
 text = "Score: %d"
 label_settings = SubResource("LabelSettings_rarhs")
@@ -284,7 +285,7 @@ script = ExtResource("14_30g26")
 target = NodePath("../../../World/Player1")
 attribute_path = &"score"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
+[node name="BottomRight" type="VBoxContainer" parent="HUD"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -297,9 +298,10 @@ offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
+theme_override_constants/separation = -8
 alignment = 2
 
-[node name="Health" type="Label" parent="CanvasLayer/VBoxContainer2" node_paths=PackedStringArray("target")]
+[node name="Health" type="Label" parent="HUD/BottomRight" node_paths=PackedStringArray("target")]
 layout_mode = 2
 text = "Health: %d%%"
 label_settings = SubResource("LabelSettings_rarhs")
@@ -308,11 +310,11 @@ script = ExtResource("14_30g26")
 target = NodePath("../../../World/Player1")
 attribute_path = &"health"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer2"]
+[node name="Amo" type="HBoxContainer" parent="HUD/BottomRight"]
 layout_mode = 2
 alignment = 2
 
-[node name="Gun amo" type="Label" parent="CanvasLayer/VBoxContainer2/HBoxContainer" node_paths=PackedStringArray("target")]
+[node name="Gun amo" type="Label" parent="HUD/BottomRight/Amo" node_paths=PackedStringArray("target")]
 layout_mode = 2
 text = "Gun amo: %d"
 label_settings = SubResource("LabelSettings_rarhs")
@@ -320,7 +322,7 @@ script = ExtResource("14_30g26")
 target = NodePath("../../../../World/Player1")
 attribute_path = &"weapon.amo"
 
-[node name="Gun capacity" type="Label" parent="CanvasLayer/VBoxContainer2/HBoxContainer" node_paths=PackedStringArray("target")]
+[node name="Gun capacity" type="Label" parent="HUD/BottomRight/Amo" node_paths=PackedStringArray("target")]
 layout_mode = 2
 text = "/%d"
 label_settings = SubResource("LabelSettings_rarhs")
@@ -328,7 +330,7 @@ script = ExtResource("14_30g26")
 target = NodePath("../../../../World/Player1")
 attribute_path = &"weapon.magazine_capacity"
 
-[node name="Announcer" type="Label" parent="CanvasLayer"]
+[node name="Announcer" type="Label" parent="HUD"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8

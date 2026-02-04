@@ -30,7 +30,7 @@ var Zombie = preload("res://scenes/Zombie.tscn")
 @onready var viewport2 = $ViewportPlayer2/Viewport
 @onready var walls = world.get_node("Walls")
 
-@onready var announcer_label := $CanvasLayer/Announcer
+@onready var announcer_label := $HUD/Announcer
 @onready var pause_menu := $PauseMenu
 
 # Called when the node enters the scene tree for the first time.

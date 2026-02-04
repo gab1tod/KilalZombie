@@ -4,6 +4,7 @@ signal interaction_start
 signal interaction_stop
 
 @export var hit_highlight_color := Color.RED
+@export var revive_highlight_color := Color(1.27, 1.27, 0.92)
 
 @export_group("Movements")
 var flip_h: bool = false:
@@ -33,6 +34,7 @@ var dead: bool = false
 @onready var weapon_socket := $WeaponSocket
 @onready var heal_timer := $HealTimer
 @onready var collision_shape := $CollisionShape2D
+@onready var revive_area := $ReviveArea
 
 
 func _ready() -> void:
@@ -44,6 +46,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if dead:
+		if not revive_area.is_empty():
+			animator.modulate = revive_highlight_color
+		else:
+			animator.modulate = Color.WHITE
 		return
 	
 	handle_movement()
@@ -191,6 +197,18 @@ func die() -> void:
 	heal_timer.stop()
 	weapon_socket.hide()
 	animator.play("death")
+	await animator.animation_finished
+	revive_area.enabled = true
+
+func revive(herlper) -> void:
+	health = 100
+	dead = false
+	collision_shape.disabled = false
+	revive_area.enabled = false
+	weapon_socket.show()
+	handle_animations()
+	animator.modulate = Color.WHITE
+	herlper.earn_points(50)
 
 
 func set_weapon(wp: Weapon) -> void:
