@@ -1,9 +1,9 @@
 extends Area2D
 
-
 signal interaction_success(player: Node2D)
 signal enter_interaction_area(player: Node2D)
 signal exit_interaction_area(player: Node2D)
+
 
 @export var enabled: bool = true:
 	set(value):
@@ -27,6 +27,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
 

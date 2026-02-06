@@ -50,8 +50,10 @@ script = ExtResource("1_hix62")
 world = NodePath("World")
 announcer_fade_duration = 0.7
 announcer_remain_duration = 2.0
-hp_zombies_base = 90
-hp_zombies_linear = 20.0
+nb_zombies_linear = 3.0
+hp_zombies_linear = 22.0
+hp_zombies_exponential = 1.9
+spawn_time_linear = -0.5
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -100
@@ -70,7 +72,7 @@ y_sort_enabled = true
 
 [node name="Player1" parent="World" instance=ExtResource("2_wv0p8")]
 collision_mask = 1
-score = 100000
+score = 500
 
 [node name="Camera2D" type="Camera2D" parent="World/Player1"]
 zoom = Vector2(2, 2)

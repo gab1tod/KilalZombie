@@ -1,9 +1,29 @@
-[gd_scene load_steps=57 format=3 uid="uid://budp1wl2w7ma1"]
+[gd_scene load_steps=62 format=3 uid="uid://budp1wl2w7ma1"]
 
 [ext_resource type="Script" uid="uid://cf3236egwonxr" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://csakg4fe0u8j5" path="res://scenes/InteractionArea.tscn" id="3_3li8b"]
 [ext_resource type="Texture2D" uid="uid://d0s8sp46daq3m" path="res://assets/player.png" id="4_mdl7e"]
 [ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="4_qu4a1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_priom"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(576, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt3gi"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(624, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akpgi"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(672, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kumhx"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(720, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_100hb"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(768, 64, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("4_mdl7e")
@@ -195,6 +215,26 @@ region = Rect2(480, 32, 48, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o4126"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_priom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt3gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akpgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kumhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_100hb")
+}],
+"loop": false,
+"name": &"crouch",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v6fml")
@@ -403,12 +443,12 @@ collision_mask = 0
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_g2els")
-speed = 150.0
+speed = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_o4126")
-animation = &"idle_face"
+animation = &"crouch"
 offset = Vector2(0.5, 2)
 metadata/_edit_lock_ = true
 

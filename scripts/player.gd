@@ -23,6 +23,7 @@ var flip_h: bool = false:
 @export_group("Inputs")
 @export var device_id: int = 0
 enum AimMode { MOUSE, GAMEPAD }
+@export_flags("Mouse", "Gamepad") var aim_mode_flags: int = 3
 @export var aim_mode = AimMode.MOUSE
 @export var aim_deadzone: float = 0.1
 var aim_direction := Vector2.ZERO
@@ -153,12 +154,15 @@ func handle_interaction():
 
 func _input(event: InputEvent) -> void:
 	# Mouse
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and is_aimmode_enabled(AimMode.MOUSE):
 		aim_mode = AimMode.MOUSE
 	
 	# Gamepad
-	if event is InputEventJoypadMotion and abs(event.axis_value) > aim_deadzone:
+	if event is InputEventJoypadMotion and abs(event.axis_value) > aim_deadzone and is_aimmode_enabled(AimMode.GAMEPAD):
 		aim_mode = AimMode.GAMEPAD
+
+func is_aimmode_enabled(mode: AimMode) -> bool:
+	return aim_mode_flags & (1 << mode)
 
 
 func earn_points(points: int) -> void:
