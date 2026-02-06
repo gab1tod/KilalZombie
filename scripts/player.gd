@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 signal interaction_start
 signal interaction_stop
@@ -30,6 +31,9 @@ var aim_direction := Vector2.ZERO
 
 var hurt: bool = false
 var dead: bool = false
+var is_being_revived: bool = false
+var is_reviving: bool = false
+var was_revived: bool = false
 
 @onready var animator := $AnimatedSprite2D
 @onready var weapon_socket := $WeaponSocket
@@ -53,8 +57,9 @@ func _process(delta: float) -> void:
 			animator.modulate = Color.WHITE
 		return
 	
-	handle_movement()
-	move_and_slide()
+	if not is_reviving:
+		handle_movement()
+		move_and_slide()
 	
 	if Input.is_action_pressed("p%d_reload" % device_id):
 		weapon.reload(weapon.magazine_capacity)
@@ -70,9 +75,12 @@ func handle_animations() -> void:
 	var anim_name = "walk" if velocity.length() > 0 else "idle"
 	var aim_dir = Vector2.from_angle(weapon.aim_angle)
 	var looking_back = aim_dir.y < -0.33
-	anim_name += "_back" if looking_back else "_face"
-	if abs(aim_dir.x) > 0.33:
-		anim_name += "_side"
+	
+	if not is_reviving:
+		anim_name += "_back" if looking_back else "_face"
+		if abs(aim_dir.x) > 0.33:
+			anim_name += "_side"
+		animator.animation = anim_name
 	
 	if looking_back:
 		move_child(weapon_socket, 0)
@@ -81,7 +89,6 @@ func handle_animations() -> void:
 	
 	# flip_h = aim_dir.x < 0
 	
-	animator.animation = anim_name
 	hurt = false
 
 func handle_movement() -> void:
@@ -197,22 +204,30 @@ func take_damage(damage: int) -> void:
 
 func die() -> void:
 	dead = true
+	is_reviving = false
 	collision_shape.disabled = true
 	heal_timer.stop()
 	weapon_socket.hide()
 	animator.play("death")
 	await animator.animation_finished
-	revive_area.enabled = true
+	
+	if not was_revived:
+		revive_area.enabled = true
 
-func revive(herlper) -> void:
+func revive(helper: Player) -> void:
 	health = 100
 	dead = false
+	is_being_revived = false
+	was_revived = true
 	collision_shape.disabled = false
 	revive_area.enabled = false
 	weapon_socket.show()
 	handle_animations()
 	animator.modulate = Color.WHITE
-	herlper.earn_points(50)
+	
+	if helper:
+		helper.earn_points(50)
+		helper._on_reviving_stop(self)
 
 
 func set_weapon(wp: Weapon) -> void:
@@ -249,3 +264,25 @@ func _on_weapon_shoots() -> void:
 func _on_heal_timer_timeout() -> void:
 	if not dead:
 		health = 100
+
+
+func _on_being_revive_start(player: Player) -> void:
+	if not dead:
+		return
+	is_being_revived = true
+	player._on_reviving_start(self)
+
+func _on_being_revive_stop(player: Player) -> void:
+	is_being_revived = false
+	player._on_reviving_stop(self)
+
+
+@warning_ignore("unused_parameter")
+func _on_reviving_start(player: Player) -> void:
+	is_reviving = true
+	animator.play('crouch')
+
+@warning_ignore("unused_parameter")
+func _on_reviving_stop(player: Player) -> void:
+	is_reviving = false
+	animator.play()

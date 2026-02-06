@@ -494,3 +494,5 @@ horizontal_alignment = 1
 [connection signal="child_exiting_tree" from="WeaponSocket" to="." method="_on_weapon_socket_child_exiting_tree"]
 [connection signal="timeout" from="HealTimer" to="." method="_on_heal_timer_timeout"]
 [connection signal="interaction_success" from="ReviveArea" to="." method="revive"]
+[connection signal="start_interaction" from="ReviveArea" to="." method="_on_being_revive_start"]
+[connection signal="stop_interaction" from="ReviveArea" to="." method="_on_being_revive_stop"]

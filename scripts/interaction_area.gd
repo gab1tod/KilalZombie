@@ -1,8 +1,10 @@
 extends Area2D
 
-signal interaction_success(player: Node2D)
-signal enter_interaction_area(player: Node2D)
-signal exit_interaction_area(player: Node2D)
+signal interaction_success(player: Player)
+signal enter_interaction_area(player: Player)
+signal exit_interaction_area(player: Player)
+signal start_interaction(player: Player)
+signal stop_interaction(player: Player)
 
 
 @export var enabled: bool = true:
@@ -10,13 +12,14 @@ signal exit_interaction_area(player: Node2D)
 		enabled = value
 		if not enabled:
 			players.clear()
-			interacting_players.clear()
+			for p in interacting_players:
+				_on_body_exited(p)
 			if label: label.hide()
 @export var label: Control
 @export_range(0, 60) var duration: float = 0.2
 
-var players: Array[Node2D]
-var interacting_players: Array[Node2D]
+var players: Array[Player]
+var interacting_players: Dictionary[Player, SceneTreeTimer]
 
 var requirement:Callable = func(a): return a != null
 
@@ -36,7 +39,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if not enabled:
 		return
 	
-	if body.is_in_group("Players"):
+	if body is Player:
 		enter_interaction_area.emit(body)
 		players.append(body)
 		body.interaction_start.connect(_on_player_interaction_start)
@@ -45,10 +48,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if not enabled:
-		return
-	
-	if body.is_in_group("Players"):
+	if body is Player:
 		exit_interaction_area.emit(body)
 		players.erase(body)
 		_on_player_interaction_stop(body)
@@ -59,18 +59,23 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _on_player_interaction_start(player) -> void:
-	if not requirement.call(player):
+	if not (enabled or requirement.call(player)):
 		return
 	
-	interacting_players.append(player)
+	start_interaction.emit(player)
 	var interaction_timer = get_tree().create_timer(duration)
+	interacting_players[player] = interaction_timer
 	await interaction_timer.timeout
 	if player in interacting_players:
 		interaction_success.emit(player)
 		interacting_players.erase(player)
 
 func _on_player_interaction_stop(player) -> void:
+	stop_interaction.emit(player)
+	var interaction_timer = interacting_players.get(player)
 	interacting_players.erase(player)
+	if interaction_timer:
+		interaction_timer.set_time_left(0)
 	update_label_visibility_layer()
 
 

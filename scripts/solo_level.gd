@@ -76,6 +76,10 @@ func _on_zombie_death() -> void:
 	nb_zombies_to_kill -= 1
 	if nb_zombies_to_kill <= 0:
 		$RestTimer.start()
+		for p in get_tree().get_nodes_in_group('Players'):
+			p.was_revived = false
+			if p.dead:
+				p.revive(null)
 
 func _on_rest_timer_timeout() -> void:
 	# Start new wave
