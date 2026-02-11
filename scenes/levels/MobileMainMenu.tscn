@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://cba733jrew60e"]
+
+[ext_resource type="Script" uid="uid://dk8qnmvw72nyi" path="res://scripts/main_menu.gd" id="1_ie0q5"]
+[ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="2_gr2do"]
+[ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="3_g2d45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyrlu"]
+atlas = ExtResource("2_gr2do")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4g3rc"]
+font = ExtResource("3_g2d45")
+font_size = 64
+font_color = Color(0.97, 0.9522167, 0.9215, 1)
+shadow_size = 0
+shadow_color = Color(0.43, 0.25972, 0.1978, 1)
+shadow_offset = Vector2(0, -2)
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_ie0q5")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06, 0.051, 0.042, 1)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -436.0
+offset_top = -196.0
+offset_right = 2.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_hyrlu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 11
+
+[node name="Title" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.5
+offset_top = -87.0
+offset_right = 129.5
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Kilal Zombie"
+label_settings = SubResource("LabelSettings_4g3rc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -1.0
+offset_right = 50.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 37.0
+offset_right = 50.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[connection signal="pressed" from="NinePatchRect/StartButton" to="." method="start_mobile_game"]
+[connection signal="pressed" from="NinePatchRect/QuitButton" to="." method="quit_game"]

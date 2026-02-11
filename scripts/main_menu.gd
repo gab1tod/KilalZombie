@@ -22,3 +22,7 @@ func quit_game() -> void:
 
 func start_duo_game() -> void:
 	get_tree().change_scene_to_file("res://scenes/levels/TwoPlayersLeve.tscn")
+
+
+func start_mobile_game() -> void:
+	get_tree().change_scene_to_file("res://scenes/levels/MobileLevel.tscn")

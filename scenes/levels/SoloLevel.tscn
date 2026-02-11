@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=4 uid="uid://dyt67iu8nuu60"]
 
-[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/solo_level.gd" id="1_hix62"]
+[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/game.gd" id="1_hix62"]
 [ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://scenes/Player.tscn" id="2_wv0p8"]
 [ext_resource type="PackedScene" uid="uid://c36tdsd2hb6vk" path="res://scenes/weapons/Pistol.tscn" id="3_vwb6c"]
 [ext_resource type="TileSet" uid="uid://c7i03p4eyyrp2" path="res://assets/Tileset.tres" id="4_lx8mc"]

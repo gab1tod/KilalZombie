@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 
+@export var menu_parent: String = 'res://scenes/levels/MainMenu.tscn'
+
 @onready var inhibition_timer := $InhibitionTimer
 @onready var resume_button := $NinePatchRect/ResumeButton
 
@@ -41,4 +43,4 @@ func restart_level() -> void:
 
 func quit_level() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/levels/MainMenu.tscn")
+	get_tree().change_scene_to_file(menu_parent)

@@ -23,11 +23,13 @@ var flip_h: bool = false:
 
 @export_group("Inputs")
 @export var device_id: int = 0
-enum AimMode { MOUSE, GAMEPAD }
-@export_flags("Mouse", "Gamepad") var aim_mode_flags: int = 3
+enum AimMode { MOUSE, GAMEPAD, MOBILE }
+@export_flags("Mouse", "Gamepad", "Mobile") var aim_mode_flags: int = 3
 @export var aim_mode = AimMode.MOUSE
 @export var aim_deadzone: float = 0.1
+@export var aim_restzone: float = 0.1
 var aim_direction := Vector2.ZERO
+var mobile_trigger_pull: bool = false
 
 var hurt: bool = false
 var dead: bool = false
@@ -102,11 +104,12 @@ func handle_movement() -> void:
 	velocity = direction * speed
 
 func handle_aim(delta: float = 0) -> void:
-	if aim_mode == AimMode.GAMEPAD:
+	if aim_mode == AimMode.GAMEPAD or aim_mode == AimMode.MOBILE:
 		var aim_target = Vector2.ZERO
 		aim_target.x = Input.get_axis("p%d_aim_left" % device_id, "p%d_aim_right" % device_id)
 		aim_target.y = Input.get_axis("p%d_aim_up" % device_id, "p%d_aim_down" % device_id)
 		
+		mobile_trigger_pull = aim_target.length() >= 1 - aim_restzone
 		
 		if aim_target.length() > aim_deadzone:
 			# aim assist
@@ -149,6 +152,10 @@ func _flip_h(is_flipped: bool) -> void:
 		weapon.flip_h = is_flipped
 
 func handle_shoot() -> void:
+	if aim_mode == AimMode.MOBILE:
+		weapon.is_trigger_pulled = mobile_trigger_pull and not weapon.is_trigger_pulled
+		return
+	
 	weapon.is_trigger_pulled = Input.is_action_pressed("p%d_shoot" % device_id)
 
 func handle_interaction():

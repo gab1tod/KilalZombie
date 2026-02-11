@@ -202,7 +202,7 @@ height = 22.0
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_t3ikf")
-speed = 40.0
+speed = 30.0
 separation_radius = 16.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

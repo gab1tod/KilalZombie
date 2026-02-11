@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cba733jrew60e"]
+[gd_scene load_steps=6 format=3 uid="uid://dvgauec5bim52"]
 
-[ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="1_4g3rc"]
-[ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="1_4xtjk"]
-[ext_resource type="Script" uid="uid://dk8qnmvw72nyi" path="res://scripts/main_menu.gd" id="1_hyrlu"]
+[ext_resource type="Script" uid="uid://dk8qnmvw72nyi" path="res://scripts/main_menu.gd" id="1_ie0q5"]
+[ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="2_gr2do"]
+[ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="3_g2d45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyrlu"]
+atlas = ExtResource("2_gr2do")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4g3rc"]
-font = ExtResource("1_4xtjk")
+font = ExtResource("3_g2d45")
 font_size = 64
 font_color = Color(0.97, 0.9522167, 0.9215, 1)
 shadow_size = 0
@@ -13,7 +17,7 @@ shadow_color = Color(0.43, 0.25972, 0.1978, 1)
 shadow_offset = Vector2(0, -2)
 
 [node name="MainMenu" type="CanvasLayer"]
-script = ExtResource("1_hyrlu")
+script = ExtResource("1_ie0q5")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -35,7 +39,7 @@ offset_right = 289.0
 offset_bottom = 157.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_4g3rc")
+texture = SubResource("AtlasTexture_hyrlu")
 patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
