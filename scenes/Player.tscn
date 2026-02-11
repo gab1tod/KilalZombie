@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://budp1wl2w7ma1"]
+[gd_scene format=3 uid="uid://budp1wl2w7ma1"]
 
 [ext_resource type="Script" uid="uid://cf3236egwonxr" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://csakg4fe0u8j5" path="res://scenes/InteractionArea.tscn" id="3_3li8b"]
@@ -438,45 +438,46 @@ shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 1)
 
-[node name="Player" type="CharacterBody2D" groups=["Players"]]
+[node name="Player" type="CharacterBody2D" unique_id=989055229 groups=["Players"]]
 collision_mask = 0
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_g2els")
 speed = 100.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=134101979]
+light_mask = 3
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_o4126")
 animation = &"crouch"
 offset = Vector2(0.5, 2)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1944520898]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_3li8b")
 metadata/_edit_lock_ = true
 
-[node name="WeaponSocket" type="Marker2D" parent="."]
+[node name="WeaponSocket" type="Marker2D" parent="." unique_id=2042104908]
 position = Vector2(0, -7)
 
-[node name="HealTimer" type="Timer" parent="."]
+[node name="HealTimer" type="Timer" parent="." unique_id=360489845]
 wait_time = 3.0
 one_shot = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=57629660]
 occluder = SubResource("OccluderPolygon2D_v6fml")
 
-[node name="ReviveArea" parent="." node_paths=PackedStringArray("label") instance=ExtResource("3_3li8b")]
+[node name="ReviveArea" parent="." unique_id=281061087 node_paths=PackedStringArray("label") instance=ExtResource("3_3li8b")]
 enabled = false
 label = NodePath("../ReviveLabel")
 duration = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ReviveArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReviveArea" unique_id=866552685]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_3li8b")
 
-[node name="ReviveLabel" type="Label" parent="."]
+[node name="ReviveLabel" type="Label" parent="." unique_id=394266170]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5

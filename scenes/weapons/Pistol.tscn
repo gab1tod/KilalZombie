@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c36tdsd2hb6vk"]
+[gd_scene format=3 uid="uid://c36tdsd2hb6vk"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_wkycj"]
 [ext_resource type="Texture2D" uid="uid://hod8nlos4c55" path="res://assets/Pistol.png" id="2_10bxh"]
@@ -123,7 +123,7 @@ animations = [{
 "speed": 18.0
 }]
 
-[node name="Weapon" type="Node2D" groups=["Weapons"]]
+[node name="Weapon" type="Node2D" unique_id=537325173 groups=["Weapons"]]
 script = ExtResource("1_wkycj")
 fire_rate = 7.0
 full_auto = false
@@ -131,22 +131,22 @@ magazine_capacity = 12
 amo = 12
 bullet_damage = 10
 
-[node name="CycleTimer" type="Timer" parent="."]
+[node name="CycleTimer" type="Timer" parent="." unique_id=415073833]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=977262570]
 sprite_frames = SubResource("SpriteFrames_ki372")
 animation = &"fire"
 frame = 3
 frame_progress = 1.0
 offset = Vector2(16, -2)
 
-[node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
+[node name="Barrel" type="Marker2D" parent="AnimatedSprite2D" unique_id=2146852113]
 position = Vector2(10, -4.5)
 
-[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" unique_id=749339283]
 position = Vector2(15, -4.5)
 enabled = false
 color = Color(2.0331757, 1.7362787, 0.54869056, 1)
@@ -155,7 +155,7 @@ shadow_enabled = true
 texture = ExtResource("3_blnrr")
 texture_scale = 0.3
 
-[node name="Crosshair" type="Sprite2D" parent="."]
+[node name="Crosshair" type="Sprite2D" parent="." unique_id=1090189290]
 z_index = 10
 position = Vector2(100, 0)
 texture = ExtResource("3_fly7g")
