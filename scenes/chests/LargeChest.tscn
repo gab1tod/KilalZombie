@@ -1,54 +1,54 @@
-[gd_scene load_steps=16 format=3 uid="uid://bg0ikyrie3dj5"]
+[gd_scene format=3 uid="uid://bg0ikyrie3dj5"]
 
-[ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="1_cjixx"]
 [ext_resource type="Script" uid="uid://di0lw3ih7hvkw" path="res://scripts/chest.gd" id="1_s2tek"]
+[ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="2_f5tcv"]
 [ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_24e62"]
 [ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="3_f5tcv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s2tek"]
-atlas = ExtResource("1_cjixx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5nra"]
+atlas = ExtResource("2_f5tcv")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rkgax"]
-atlas = ExtResource("1_cjixx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2byxj"]
+atlas = ExtResource("2_f5tcv")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_psq76"]
-atlas = ExtResource("1_cjixx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ape1"]
+atlas = ExtResource("2_f5tcv")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vpyr1"]
-atlas = ExtResource("1_cjixx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxe3o"]
+atlas = ExtResource("2_f5tcv")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uw0c0"]
-atlas = ExtResource("1_cjixx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i2yb"]
+atlas = ExtResource("2_f5tcv")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iq08n"]
-atlas = ExtResource("1_cjixx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_aswir"]
+atlas = ExtResource("2_f5tcv")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v84rw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s2tek")
+"texture": SubResource("AtlasTexture_t5nra")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rkgax")
+"texture": SubResource("AtlasTexture_2byxj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_psq76")
+"texture": SubResource("AtlasTexture_8ape1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vpyr1")
+"texture": SubResource("AtlasTexture_wxe3o")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uw0c0")
+"texture": SubResource("AtlasTexture_0i2yb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iq08n")
+"texture": SubResource("AtlasTexture_aswir")
 }],
 "loop": false,
 "name": &"default",
@@ -72,25 +72,25 @@ font = ExtResource("3_24e62")
 font_size = 8
 font_color = Color(0.9490196, 0.78431374, 0.24705882, 1)
 
-[node name="Chest" type="StaticBody2D"]
+[node name="Chest" type="StaticBody2D" unique_id=1087736032]
 script = ExtResource("1_s2tek")
 interaction_time = 0.4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1993266738]
 texture_filter = 1
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_v84rw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=809785656]
 shape = SubResource("RectangleShape2D_matvi")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=30680918]
 
-[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
+[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea" unique_id=1549945025]
 position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_cjixx")
 
-[node name="Label" type="Control" parent="."]
+[node name="Label" type="Control" parent="." unique_id=71619895]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -103,7 +103,7 @@ offset_right = 32.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Item" type="Label" parent="Label"]
+[node name="Item" type="Label" parent="Label" unique_id=760339205]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -113,7 +113,7 @@ text = "Item"
 label_settings = SubResource("LabelSettings_t5nra")
 horizontal_alignment = 1
 
-[node name="Cost" type="Label" parent="Label"]
+[node name="Cost" type="Label" parent="Label" unique_id=813577241]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0

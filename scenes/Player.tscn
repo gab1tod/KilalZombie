@@ -426,9 +426,6 @@ animations = [{
 radius = 7.0
 height = 16.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v6fml"]
-polygon = PackedVector2Array(4, 0, -3, 0, -3, -5, 4, -5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3li8b"]
 size = Vector2(26, 20)
 
@@ -439,14 +436,12 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 1)
 
 [node name="Player" type="CharacterBody2D" unique_id=989055229 groups=["Players"]]
-collision_mask = 0
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_g2els")
 speed = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=134101979]
-light_mask = 3
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_o4126")
 animation = &"crouch"
@@ -464,9 +459,6 @@ position = Vector2(0, -7)
 [node name="HealTimer" type="Timer" parent="." unique_id=360489845]
 wait_time = 3.0
 one_shot = true
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=57629660]
-occluder = SubResource("OccluderPolygon2D_v6fml")
 
 [node name="ReviveArea" parent="." unique_id=281061087 node_paths=PackedStringArray("label") instance=ExtResource("3_3li8b")]
 enabled = false

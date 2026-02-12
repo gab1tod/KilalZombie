@@ -28,6 +28,7 @@ var distance_y_ratio: float = 0.5
 @export_group("Bullet", "bullet_")
 @export var bullet_speed: float = 1000 # px/s
 @export var bullet_damage: int = 5
+@export var bullet_color := Color(0.941, 0.898, 0.329)
 var bullet = preload("res://scenes/Bullet.tscn")
 
 @export_group("Crossair", "crosshair_")
@@ -90,6 +91,7 @@ func shoot() -> void:
 	b.shooter = shooter
 	b.speed = bullet_speed
 	b.damage = bullet_damage
+	b.color = bullet_color
 	b.direction = Vector2.RIGHT.rotated(aim_angle + randf_range(-precision, precision))
 	b.global_position = barrel.global_position
 	b.last_position = barrel.global_position

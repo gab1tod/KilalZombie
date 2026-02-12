@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://rtfo7af6i4rx"]
+[gd_scene format=3 uid="uid://rtfo7af6i4rx"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_5ymky"]
 [ext_resource type="Texture2D" uid="uid://b2agp1lkkibpe" path="res://assets/Raygun.png" id="2_5ymky"]
@@ -137,29 +137,30 @@ animations = [{
 "speed": 14.0
 }]
 
-[node name="Weapon" type="Node2D" groups=["Weapons"]]
+[node name="Weapon" type="Node2D" unique_id=1287439943 groups=["Weapons"]]
 script = ExtResource("1_5ymky")
 precision = 0.01
 fire_rate = 6.0
 full_auto = false
 bullet_damage = 500
+bullet_color = Color(0.6117647, 0.85882354, 0.2627451, 1)
 
-[node name="CycleTimer" type="Timer" parent="."]
+[node name="CycleTimer" type="Timer" parent="." unique_id=975296935]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1766581266]
 sprite_frames = SubResource("SpriteFrames_ki372")
 animation = &"fire"
 frame = 3
 frame_progress = 1.0
 offset = Vector2(16, -2)
 
-[node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
+[node name="Barrel" type="Marker2D" parent="AnimatedSprite2D" unique_id=1038633046]
 position = Vector2(10, -3)
 
-[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" unique_id=1140011261]
 position = Vector2(15, -3)
 enabled = false
 color = Color(0.5539723, 1.6175199, 0.41350353, 1)
@@ -167,7 +168,7 @@ shadow_enabled = true
 texture = ExtResource("3_680uf")
 texture_scale = 0.3
 
-[node name="Crosshair" type="Sprite2D" parent="."]
+[node name="Crosshair" type="Sprite2D" parent="." unique_id=1715218278]
 z_index = 10
 position = Vector2(100, 0)
 texture = ExtResource("4_h2en4")

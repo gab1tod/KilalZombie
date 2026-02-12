@@ -3,8 +3,16 @@ extends Node2D
 @export var speed: float
 @export var direction: Vector2
 @export var damage: int = 25
+@export var color := Color(0.941, 0.898, 0.329):
+	set(value):
+		color = value
+		if line:
+			line.default_color = color
+	get(): return color
 var last_position: Vector2
 var shooter: Node2D
+
+@onready var line := $Line2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		global_position = next_position
 	
-	$Line2D.points[0] = -displacement
+	line.points[0] = -displacement
 
 func on_hit(hit: Dictionary):
 	var collider = hit.collider
