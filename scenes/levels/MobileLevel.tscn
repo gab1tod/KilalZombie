@@ -396,6 +396,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="Left Joystick" parent="HUD" unique_id=1332584655 instance=ExtResource("22_dmxi2")]
+modulate = Color(1, 1, 1, 0.39215687)
 offset_top = -300.0
 offset_bottom = 0.0
 joystick_mode = 1
@@ -412,12 +413,14 @@ anchor_right = 1.0
 grow_horizontal = 0
 
 [node name="Interaction Button" type="TouchScreenButton" parent="HUD/Left Joystick/InteractionButtonContainer" unique_id=1959549051]
+position = Vector2(-96, -64)
 scale = Vector2(3, 3)
 texture_normal = SubResource("AtlasTexture_dmxi2")
 texture_pressed = SubResource("AtlasTexture_fguxw")
 action = "p0_interact"
 
 [node name="Right Joystick" parent="HUD" unique_id=1654092461 instance=ExtResource("22_dmxi2")]
+modulate = Color(1, 1, 1, 0.39215687)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
@@ -437,7 +440,7 @@ layout_mode = 1
 anchors_preset = 0
 
 [node name="Reload Button" type="TouchScreenButton" parent="HUD/Right Joystick/ReloadButtonContainer" unique_id=819110308]
-position = Vector2(-96, 0)
+position = Vector2(0, -64)
 scale = Vector2(3, 3)
 texture_normal = SubResource("AtlasTexture_13t06")
 texture_pressed = SubResource("AtlasTexture_h881d")
