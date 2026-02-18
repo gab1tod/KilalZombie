@@ -5,6 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://d0s8sp46daq3m" path="res://assets/player.png" id="4_mdl7e"]
 [ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="4_qu4a1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7odld"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(587, 15, 10, 3)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_priom"]
 atlas = ExtResource("4_mdl7e")
 region = Rect2(576, 64, 48, 32)
@@ -440,6 +444,11 @@ platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_g2els")
 speed = 100.0
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=60437532]
+modulate = Color(1, 1, 1, 0.5019608)
+texture = SubResource("AtlasTexture_7odld")
+offset = Vector2(1, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=134101979]
 position = Vector2(0, -16)

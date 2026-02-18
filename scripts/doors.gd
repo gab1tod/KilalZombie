@@ -30,6 +30,7 @@ func _ready() -> void:
 		left_door_animator.frame = left_door_animator.sprite_frames.get_frame_count() - 1
 		right_door_animator.frame = right_door_animator.sprite_frames.get_frame_count() - 1
 		center_collision_shape.disabled = true
+		center_collision_shape.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,6 +56,7 @@ func open() -> void:
 	left_door_animator.play()
 	right_door_animator.play()
 	center_collision_shape.disabled = true
+	center_collision_shape.hide()
 	
 	if tilemap_layer and tilemap_tiles and not tilemap_tiles.is_empty():
 		for tile_pos in tilemap_tiles:
@@ -70,6 +72,7 @@ func close() -> void:
 	right_door_animator.play_backwards()
 	await left_door_animator.animation_finished
 	center_collision_shape.disabled = false
+	center_collision_shape.show()
 	
 	if tilemap_layer and tilemap_tiles and not tilemap_tiles.is_empty():
 		for tile_pos in tilemap_tiles:

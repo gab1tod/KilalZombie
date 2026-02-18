@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwu3umxcjt8l8"]
+[gd_scene format=3 uid="uid://dwu3umxcjt8l8"]
 
 [ext_resource type="Script" uid="uid://b35vi6rc6bqrb" path="res://scripts/doors.gd" id="1_efylp"]
 [ext_resource type="Texture2D" uid="uid://c52c5oo1f3trm" path="res://assets/Doors.png" id="2_l5108"]
@@ -121,37 +121,50 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4rrw"]
 size = Vector2(9, 39)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_efylp"]
+polygon = PackedVector2Array(-2, 19.5, 1, 19.5, 1, -19.5, -2, -19.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pymq8"]
 size = Vector2(31, 39)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l5108"]
+polygon = PackedVector2Array(-3, 26, 0, 26, 0, 34, -3, 34)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dnn4j"]
 font = ExtResource("3_nokew")
 font_size = 8
 font_color = Color(0.9490196, 0.78431374, 0.24705882, 1)
 
-[node name="WoodenDoors" type="StaticBody2D"]
+[node name="WoodenDoors" type="StaticBody2D" unique_id=1771184562]
 script = ExtResource("1_efylp")
 
-[node name="RightDoorAnimator" type="AnimatedSprite2D" parent="."]
+[node name="RightDoorAnimator" type="AnimatedSprite2D" parent="." unique_id=92925074]
 sprite_frames = SubResource("SpriteFrames_3fqg6")
 offset = Vector2(8, 0)
 
-[node name="LeftDoorAnimator" type="AnimatedSprite2D" parent="."]
+[node name="LeftDoorAnimator" type="AnimatedSprite2D" parent="." unique_id=886189789]
 position = Vector2(0, 24)
 sprite_frames = SubResource("SpriteFrames_q5h7k")
 offset = Vector2(6, -8)
 
-[node name="CentralCollisionShape" type="CollisionShape2D" parent="."]
+[node name="CentralCollisionShape" type="CollisionShape2D" parent="." unique_id=93133808]
 position = Vector2(-1, 4.5)
 shape = SubResource("RectangleShape2D_g4rrw")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CentralCollisionShape" unique_id=442121955]
+occluder = SubResource("OccluderPolygon2D_efylp")
 
-[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1354236297]
+
+[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea" unique_id=232463503]
 position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_pymq8")
 
-[node name="CostLabel" type="Label" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=773065588]
+position = Vector2(0, -2)
+occluder = SubResource("OccluderPolygon2D_l5108")
+
+[node name="CostLabel" type="Label" parent="." unique_id=852058330]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
