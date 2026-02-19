@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal on_death
+signal on_revive
 
 @export var speed: float = 100
 @export var health: int = 100
@@ -10,11 +11,24 @@ signal on_death
 @export var separation_force: float = 100
 @export var attack_damage: int = 50
 var hurt := false
-var dead := false
-@onready var animator = $AnimatedSprite2D
+var dead: bool:
+	set(value):
+		if dead and not value:
+			revive()
+		elif not dead and value:
+			die()
+	get():
+		return state == ZombieState.DEAD
+@onready var animator: AnimatedSprite2D = %Animator
 @onready var navigator := $NavigationAgent2D
 @onready var cooldown_timer := $AttackCooldownTimer
+@onready var collider := $CollisionShape2D
+@onready var head_blood_emitter: CPUParticles2D = %HeadBloodEmitter
 var target: Node2D
+
+enum ZombieState { IDLE, WALKING, DEAD }
+static var state_animation: Array[String] = [ 'idle', 'walk', 'death' ]
+var state := ZombieState.IDLE
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,21 +38,31 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func  _process(delta: float) -> void:
-	var target_distance = (target.position - position).length() if target else 0.0
-	for p in get_tree().get_nodes_in_group("Players"):
-		if not target or target.dead or ((p.position - position).length() < target_distance and not p.dead):
-			target = p
-			target_distance = (target.position - position).length()
+	if not dead:
+		get_target()
+		state = ZombieState.WALKING if target else ZombieState.IDLE
+	
+	handle_animations()
+	
+	if hurt:
+		animator.modulate = hit_highlight_color
+		await get_tree().create_timer(0.05).timeout
+		animator.modulate = Color.WHITE
+	hurt = false
 
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
-	if not target:
+	if not target or dead:
 		return
+	
 	navigator.target_position = target.global_position
 	if navigator.is_navigation_finished():
 		if navigator.is_target_reached():
-			attack()
+			if target and not target.dead:
+				attack()
+			else:
+				state = ZombieState.IDLE
 		return
 	
 	var next_pos = navigator.get_next_path_position()
@@ -47,17 +71,19 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = to_target * speed + sep
 	
-	handle_animations()
 	move_and_slide()
-	
-	if hurt:
-		animator.modulate = hit_highlight_color
-		await get_tree().create_timer(0.05).timeout
-		animator.modulate = Color.WHITE
-	hurt = false
+
+
+func get_target():
+	var target_distance = (target.position - position).length() if target else 0.0
+	for p in get_tree().get_nodes_in_group("Players"):
+		if not target or target.dead or ((p.position - position).length() < target_distance and not p.dead):
+			target = p
+			target_distance = (target.position - position).length()
+
 
 func handle_animations() -> void:
-	var anim_name = "walk" if velocity.length() > 0 else "idle"
+	var anim_name = state_animation[state]
 	var dir = velocity.normalized()
 	anim_name += "_back" if dir.y < -0.33 else "_face"
 	if abs(dir.x) > 0.33:
@@ -97,6 +123,36 @@ func take_damage(damage: int) -> void:
 	health -= damage
 	hurt = true
 	if health <= 0:
-		dead = true
-		on_death.emit()
-		queue_free()
+		die(true)
+
+
+func revive(new_health: int = 100) -> void:
+	collider.disabled = false
+	modulate = Color.WHITE
+	target = null
+	health = new_health
+	state = ZombieState.IDLE
+	on_revive.emit()
+	handle_animations()
+
+func die(by_player: bool = false) -> void:
+	if dead:
+		return
+	
+	state = ZombieState.DEAD
+	collider.disabled = true
+	on_death.emit()
+	handle_animations()
+	if by_player:
+		animator.set_frame_and_progress(3, 0)
+	await animator.animation_finished
+	var tween = get_tree().create_tween()
+	tween.tween_interval(0.2)
+	tween.tween_property(self, 'modulate', Color.TRANSPARENT, 0.5)
+	await tween.finished
+	queue_free()
+
+
+func _on_animator_frame_changed() -> void:
+	if dead and animator.get_frame() == 3:
+		head_blood_emitter.emitting = true

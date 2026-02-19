@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvgauec5bim52"]
+[gd_scene format=3 uid="uid://dvgauec5bim52"]
 
-[ext_resource type="Script" uid="uid://dk8qnmvw72nyi" path="res://scripts/main_menu.gd" id="1_ie0q5"]
+[ext_resource type="Script" uid="uid://dk8qnmvw72nyi" path="res://scripts/menus/main_menu.gd" id="1_ie0q5"]
 [ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="2_gr2do"]
 [ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="3_g2d45"]
 

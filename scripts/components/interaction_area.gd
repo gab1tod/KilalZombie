@@ -1,4 +1,6 @@
+@tool
 extends Area2D
+class_name InteractionArea
 
 signal interaction_success(player: Player)
 signal enter_interaction_area(player: Player)
@@ -23,6 +25,14 @@ var interacting_players: Dictionary[Player, SceneTreeTimer]
 
 var requirement:Callable = func(a): return a != null
 
+
+func _enter_tree() -> void:
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+
+func _exit_tree() -> void:
+	body_entered.disconnect(_on_body_entered)
+	body_exited.disconnect(_on_body_exited)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

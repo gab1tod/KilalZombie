@@ -26,7 +26,7 @@ var wave_zombies_health: int = 0
 @export var spawn_time_linear: float = -0.2
 var wave_spawn_time: float = 0
 
-var Zombie = preload("res://scenes/Zombie.tscn")
+var Zombie = preload('uid://ch0wyjtx6icrd')
 @onready var viewport1 = $ViewportPlayer1/Viewport
 @onready var viewport2 = $ViewportPlayer2/Viewport
 @onready var walls = world.get_node("Walls")
@@ -54,6 +54,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pause_menu.open_menu()
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		for z in get_tree().get_nodes_in_group("Zombies"):
+			z.die()
 
 
 func _on_spawn_timer_timeout() -> void:

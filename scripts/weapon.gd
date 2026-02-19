@@ -29,7 +29,7 @@ var distance_y_ratio: float = 0.5
 @export var bullet_speed: float = 1000 # px/s
 @export var bullet_damage: int = 5
 @export var bullet_color := Color(0.941, 0.898, 0.329)
-var bullet = preload("res://scenes/Bullet.tscn")
+var bullet = preload('uid://cjemtshkwx8ge')
 
 @export_group("Crossair", "crosshair_")
 @export var crosshair_distance: float = 100

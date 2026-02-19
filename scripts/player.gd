@@ -25,7 +25,7 @@ var flip_h: bool = false:
 @export var device_id: int = 0
 enum AimMode { MOUSE, GAMEPAD, MOBILE }
 @export_flags("Mouse", "Gamepad", "Mobile") var aim_mode_flags: int = 3
-@export var aim_mode = AimMode.MOUSE
+@export var aim_mode := AimMode.MOUSE
 @export var aim_deadzone: float = 0.1
 @export var aim_restzone: float = 0.1
 var aim_direction := Vector2.ZERO
