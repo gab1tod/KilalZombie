@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c36tdsd2hb6vk"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_wkycj"]
-[ext_resource type="Texture2D" uid="uid://hod8nlos4c55" path="res://assets/Pistol.png" id="2_10bxh"]
+[ext_resource type="Texture2D" uid="uid://hod8nlos4c55" path="res://assets/weapons/Pistol.png" id="2_10bxh"]
 [ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="3_blnrr"]
 [ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="3_fly7g"]
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://7t5a30v16j1"]
+[gd_scene format=3 uid="uid://7t5a30v16j1"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_43wd3"]
-[ext_resource type="Texture2D" uid="uid://don2yka2cl5vt" path="res://assets/Shotgun.png" id="2_43wd3"]
+[ext_resource type="Texture2D" uid="uid://don2yka2cl5vt" path="res://assets/weapons/Shotgun.png" id="2_43wd3"]
 [ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="3_0ogbp"]
 [ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="3_qpvuo"]
 

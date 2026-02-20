@@ -43,11 +43,6 @@ func _ready() -> void:
 	
 	# Make background black
 	$Background.show()
-	
-	# Make the nav tile transparent
-	var tileset_source = walls.tile_set.get_source(0)
-	var tile_data = tileset_source.get_tile_data(Vector2i(6, 0), 0)
-	tile_data.modulate = Color.TRANSPARENT
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

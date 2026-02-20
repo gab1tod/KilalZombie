@@ -1,0 +1,402 @@
+[gd_scene format=3 uid="uid://b3lewlkl26tq6"]
+
+[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/game.gd" id="1_8btek"]
+[ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://objects/Player.tscn" id="2_dmxi2"]
+[ext_resource type="PackedScene" uid="uid://c36tdsd2hb6vk" path="res://objects/weapon/Pistol.tscn" id="3_fguxw"]
+[ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="4_fguxw"]
+[ext_resource type="PackedScene" uid="uid://b4fm6305ger1n" path="res://scenes/levels/TestLevel.tscn" id="5_6la2v"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="19_pyk1q"]
+[ext_resource type="Script" uid="uid://bldepu4wqtu8p" path="res://scripts/components/attribute_label.gd" id="20_6xa1w"]
+[ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="21_ajhkv"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="22_dmxi2"]
+[ext_resource type="Script" uid="uid://dukh4yjkdd0bb" path="res://scripts/menus/pause_menu.gd" id="22_xelln"]
+[ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="23_41ask"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rarhs"]
+font = ExtResource("19_pyk1q")
+font_size = 48
+shadow_size = 8
+shadow_color = Color(0.09, 0.036, 0.054899994, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wp0k4"]
+font = ExtResource("21_ajhkv")
+font_size = 96
+shadow_size = 0
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmxi2"]
+atlas = ExtResource("23_41ask")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fguxw"]
+atlas = ExtResource("23_41ask")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13t06"]
+atlas = ExtResource("23_41ask")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h881d"]
+atlas = ExtResource("23_41ask")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfy5n"]
+atlas = ExtResource("23_41ask")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1gxd"]
+atlas = ExtResource("23_41ask")
+region = Rect2(0, 48, 32, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3p2gp"]
+font = ExtResource("21_ajhkv")
+font_size = 64
+font_color = Color(0.97, 0.9522167, 0.9215, 1)
+shadow_size = 0
+shadow_color = Color(0.43, 0.25972, 0.1978, 1)
+shadow_offset = Vector2(0, -2)
+
+[node name="Main" type="Node2D" unique_id=1056158058 node_paths=PackedStringArray("world")]
+script = ExtResource("1_8btek")
+world = NodePath("World")
+hide_cursor = false
+announcer_fade_duration = 0.7
+announcer_remain_duration = 2.0
+nb_zombies_linear = 3.0
+hp_zombies_linear = 22.0
+hp_zombies_exponential = 1.9
+spawn_time_linear = -0.5
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1509342780]
+layer = -100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1624303454]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="World" type="Node2D" parent="." unique_id=346484172]
+y_sort_enabled = true
+
+[node name="Player1" parent="World" unique_id=1480418771 instance=ExtResource("2_dmxi2")]
+score = 500
+aim_mode_flags = 4
+aim_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="World/Player1" unique_id=1736129917]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="Weapon" parent="World/Player1" unique_id=251033762 instance=ExtResource("3_fguxw")]
+
+[node name="SpriteLight" type="PointLight2D" parent="World/Player1" unique_id=1739059626]
+light_mask = 3
+position = Vector2(1, -7)
+shadow_item_cull_mask = 0
+texture = ExtResource("4_fguxw")
+texture_scale = 0.5
+
+[node name="ShadowLight" type="PointLight2D" parent="World/Player1" unique_id=499784566]
+light_mask = 3
+position = Vector2(1, -7)
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("4_fguxw")
+texture_scale = 0.5
+
+[node name="TestLevel" parent="World" unique_id=1757215481 instance=ExtResource("5_6la2v")]
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=630555242]
+wait_time = 5.0
+
+[node name="RestTimer" type="Timer" parent="." unique_id=160273847]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=864283674]
+
+[node name="BottomLeft" type="VBoxContainer" parent="HUD" unique_id=336571310]
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 279.0
+offset_bottom = 150.0
+theme_override_constants/separation = -8
+
+[node name="Zombies Health" type="Label" parent="HUD/BottomLeft" unique_id=1902982614 node_paths=PackedStringArray("target")]
+visible = false
+layout_mode = 2
+text = "Zombies health: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("20_6xa1w")
+target = NodePath("../../..")
+attribute_path = &"wave_zombies_health"
+
+[node name="Zombies Number" type="Label" parent="HUD/BottomLeft" unique_id=825679260 node_paths=PackedStringArray("target")]
+visible = false
+layout_mode = 2
+text = "Zombies: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("20_6xa1w")
+target = NodePath("../../..")
+attribute_path = &"nb_zombies_to_kill"
+
+[node name="Wave" type="Label" parent="HUD/BottomLeft" unique_id=142023221 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Wave: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("20_6xa1w")
+target = NodePath("../../..")
+attribute_path = &"wave"
+
+[node name="Score" type="Label" parent="HUD/BottomLeft" unique_id=1022129199 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Score: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("20_6xa1w")
+target = NodePath("../../../World/Player1")
+attribute_path = &"score"
+
+[node name="BottomRight" type="VBoxContainer" parent="HUD" unique_id=1565944068]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = 84.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/separation = -8
+alignment = 2
+
+[node name="Health" type="Label" parent="HUD/BottomRight" unique_id=1750645145 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Health: %d%%"
+label_settings = SubResource("LabelSettings_rarhs")
+horizontal_alignment = 2
+script = ExtResource("20_6xa1w")
+target = NodePath("../../../World/Player1")
+attribute_path = &"health"
+
+[node name="Amo" type="HBoxContainer" parent="HUD/BottomRight" unique_id=1358009276]
+layout_mode = 2
+alignment = 2
+
+[node name="Gun amo" type="Label" parent="HUD/BottomRight/Amo" unique_id=1031581069 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Gun amo: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("20_6xa1w")
+target = NodePath("../../../../World/Player1")
+attribute_path = &"weapon.amo"
+
+[node name="Gun capacity" type="Label" parent="HUD/BottomRight/Amo" unique_id=456257856 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "/%d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("20_6xa1w")
+target = NodePath("../../../../World/Player1")
+attribute_path = &"weapon.magazine_capacity"
+
+[node name="Announcer" type="Label" parent="HUD" unique_id=1516418960]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -125.0
+offset_right = 87.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wave 1"
+label_settings = SubResource("LabelSettings_wp0k4")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Left Joystick" parent="HUD" unique_id=1332584655 instance=ExtResource("22_dmxi2")]
+modulate = Color(1, 1, 1, 0.39215687)
+offset_top = -300.0
+offset_bottom = 0.0
+joystick_mode = 1
+action_left = "p0_move_left"
+action_right = "p0_move_right"
+action_up = "p0_move_up"
+action_down = "p0_move_down"
+
+[node name="InteractionButtonContainer" type="Control" parent="HUD/Left Joystick" unique_id=1840848671]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="Interaction Button" type="TouchScreenButton" parent="HUD/Left Joystick/InteractionButtonContainer" unique_id=1959549051]
+position = Vector2(-96, -64)
+scale = Vector2(3, 3)
+texture_normal = SubResource("AtlasTexture_dmxi2")
+texture_pressed = SubResource("AtlasTexture_fguxw")
+action = "p0_interact"
+
+[node name="Right Joystick" parent="HUD" unique_id=1654092461 instance=ExtResource("22_dmxi2")]
+modulate = Color(1, 1, 1, 0.39215687)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+joystick_mode = 1
+action_left = "p0_aim_left"
+action_right = "p0_aim_right"
+action_up = "p0_aim_up"
+action_down = "p0_aim_down"
+
+[node name="ReloadButtonContainer" type="Control" parent="HUD/Right Joystick" unique_id=98873287]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="Reload Button" type="TouchScreenButton" parent="HUD/Right Joystick/ReloadButtonContainer" unique_id=819110308]
+position = Vector2(0, -64)
+scale = Vector2(3, 3)
+texture_normal = SubResource("AtlasTexture_13t06")
+texture_pressed = SubResource("AtlasTexture_h881d")
+action = "p0_reload"
+
+[node name="PauseButtonContainer" type="Control" parent="HUD" unique_id=373287351]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Pause Button" type="TouchScreenButton" parent="HUD/PauseButtonContainer" unique_id=38699465]
+position = Vector2(-64, -96)
+scale = Vector2(4, 4)
+texture_normal = SubResource("AtlasTexture_hfy5n")
+texture_pressed = SubResource("AtlasTexture_a1gxd")
+action = "pause"
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=395887139]
+process_mode = 2
+visible = false
+script = ExtResource("22_xelln")
+menu_parent = "res://scenes/levels/MobileMainMenu.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=1044556560]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PauseMenu" unique_id=689919440]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -234.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("23_41ask")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 11
+
+[node name="Title" type="Label" parent="PauseMenu/NinePatchRect" unique_id=502146810]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -100.5
+offset_right = 67.0
+offset_bottom = -30.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_3p2gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/NinePatchRect" unique_id=785761435]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.5
+offset_right = 50.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../QuitButton")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/NinePatchRect" unique_id=954776865]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 24.0
+offset_right = 50.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/NinePatchRect" unique_id=980746645]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 62.0
+offset_right = 50.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../ResumeButton")
+text = "Menu"
+
+[node name="InhibitionTimer" type="Timer" parent="PauseMenu" unique_id=1006496296]
+process_mode = 3
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/NinePatchRect/ResumeButton" to="PauseMenu" method="close_menu"]
+[connection signal="pressed" from="PauseMenu/NinePatchRect/RestartButton" to="PauseMenu" method="restart_level"]
+[connection signal="pressed" from="PauseMenu/NinePatchRect/QuitButton" to="PauseMenu" method="quit_level"]

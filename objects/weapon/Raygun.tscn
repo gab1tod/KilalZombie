@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://rtfo7af6i4rx"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_5ymky"]
-[ext_resource type="Texture2D" uid="uid://b2agp1lkkibpe" path="res://assets/Raygun.png" id="2_5ymky"]
+[ext_resource type="Texture2D" uid="uid://b2agp1lkkibpe" path="res://assets/weapons/Raygun.png" id="2_5ymky"]
 [ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="3_680uf"]
 [ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="4_h2en4"]
 

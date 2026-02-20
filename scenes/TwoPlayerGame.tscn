@@ -1,0 +1,428 @@
+[gd_scene format=3 uid="uid://db27p7c6jmlmt"]
+
+[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/game.gd" id="1_diifq"]
+[ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://objects/Player.tscn" id="2_6ilml"]
+[ext_resource type="PackedScene" uid="uid://c36tdsd2hb6vk" path="res://objects/weapon/Pistol.tscn" id="3_usyix"]
+[ext_resource type="PackedScene" uid="uid://rtfo7af6i4rx" path="res://objects/weapon/Raygun.tscn" id="4_usyix"]
+[ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="7_uq1ft"]
+[ext_resource type="PackedScene" uid="uid://b4fm6305ger1n" path="res://scenes/levels/TestLevel.tscn" id="9_w7cau"]
+[ext_resource type="Script" uid="uid://5ii2c1s5f55x" path="res://scripts/remote_viewport.gd" id="19_spqrc"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="20_6ilml"]
+[ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="21_73fxy"]
+[ext_resource type="Script" uid="uid://bldepu4wqtu8p" path="res://scripts/components/attribute_label.gd" id="21_usyix"]
+[ext_resource type="Script" uid="uid://dukh4yjkdd0bb" path="res://scripts/menus/pause_menu.gd" id="22_iy6pl"]
+[ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="23_xolxb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uq1ft"]
+font = ExtResource("20_6ilml")
+font_size = 32
+shadow_size = 8
+shadow_color = Color(0.09, 0.036, 0.054899994, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ilml"]
+font = ExtResource("20_6ilml")
+font_size = 32
+shadow_size = 8
+shadow_color = Color(0.09, 0.036, 0.054899994, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wp0k4"]
+font = ExtResource("21_73fxy")
+font_size = 64
+shadow_size = 0
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3p2gp"]
+font = ExtResource("21_73fxy")
+font_size = 64
+font_color = Color(0.97, 0.9522167, 0.9215, 1)
+shadow_size = 0
+shadow_color = Color(0.43, 0.25972, 0.1978, 1)
+shadow_offset = Vector2(0, -2)
+
+[node name="Main" type="Node2D" unique_id=280401807 node_paths=PackedStringArray("world")]
+script = ExtResource("1_diifq")
+world = NodePath("HUD/P1ViewContainer/P1View/World")
+announcer_fade_duration = 0.7
+announcer_remain_duration = 2.0
+hp_zombies_base = 90
+hp_zombies_linear = 20.0
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=176556256]
+layer = -100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=141282212]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=127931693]
+wait_time = 5.0
+
+[node name="RestTimer" type="Timer" parent="." unique_id=680247972]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=5378650]
+
+[node name="P1ViewContainer" type="SubViewportContainer" parent="HUD" unique_id=933714743]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+stretch = true
+
+[node name="P1View" type="SubViewport" parent="HUD/P1ViewContainer" unique_id=1780922202 node_paths=PackedStringArray("camera")]
+disable_3d = true
+handle_input_locally = false
+canvas_cull_mask = 4293918723
+size = Vector2i(960, 270)
+render_target_update_mode = 4
+script = ExtResource("19_spqrc")
+camera = NodePath("World/Player1/Camera2D")
+
+[node name="World" type="Node2D" parent="HUD/P1ViewContainer/P1View" unique_id=1693815064]
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="Player1" parent="HUD/P1ViewContainer/P1View/World" unique_id=1251325517 instance=ExtResource("2_6ilml")]
+position = Vector2(-16, 0)
+score = 500
+
+[node name="Camera2D" type="Camera2D" parent="HUD/P1ViewContainer/P1View/World/Player1" unique_id=1481575393]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Weapon" parent="HUD/P1ViewContainer/P1View/World/Player1" unique_id=1496315649 instance=ExtResource("4_usyix")]
+
+[node name="HUD" type="CanvasLayer" parent="HUD/P1ViewContainer/P1View/World/Player1" unique_id=1455086039]
+
+[node name="BottomLeft" type="VBoxContainer" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD" unique_id=1075808396]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -70.0
+offset_right = 101.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_constants/separation = -8
+alignment = 2
+
+[node name="Wave" type="Label" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD/BottomLeft" unique_id=1382040420 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Wave: %d"
+label_settings = SubResource("LabelSettings_uq1ft")
+script = ExtResource("21_usyix")
+target = NodePath("../../../../../../../..")
+attribute_path = &"wave"
+
+[node name="Score" type="Label" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD/BottomLeft" unique_id=497508578 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Score: %d"
+label_settings = SubResource("LabelSettings_uq1ft")
+script = ExtResource("21_usyix")
+target = NodePath("../../..")
+attribute_path = &"score"
+
+[node name="BottomRight" type="VBoxContainer" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD" unique_id=1028565241]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -96.0
+offset_right = -15.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_constants/separation = -8
+alignment = 2
+
+[node name="Health" type="Label" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD/BottomRight" unique_id=186665400 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Health: %d%%"
+label_settings = SubResource("LabelSettings_6ilml")
+horizontal_alignment = 2
+script = ExtResource("21_usyix")
+target = NodePath("../../..")
+attribute_path = &"health"
+
+[node name="Amo" type="HBoxContainer" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD/BottomRight" unique_id=1183457904]
+layout_mode = 2
+alignment = 2
+
+[node name="Gun amo" type="Label" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD/BottomRight/Amo" unique_id=56215290 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Gun amo: %d"
+label_settings = SubResource("LabelSettings_6ilml")
+script = ExtResource("21_usyix")
+target = NodePath("../../../..")
+attribute_path = &"weapon.amo"
+
+[node name="Gun capacity" type="Label" parent="HUD/P1ViewContainer/P1View/World/Player1/HUD/BottomRight/Amo" unique_id=1990964101 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "/%d"
+label_settings = SubResource("LabelSettings_6ilml")
+script = ExtResource("21_usyix")
+target = NodePath("../../../..")
+attribute_path = &"weapon.magazine_capacity"
+
+[node name="SpriteLight" type="PointLight2D" parent="HUD/P1ViewContainer/P1View/World/Player1" unique_id=792626499]
+light_mask = 3
+position = Vector2(1, -7)
+shadow_item_cull_mask = 0
+texture = ExtResource("7_uq1ft")
+
+[node name="ShadowLight" type="PointLight2D" parent="HUD/P1ViewContainer/P1View/World/Player1" unique_id=2102390664]
+light_mask = 3
+position = Vector2(1, -7)
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("7_uq1ft")
+
+[node name="Player2" parent="HUD/P1ViewContainer/P1View/World" unique_id=627238624 instance=ExtResource("2_6ilml")]
+texture_filter = 1
+score = 500
+device_id = 1
+aim_mode_flags = 2
+aim_mode = 1
+
+[node name="RemoteCamera" type="RemoteTransform2D" parent="HUD/P1ViewContainer/P1View/World/Player2" unique_id=834735174]
+remote_path = NodePath("../../../../../P2ViewContainer/P2View/Camera2D")
+
+[node name="Weapon" parent="HUD/P1ViewContainer/P1View/World/Player2" unique_id=783443374 instance=ExtResource("3_usyix")]
+
+[node name="TestLevel" parent="HUD/P1ViewContainer/P1View/World" unique_id=1757215481 instance=ExtResource("9_w7cau")]
+
+[node name="P2ViewContainer" type="SubViewportContainer" parent="HUD" unique_id=1836852762]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="P2View" type="SubViewport" parent="HUD/P2ViewContainer" unique_id=798796412 node_paths=PackedStringArray("reference", "camera")]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918725
+size = Vector2i(960, 270)
+render_target_update_mode = 4
+script = ExtResource("19_spqrc")
+reference = NodePath("../../P1ViewContainer/P1View")
+camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="HUD/P2ViewContainer/P2View" unique_id=1138669257]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="HUD" type="CanvasLayer" parent="HUD/P2ViewContainer/P2View/Camera2D" unique_id=1570861156]
+
+[node name="BottomLeft" type="VBoxContainer" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD" unique_id=780521872]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -70.0
+offset_right = 101.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_constants/separation = -8
+alignment = 2
+
+[node name="Wave" type="Label" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD/BottomLeft" unique_id=235846683 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Wave: %d"
+label_settings = SubResource("LabelSettings_uq1ft")
+script = ExtResource("21_usyix")
+target = NodePath("../../../../../../..")
+attribute_path = &"wave"
+
+[node name="Score" type="Label" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD/BottomLeft" unique_id=726077581 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Score: %d"
+label_settings = SubResource("LabelSettings_uq1ft")
+script = ExtResource("21_usyix")
+target = NodePath("../../../../../../P1ViewContainer/P1View/World/Player2")
+attribute_path = &"score"
+
+[node name="BottomRight" type="VBoxContainer" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD" unique_id=1800959884]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -96.0
+offset_right = -15.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_constants/separation = -8
+alignment = 2
+
+[node name="Health" type="Label" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD/BottomRight" unique_id=1441849432 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Health: %d%%"
+label_settings = SubResource("LabelSettings_6ilml")
+horizontal_alignment = 2
+script = ExtResource("21_usyix")
+target = NodePath("../../../../../../P1ViewContainer/P1View/World/Player2")
+attribute_path = &"health"
+
+[node name="Amo" type="HBoxContainer" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD/BottomRight" unique_id=1779677051]
+layout_mode = 2
+alignment = 2
+
+[node name="Gun amo" type="Label" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD/BottomRight/Amo" unique_id=622405856 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Gun amo: %d"
+label_settings = SubResource("LabelSettings_6ilml")
+script = ExtResource("21_usyix")
+target = NodePath("../../../../../../../P1ViewContainer/P1View/World/Player2")
+attribute_path = &"weapon.amo"
+
+[node name="Gun capacity" type="Label" parent="HUD/P2ViewContainer/P2View/Camera2D/HUD/BottomRight/Amo" unique_id=2001309736 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "/%d"
+label_settings = SubResource("LabelSettings_6ilml")
+script = ExtResource("21_usyix")
+target = NodePath("../../../../../../../P1ViewContainer/P1View/World/Player2")
+attribute_path = &"weapon.magazine_capacity"
+
+[node name="Announcer" type="Label" parent="HUD" unique_id=216832016]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -35.0
+offset_right = 87.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wave 1"
+label_settings = SubResource("LabelSettings_wp0k4")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=2128724151]
+process_mode = 2
+visible = false
+script = ExtResource("22_iy6pl")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=1157756028]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PauseMenu" unique_id=1506218453]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -135.0
+offset_right = 219.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_xolxb")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 11
+
+[node name="Title" type="Label" parent="PauseMenu/NinePatchRect" unique_id=1309889623]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -126.5
+offset_right = 67.0
+offset_bottom = -56.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_3p2gp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/NinePatchRect" unique_id=669025583]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.5
+offset_right = 50.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../QuitButton")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/NinePatchRect" unique_id=2033449799]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 24.0
+offset_right = 50.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/NinePatchRect" unique_id=95024644]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 62.0
+offset_right = 50.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../ResumeButton")
+text = "Menu"
+
+[node name="InhibitionTimer" type="Timer" parent="PauseMenu" unique_id=91446331]
+process_mode = 3
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/NinePatchRect/ResumeButton" to="PauseMenu" method="close_menu"]
+[connection signal="pressed" from="PauseMenu/NinePatchRect/RestartButton" to="PauseMenu" method="restart_level"]
+[connection signal="pressed" from="PauseMenu/NinePatchRect/QuitButton" to="PauseMenu" method="quit_level"]

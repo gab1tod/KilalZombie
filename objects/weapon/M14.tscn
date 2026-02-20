@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://rcaoibwcy82i"]
+[gd_scene format=3 uid="uid://rcaoibwcy82i"]
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_2chsr"]
-[ext_resource type="Texture2D" uid="uid://b5epeqeldv0ci" path="res://assets/M14.png" id="2_2chsr"]
+[ext_resource type="Texture2D" uid="uid://b5epeqeldv0ci" path="res://assets/weapons/M14.png" id="2_2chsr"]
 [ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="3_6wbo0"]
 [ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="3_8g51i"]
 
