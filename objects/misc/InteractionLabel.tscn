@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://2lphpl47art8"]
+
+[ext_resource type="Script" uid="uid://xms42b07v5fi" path="res://scripts/interaction_label.gd" id="1_upif7"]
+[ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="1_wo040"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="2_t5nrb"]
+[ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_rd102"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rd102"]
+font = ExtResource("2_t5nrb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_upif7"]
+font = ExtResource("3_rd102")
+font_size = 8
+font_color = Color(0.61, 0.61, 0.61, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upif7"]
+atlas = ExtResource("1_wo040")
+region = Rect2(109, 32, 5, 3)
+
+[node name="InteractionLabel" type="Control" unique_id=1209993131]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -896.0
+offset_bottom = -514.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_upif7")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1957760100]
+self_modulate = Color(1, 1, 1, 0.76862746)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wo040")
+region_rect = Rect2(96, 0, 32, 32)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1591706196]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -2
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=301212175]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_rd102")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="VBoxContainer" unique_id=616635276]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Subtitle"
+label_settings = SubResource("LabelSettings_upif7")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=516343734]
+modulate = Color(1, 1, 1, 0.76862746)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.5
+offset_right = 2.5
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_upif7")

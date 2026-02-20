@@ -89,9 +89,13 @@ animations = [{
 }]
 
 [node name="Spawner" type="Node2D" unique_id=865816069 groups=["SpawnPoints"]]
+light_mask = 2
+visibility_layer = 2
 z_index = -1
 script = ExtResource("1_5y6d2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=960329639]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_ct5sn")

@@ -53,7 +53,7 @@ func  _process(delta: float) -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
-	if not target or dead:
+	if not (target and state == ZombieState.WALKING):
 		return
 	
 	navigator.target_position = target.global_position
@@ -98,7 +98,7 @@ func get_separation() -> Vector2:
 	var force = Vector2.ZERO
 
 	for z in get_tree().get_nodes_in_group("Zombies"):
-		if z == self:
+		if z == self or z.dead:
 			continue
 
 		var diff = global_position - z.global_position

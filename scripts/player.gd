@@ -231,6 +231,7 @@ func revive(helper: Player) -> void:
 	weapon_socket.show()
 	handle_animations()
 	animator.modulate = Color.WHITE
+	animator.play()
 	
 	if helper:
 		helper.earn_points(50)

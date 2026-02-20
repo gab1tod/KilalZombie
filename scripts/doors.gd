@@ -1,3 +1,4 @@
+@tool
 extends StaticBody2D
 
 signal doors_openinig
@@ -6,7 +7,11 @@ signal doors_closing
 var flip_h: bool = false
 @export var obenable: bool = true
 @export var is_open: bool = false
-@export var cost: int = 750
+@export var cost: int = 750:
+	set(value):
+		cost = value
+		if label:
+			label.subtitle = '%d$' %value
 
 @export_group("Interaction", "interaction_")
 @export var interaction_time: float = 0.3
@@ -22,7 +27,7 @@ var interacting_players: Array[Node2D]
 @onready var left_door_animator := $LeftDoorAnimator
 @onready var right_door_animator := $RightDoorAnimator
 @onready var center_collision_shape := $CentralCollisionShape
-@onready var cost_label := $CostLabel
+@onready var label := %Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,8 +44,8 @@ func _process(delta: float) -> void:
 	right_door_animator.scale.x = -1 if flip_h else 1
 	
 	var buyable = not (players.is_empty() or is_open) and obenable
-	cost_label.visible = buyable
-	cost_label.text = '%d$' % cost
+	label.visible = buyable or Engine.is_editor_hint()
+	label.subtitle = '%d$' % cost
 	
 	var modulate_color = interaction_highlight_color if buyable else Color.WHITE
 	left_door_animator.modulate = modulate_color
@@ -111,6 +116,6 @@ func _on_player_interaction_stop(player) -> void:
 	interacting_players.erase(player)
 
 func update_label_visibility_layer() -> void:
-	cost_label.visibility_layer = 0
+	label.visibility_layer = 0
 	for player in players:
-		cost_label.visibility_layer |= 1 << (player.device_id + 1)
+		label.visibility_layer |= 1 << (1 + player.device_id * 2)

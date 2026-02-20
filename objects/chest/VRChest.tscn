@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://ilnb6tpchl0m"]
+[gd_scene format=3 uid="uid://ilnb6tpchl0m"]
 
 [ext_resource type="Script" uid="uid://di0lw3ih7hvkw" path="res://scripts/chest.gd" id="1_b8tbq"]
 [ext_resource type="Texture2D" uid="uid://bbm8ps8o8nlu8" path="res://assets/chest_spritesheet.png" id="2_ruvr2"]
-[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="3_ipan7"]
+[ext_resource type="PackedScene" uid="uid://2lphpl47art8" path="res://objects/misc/InteractionLabel.tscn" id="3_yrkbb"]
 [ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="4_out8r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipan7"]
@@ -61,69 +61,63 @@ size = Vector2(12, 9.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjixx"]
 size = Vector2(21, 16.5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_s2tek"]
-font = ExtResource("3_ipan7")
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_rkgax"]
+[sub_resource type="LabelSettings" id="LabelSettings_wgimd"]
 font = ExtResource("4_out8r")
 font_size = 8
-font_color = Color(0.95, 0.78596663, 0.247, 1)
+font_color = Color(0.031000044, 0.62, 0, 1)
 
-[node name="Chest" type="StaticBody2D"]
+[node name="Chest" type="StaticBody2D" unique_id=1283295310]
+light_mask = 2
+visibility_layer = 2
 script = ExtResource("1_b8tbq")
 interaction_time = 0.4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=461845985]
+light_mask = 2
+visibility_layer = 2
 texture_filter = 1
 position = Vector2(-1, -7.5)
 sprite_frames = SubResource("SpriteFrames_v84rw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1924624997]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(0, -4.75)
 shape = SubResource("RectangleShape2D_matvi")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=629973726]
+light_mask = 2
+visibility_layer = 2
 
-[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea"]
+[node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea" unique_id=467908753]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(4.5, -5.25)
 shape = SubResource("RectangleShape2D_cjixx")
 
-[node name="Label" type="Control" parent="."]
-layout_mode = 3
+[node name="Label" parent="." unique_id=1209993131 instance=ExtResource("3_yrkbb")]
+unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -40.0
-offset_right = 32.0
-grow_horizontal = 2
+offset_left = -25.0
+offset_top = -45.0
+offset_right = 25.0
+offset_bottom = -19.000458
 grow_vertical = 0
+title = ""
+subtitle = "0$"
+metadata/_edit_group_ = true
 
-[node name="Item" type="Label" parent="Label"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 16.0
-grow_horizontal = 2
-text = "Item"
-label_settings = SubResource("LabelSettings_s2tek")
-horizontal_alignment = 1
+[node name="Title" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="0" unique_id=301212175]
+text = ""
 
-[node name="Cost" type="Label" parent="Label"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 11.0
-offset_bottom = 21.0
-grow_horizontal = 2
-text = "cost"
-label_settings = SubResource("LabelSettings_rkgax")
-horizontal_alignment = 1
+[node name="Subtitle" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
+text = "0$"
+label_settings = SubResource("LabelSettings_wgimd")
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+
+[editable path="Label"]

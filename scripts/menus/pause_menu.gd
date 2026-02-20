@@ -4,7 +4,7 @@ extends CanvasLayer
 @export var menu_parent: String = 'uid://dvgauec5bim52' # Main menu
 
 @onready var inhibition_timer := $InhibitionTimer
-@onready var resume_button := $NinePatchRect/ResumeButton
+@onready var resume_button := %ResumeButton
 
 
 # Called when the node enters the scene tree for the first time.

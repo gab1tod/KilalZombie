@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://cf3236egwonxr" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://dphp5esffii5d" path="res://components/InteractionArea.tscn" id="3_3li8b"]
 [ext_resource type="Texture2D" uid="uid://d0s8sp46daq3m" path="res://assets/player.png" id="4_mdl7e"]
-[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="4_qu4a1"]
+[ext_resource type="PackedScene" uid="uid://2lphpl47art8" path="res://objects/misc/InteractionLabel.tscn" id="4_seukq"]
+[ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="5_sderm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7odld"]
 atlas = ExtResource("4_mdl7e")
@@ -433,13 +434,14 @@ height = 16.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3li8b"]
 size = Vector2(26, 20)
 
-[sub_resource type="LabelSettings" id="LabelSettings_70d11"]
-font = ExtResource("4_qu4a1")
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_reqkl"]
+font = ExtResource("5_sderm")
+font_size = 8
+font_color = Color(0.031000044, 0.62, 0, 1)
 
 [node name="Player" type="CharacterBody2D" unique_id=989055229 groups=["Players"]]
+light_mask = 341
+visibility_layer = 341
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_g2els")
@@ -447,22 +449,31 @@ speed = 100.0
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=60437532]
 modulate = Color(1, 1, 1, 0.5019608)
+light_mask = 341
+visibility_layer = 341
 texture = SubResource("AtlasTexture_7odld")
 offset = Vector2(1, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=134101979]
+light_mask = 341
+visibility_layer = 341
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_o4126")
-animation = &"crouch"
+animation = &"idle_face_side"
+frame_progress = 0.9263674
 offset = Vector2(0.5, 2)
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1944520898]
+light_mask = 341
+visibility_layer = 341
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_3li8b")
 metadata/_edit_lock_ = true
 
 [node name="WeaponSocket" type="Marker2D" parent="." unique_id=2042104908]
+light_mask = 341
+visibility_layer = 341
 position = Vector2(0, -7)
 
 [node name="HealTimer" type="Timer" parent="." unique_id=360489845]
@@ -470,6 +481,8 @@ wait_time = 3.0
 one_shot = true
 
 [node name="ReviveArea" parent="." unique_id=281061087 node_paths=PackedStringArray("label") instance=ExtResource("3_3li8b")]
+light_mask = 341
+visibility_layer = 341
 enabled = false
 label = NodePath("../ReviveLabel")
 duration = 1.0
@@ -478,19 +491,26 @@ duration = 1.0
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_3li8b")
 
-[node name="ReviveLabel" type="Label" parent="." unique_id=394266170]
+[node name="ReviveLabel" parent="." unique_id=1209993131 instance=ExtResource("4_seukq")]
+unique_name_in_owner = true
 visible = false
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -20.0
+offset_left = -22.0
 offset_top = -32.0
-offset_right = 20.0
-offset_bottom = -9.0
-grow_horizontal = 2
+offset_right = 22.0
+offset_bottom = -15.000458
+grow_vertical = 0
+title = "Revive"
+
+[node name="Title" parent="ReviveLabel/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="0" unique_id=301212175]
 text = "Revive"
-label_settings = SubResource("LabelSettings_70d11")
-horizontal_alignment = 1
+
+[node name="Subtitle" parent="ReviveLabel/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
+visible = false
+label_settings = SubResource("LabelSettings_reqkl")
 
 [connection signal="child_entered_tree" from="WeaponSocket" to="." method="_on_weapon_socket_child_entered_tree"]
 [connection signal="child_exiting_tree" from="WeaponSocket" to="." method="_on_weapon_socket_child_exiting_tree"]
@@ -498,3 +518,5 @@ horizontal_alignment = 1
 [connection signal="interaction_success" from="ReviveArea" to="." method="revive"]
 [connection signal="start_interaction" from="ReviveArea" to="." method="_on_being_revive_start"]
 [connection signal="stop_interaction" from="ReviveArea" to="." method="_on_being_revive_stop"]
+
+[editable path="ReviveLabel"]

@@ -557,6 +557,8 @@ offsets = PackedFloat32Array(0, 0.55263156, 0.92763156)
 colors = PackedColorArray(0.23137255, 0.09019608, 0.14509805, 1, 0.4509804, 0.09019608, 0.1764706, 1, 0.8784314, 0.84705883, 0.69411767, 1)
 
 [node name="Zombie" type="CharacterBody2D" unique_id=1382047410 groups=["Zombies"]]
+light_mask = 2
+visibility_layer = 2
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_yqk2c")
@@ -565,17 +567,23 @@ separation_radius = 16.0
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1309570513]
 modulate = Color(1, 1, 1, 0.5019608)
+light_mask = 2
+visibility_layer = 2
 position = Vector2(-1, 0)
 texture = SubResource("AtlasTexture_jli3d")
 offset = Vector2(1, 0)
 
 [node name="Animator" type="AnimatedSprite2D" parent="." unique_id=1528216672]
 unique_name_in_owner = true
+light_mask = 2
+visibility_layer = 2
 position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_uff4m")
 animation = &"idle_back"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1151477161]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(0, -11)
 shape = SubResource("CapsuleShape2D_t3ikf")
 
@@ -589,6 +597,8 @@ one_shot = true
 
 [node name="HeadBloodEmitter" type="CPUParticles2D" parent="." unique_id=342221477]
 unique_name_in_owner = true
+light_mask = 341
+visibility_layer = 2
 position = Vector2(0, -15)
 emitting = false
 amount = 64

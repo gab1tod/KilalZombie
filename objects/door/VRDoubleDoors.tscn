@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b35vi6rc6bqrb" path="res://scripts/doors.gd" id="1_efylp"]
 [ext_resource type="Texture2D" uid="uid://c52c5oo1f3trm" path="res://assets/Doors.png" id="2_l5108"]
 [ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_nokew"]
+[ext_resource type="PackedScene" uid="uid://2lphpl47art8" path="res://objects/misc/InteractionLabel.tscn" id="3_ud8fx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_utb1g"]
 atlas = ExtResource("2_l5108")
@@ -130,10 +131,10 @@ size = Vector2(31, 39)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l5108"]
 polygon = PackedVector2Array(-3, 26, 0, 26, 0, 34, -3, 34)
 
-[sub_resource type="LabelSettings" id="LabelSettings_dnn4j"]
+[sub_resource type="LabelSettings" id="LabelSettings_ud8fx"]
 font = ExtResource("3_nokew")
 font_size = 8
-font_color = Color(0.9490196, 0.78431374, 0.24705882, 1)
+font_color = Color(0.031000044, 0.62, 0, 1)
 
 [node name="WoodenDoors" type="StaticBody2D" unique_id=1771184562]
 y_sort_enabled = true
@@ -165,21 +166,28 @@ shape = SubResource("RectangleShape2D_pymq8")
 position = Vector2(0, -2)
 occluder = SubResource("OccluderPolygon2D_l5108")
 
-[node name="CostLabel" type="Label" parent="." unique_id=852058330]
+[node name="Label" parent="." unique_id=1209993131 instance=ExtResource("3_ud8fx")]
+unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -36.0
-offset_right = 8.0
-offset_bottom = -26.0
-grow_horizontal = 2
+offset_left = -18.0
+offset_top = -55.0
+offset_right = 14.0
+offset_bottom = -30.000458
 grow_vertical = 0
-text = "cost"
-label_settings = SubResource("LabelSettings_dnn4j")
-horizontal_alignment = 1
+title = "Open"
+subtitle = "750$"
+
+[node name="Title" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="0" unique_id=301212175]
+text = "Open"
+
+[node name="Subtitle" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
+text = "750$"
+label_settings = SubResource("LabelSettings_ud8fx")
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+
+[editable path="Label"]

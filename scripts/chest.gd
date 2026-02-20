@@ -1,3 +1,4 @@
+@tool
 extends StaticBody2D
 
 
@@ -15,10 +16,14 @@ signal chest_closing
 @export var item_name: String:
 	set(value):
 		item_name = value
+		if label:
+			label.title = value
 		update_labels()
 @export var item_cost: int = 0:
 	set(value):
 		item_cost = value
+		if label:
+			label.subtitle = '%d$' %value
 		update_labels()
 
 var players: Array[Node2D]
@@ -26,9 +31,7 @@ var interacting_players: Array[Node2D]
 var is_open: bool = false
 
 @onready var animator := $AnimatedSprite2D
-@onready var label := $Label
-@onready var item_label := $Label/Item
-@onready var cost_label := $Label/Cost
+@onready var label := %Label
 
 
 # Called when the node enters the scene tree for the first time.
@@ -41,7 +44,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var buyable = not (players.is_empty() or is_open)
-	label.visible = buyable
+	label.visible = buyable or Engine.is_editor_hint()
 	
 	var modulate_color = interaction_highlight_color if buyable else Color.WHITE
 	animator.modulate = modulate_color
@@ -50,11 +53,11 @@ func _process(delta: float) -> void:
 func update_labels():
 	if not is_inside_tree():
 		return
-	if not item_label or not cost_label:
+	if not label:
 		return
 	
-	item_label.text = item_name
-	cost_label.text = "%d$" % item_cost
+	label.title = item_name
+	label.subtitle = "%d$" % item_cost
 
 
 func open() -> void:
@@ -111,4 +114,4 @@ func _on_player_interaction_stop(player) -> void:
 func update_label_visibility_layer() -> void:
 	label.visibility_layer = 0
 	for player in players:
-		label.visibility_layer |= 1 << (player.device_id + 1)
+		label.visibility_layer |= 1 << (1 + player.device_id * 2)

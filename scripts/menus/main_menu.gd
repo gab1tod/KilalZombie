@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-@onready var start_button := $NinePatchRect/StartButton
+@onready var start_button := %SoloGameButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 
 func start_solo_game() -> void:
-	get_tree().change_scene_to_file('uid://dyt67iu8nuu60') # Solo level
+	get_tree().change_scene_to_file('uid://cqv0x153qlj8c') # Solo level
 
 func quit_game() -> void:
 	get_tree().quit()
