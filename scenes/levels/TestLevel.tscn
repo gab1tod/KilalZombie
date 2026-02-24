@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dqp7r4yugeymp" path="res://objects/chest/VLLargeChest.tscn" id="14_c5f4f"]
 [ext_resource type="PackedScene" uid="uid://bmvylkq552c2p" path="res://objects/weapon/Thompson.tscn" id="15_r236e"]
 [ext_resource type="PackedScene" uid="uid://7t5a30v16j1" path="res://objects/weapon/Shotgun.tscn" id="16_h355u"]
+[ext_resource type="Script" uid="uid://60olkcpckerc" path="res://scripts/components/fader.gd" id="18_iatew"]
 
 [node name="TestLevel" type="Node2D" unique_id=1757215481]
 y_sort_enabled = true
@@ -217,44 +218,121 @@ item_cost = 2500
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=522808081]
 top_level = true
-color = Color(0.077719994, 0.0776, 0.08, 1)
+color = Color(0.31820002, 0.32192665, 0.43, 1)
+
+[node name="BottomCover" type="Polygon2D" parent="." unique_id=409992592]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-144, 144, -144, 352, 144, 352, 144, 144, 28, 144, 28, 146, -28, 146, -28, 144)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
+
+[node name="RightCover" type="Polygon2D" parent="." unique_id=104319851]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(144, 272, 400, 272, 400, -272, 144, -272, 144, -224, 147, -224, 147, -160, 144, -160, 144, 160, 147, 160, 147, 224, 144, 224)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
+
+[node name="TopCover" type="Polygon2D" parent="." unique_id=1111720170]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(144, -352, 144, -144, -144, -144, -144, -352)
+uv = PackedVector2Array(151.0271, -289.34735, -221.81836, -47.688293, -332.29102, -154.70874, -211.46143, -292.79965)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
+
+[node name="LeftCover" type="Polygon2D" parent="." unique_id=1545782331]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-400, -272, -400, 272, -144, 272, -144, 224, -147, 224, -147, 160, -144, 160, -144, -160, -147, -160, -147, -224, -144, -224, -144, -272)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
+
+[node name="BottomLeftDoorCover" type="Polygon2D" parent="." unique_id=97398449]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-144, 224, -147, 224, -147, 160, -144, 160)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
+
+[node name="BottomRightDoorCover" type="Polygon2D" parent="." unique_id=1556506363]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(144, 160, 147, 160, 147, 224, 144, 224)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
+
+[node name="TopRightDoorCover" type="Polygon2D" parent="." unique_id=439745872]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(144, -224, 147, -224, 147, -160, 144, -160)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
+
+[node name="TopLeftDoorCover" type="Polygon2D" parent="." unique_id=2123314570]
+z_index = 10
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-144, -160, -147, -160, -147, -224, -144, -224)
+script = ExtResource("18_iatew")
+fade_duration = 0.2
 
 [connection signal="doors_openinig" from="LeftDoors" to="Spawner11" method="enable"]
 [connection signal="doors_openinig" from="LeftDoors" to="Spawner12" method="enable"]
 [connection signal="doors_openinig" from="LeftDoors" to="Spawner13" method="enable"]
 [connection signal="doors_openinig" from="LeftDoors" to="Spawner14" method="enable"]
+[connection signal="doors_openinig" from="LeftDoors" to="LeftCover" method="fade_out"]
 [connection signal="doors_openinig" from="RightDoors" to="Spawner7" method="enable"]
 [connection signal="doors_openinig" from="RightDoors" to="Spawner8" method="enable"]
 [connection signal="doors_openinig" from="RightDoors" to="Spawner9" method="enable"]
 [connection signal="doors_openinig" from="RightDoors" to="Spawner10" method="enable"]
+[connection signal="doors_openinig" from="RightDoors" to="RightCover" method="fade_out"]
 [connection signal="doors_openinig" from="TopDoors" to="Spawner15" method="enable"]
 [connection signal="doors_openinig" from="TopDoors" to="Spawner16" method="enable"]
+[connection signal="doors_openinig" from="TopDoors" to="TopCover" method="fade_out"]
 [connection signal="doors_openinig" from="BottomDoors" to="Spawner5" method="enable"]
 [connection signal="doors_openinig" from="BottomDoors" to="Spawner6" method="enable"]
+[connection signal="doors_openinig" from="BottomDoors" to="BottomCover" method="fade_out"]
 [connection signal="doors_openinig" from="BottomLeftDoors" to="Spawner5" method="enable"]
 [connection signal="doors_openinig" from="BottomLeftDoors" to="Spawner6" method="enable"]
 [connection signal="doors_openinig" from="BottomLeftDoors" to="Spawner11" method="enable"]
 [connection signal="doors_openinig" from="BottomLeftDoors" to="Spawner12" method="enable"]
 [connection signal="doors_openinig" from="BottomLeftDoors" to="Spawner13" method="enable"]
+[connection signal="doors_openinig" from="BottomLeftDoors" to="BottomCover" method="fade_out"]
+[connection signal="doors_openinig" from="BottomLeftDoors" to="LeftCover" method="fade_out"]
 [connection signal="doors_openinig" from="BottomRightDoors" to="Spawner5" method="enable"]
 [connection signal="doors_openinig" from="BottomRightDoors" to="Spawner6" method="enable"]
 [connection signal="doors_openinig" from="BottomRightDoors" to="Spawner7" method="enable"]
 [connection signal="doors_openinig" from="BottomRightDoors" to="Spawner8" method="enable"]
 [connection signal="doors_openinig" from="BottomRightDoors" to="Spawner9" method="enable"]
 [connection signal="doors_openinig" from="BottomRightDoors" to="Spawner10" method="enable"]
+[connection signal="doors_openinig" from="BottomRightDoors" to="BottomCover" method="fade_out"]
+[connection signal="doors_openinig" from="BottomRightDoors" to="RightCover" method="fade_out"]
 [connection signal="doors_openinig" from="TopLeftDoors" to="Spawner11" method="enable"]
 [connection signal="doors_openinig" from="TopLeftDoors" to="Spawner12" method="enable"]
 [connection signal="doors_openinig" from="TopLeftDoors" to="Spawner13" method="enable"]
 [connection signal="doors_openinig" from="TopLeftDoors" to="Spawner14" method="enable"]
 [connection signal="doors_openinig" from="TopLeftDoors" to="Spawner15" method="enable"]
 [connection signal="doors_openinig" from="TopLeftDoors" to="Spawner16" method="enable"]
+[connection signal="doors_openinig" from="TopLeftDoors" to="TopCover" method="fade_out"]
+[connection signal="doors_openinig" from="TopLeftDoors" to="LeftCover" method="fade_out"]
 [connection signal="doors_openinig" from="TopRightDoors" to="Spawner7" method="enable"]
 [connection signal="doors_openinig" from="TopRightDoors" to="Spawner8" method="enable"]
 [connection signal="doors_openinig" from="TopRightDoors" to="Spawner9" method="enable"]
 [connection signal="doors_openinig" from="TopRightDoors" to="Spawner10" method="enable"]
 [connection signal="doors_openinig" from="TopRightDoors" to="Spawner15" method="enable"]
 [connection signal="doors_openinig" from="TopRightDoors" to="Spawner16" method="enable"]
+[connection signal="doors_openinig" from="TopRightDoors" to="RightCover" method="fade_out"]
+[connection signal="doors_openinig" from="TopRightDoors" to="TopCover" method="fade_out"]
 [connection signal="chest_closing" from="ShotgunChest" to="TopDoors" method="open"]
+[connection signal="fading_out" from="BottomCover" to="BottomLeftDoorCover" method="fade_out"]
+[connection signal="fading_out" from="BottomCover" to="BottomRightDoorCover" method="fade_out"]
+[connection signal="fading_out" from="RightCover" to="BottomRightDoorCover" method="fade_out"]
+[connection signal="fading_out" from="RightCover" to="TopRightDoorCover" method="fade_out"]
+[connection signal="fading_out" from="TopCover" to="TopRightDoorCover" method="fade_out"]
+[connection signal="fading_out" from="TopCover" to="TopLeftDoorCover" method="fade_out"]
+[connection signal="fading_out" from="LeftCover" to="BottomLeftDoorCover" method="fade_out"]
+[connection signal="fading_out" from="LeftCover" to="TopLeftDoorCover" method="fade_out"]
 
 [editable path="AssaultRifleChest"]
 [editable path="AssaultRifleChest/Label"]

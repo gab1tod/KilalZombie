@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://byf8pv2dcqhvu"]
+
+[ext_resource type="Script" uid="uid://60olkcpckerc" path="res://scripts/components/fader.gd" id="1_p08op"]
+
+[node name="RoomCover" type="Polygon2D" unique_id=1971712660]
+script = ExtResource("1_p08op")

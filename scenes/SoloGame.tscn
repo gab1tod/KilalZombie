@@ -60,7 +60,7 @@ color = Color(0, 0, 0, 1)
 [node name="World" type="Node2D" parent="." unique_id=35696255]
 y_sort_enabled = true
 
-[node name="TestLevel" parent="World" unique_id=1080125281 instance=ExtResource("2_qfkar")]
+[node name="TestLevel" parent="World" unique_id=1757215481 instance=ExtResource("2_qfkar")]
 
 [node name="Player1" parent="World" unique_id=1022930182 instance=ExtResource("3_n5oy5")]
 position = Vector2(-1, 0)
@@ -78,7 +78,7 @@ position = Vector2(1, -7)
 color = Color(0.9, 0.9, 0.9, 1)
 shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_jmbmn")
-texture_scale = 2.0
+texture_scale = 1.53
 height = 32.0
 
 [node name="ShadowLight" type="PointLight2D" parent="World/Player1" unique_id=846276881]
@@ -86,10 +86,9 @@ light_mask = 3
 position = Vector2(1, -7)
 color = Color(0.9, 0.9, 0.9, 1)
 range_item_cull_mask = 2
-shadow_enabled = true
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_jmbmn")
-texture_scale = 2.0
+texture_scale = 1.53
 height = 32.0
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=704024890]
