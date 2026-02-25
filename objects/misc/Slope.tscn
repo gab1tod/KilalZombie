@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bpoeyuw41u37l"]
+
+[ext_resource type="Script" uid="uid://dngstabex5vib" path="res://scripts/components/slope.gd" id="1_xfrmv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfrmv"]
+size = Vector2(32, 48)
+
+[node name="Slope" type="Area2D" unique_id=1746821091]
+script = ExtResource("1_xfrmv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=474799090]
+shape = SubResource("RectangleShape2D_xfrmv")

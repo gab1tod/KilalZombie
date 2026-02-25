@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://d021bnl1vv2ji" path="res://scripts/spawner.gd" id="1_5y6d2"]
 [ext_resource type="Texture2D" uid="uid://ddd3bivjktxkt" path="res://assets/Spawner.png" id="1_qcsvw"]
+[ext_resource type="Texture2D" uid="uid://d3r580qyaikfu" path="res://assets/SpawnerHoles.png" id="3_crvoi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qitu4"]
+atlas = ExtResource("3_crvoi")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ct5sn"]
 atlas = ExtResource("1_qcsvw")
@@ -88,14 +93,24 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_crvoi"]
+atlas = ExtResource("3_crvoi")
+region = Rect2(0, 16, 16, 16)
+
 [node name="Spawner" type="Node2D" unique_id=865816069 groups=["SpawnPoints"]]
 light_mask = 2
 visibility_layer = 2
 z_index = -1
 script = ExtResource("1_5y6d2")
 
+[node name="Hole" type="Sprite2D" parent="." unique_id=1291657673]
+texture = SubResource("AtlasTexture_qitu4")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=960329639]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(0, -6)
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ct5sn")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1957946924]
+texture = SubResource("AtlasTexture_crvoi")

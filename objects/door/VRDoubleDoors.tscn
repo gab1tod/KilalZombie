@@ -145,9 +145,9 @@ sprite_frames = SubResource("SpriteFrames_3fqg6")
 offset = Vector2(8, 0)
 
 [node name="LeftDoorAnimator" type="AnimatedSprite2D" parent="." unique_id=886189789]
-position = Vector2(0, 24)
+position = Vector2(0, 40)
 sprite_frames = SubResource("SpriteFrames_q5h7k")
-offset = Vector2(6, -8)
+offset = Vector2(6, -24)
 
 [node name="CentralCollisionShape" type="CollisionShape2D" parent="." unique_id=93133808]
 position = Vector2(-1, 4.5)
@@ -169,21 +169,20 @@ occluder = SubResource("OccluderPolygon2D_l5108")
 [node name="Label" parent="." unique_id=1209993131 instance=ExtResource("3_ud8fx")]
 unique_name_in_owner = true
 anchors_preset = 7
-anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.5
-offset_left = -18.0
-offset_top = -55.0
-offset_right = 14.0
-offset_bottom = -30.000458
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -30.0
+offset_right = 13.0
+offset_bottom = -3.0
 grow_vertical = 0
 title = "Open"
 subtitle = "750$"
 
-[node name="Title" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="0" unique_id=301212175]
+[node name="Title" parent="Label/MarginContainer/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
 text = "Open"
 
-[node name="Subtitle" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
+[node name="Subtitle" parent="Label/MarginContainer/VBoxContainer/Subtitle margin" parent_id_path=PackedInt32Array(1209993131, 1818692648) index="0" unique_id=616635276]
 text = "750$"
 label_settings = SubResource("LabelSettings_ud8fx")
 

@@ -19,7 +19,7 @@ signal chest_closing
 		if label:
 			label.title = value
 		update_labels()
-@export var item_cost: int = 0:
+@export_range(0, 1000, 10, "or_greater", "suffix:$") var item_cost: int = 0:
 	set(value):
 		item_cost = value
 		if label:

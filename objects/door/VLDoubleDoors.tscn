@@ -141,49 +141,50 @@ y_sort_enabled = true
 script = ExtResource("1_qv0qu")
 
 [node name="RightDoorAnimator" type="AnimatedSprite2D" parent="." unique_id=1686135246]
+position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_3fqg6")
 offset = Vector2(-7, 0)
 
 [node name="LeftDoorAnimator" type="AnimatedSprite2D" parent="." unique_id=83114681]
-position = Vector2(0, 24)
+position = Vector2(3, 40)
 sprite_frames = SubResource("SpriteFrames_q5h7k")
-offset = Vector2(-11, -8)
+offset = Vector2(-11, -24)
 
 [node name="CentralCollisionShape" type="CollisionShape2D" parent="." unique_id=652881460]
-position = Vector2(-1, 4.5)
+position = Vector2(2, 4.5)
 shape = SubResource("RectangleShape2D_g4rrw")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="CentralCollisionShape" unique_id=814519297]
 occluder = SubResource("OccluderPolygon2D_qv0qu")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1164474903]
+position = Vector2(3, 0)
 
 [node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea" unique_id=1823590754]
 position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_pymq8")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=769208513]
-position = Vector2(0, -2)
+position = Vector2(3, -2)
 occluder = SubResource("OccluderPolygon2D_nyesd")
 
 [node name="Label" parent="." unique_id=1209993131 instance=ExtResource("3_evx6n")]
 unique_name_in_owner = true
 anchors_preset = 7
-anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.5
-offset_left = -18.0
-offset_top = -55.0
-offset_right = 14.0
-offset_bottom = -30.000458
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = -30.0
+offset_right = 15.0
+offset_bottom = -3.0
 grow_vertical = 0
 title = "Open"
 subtitle = "750$"
 
-[node name="Title" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="0" unique_id=301212175]
+[node name="Title" parent="Label/MarginContainer/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
 text = "Open"
 
-[node name="Subtitle" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
+[node name="Subtitle" parent="Label/MarginContainer/VBoxContainer/Subtitle margin" parent_id_path=PackedInt32Array(1209993131, 1818692648) index="0" unique_id=616635276]
 text = "750$"
 label_settings = SubResource("LabelSettings_evx6n")
 

@@ -3,6 +3,7 @@ class_name Player
 
 signal interaction_start
 signal interaction_stop
+signal movement_handeled
 
 @export var hit_highlight_color := Color.RED
 @export var revive_highlight_color := Color(1.27, 1.27, 0.92)
@@ -40,7 +41,7 @@ var was_revived: bool = false
 @onready var animator := $AnimatedSprite2D
 @onready var weapon_socket := $WeaponSocket
 @onready var heal_timer := $HealTimer
-@onready var collision_shape := $CollisionShape2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var revive_area := $ReviveArea
 
 
@@ -61,6 +62,7 @@ func _process(delta: float) -> void:
 	
 	if not is_reviving:
 		handle_movement()
+		movement_handeled.emit()
 		move_and_slide()
 	
 	if Input.is_action_pressed("p%d_reload" % device_id):

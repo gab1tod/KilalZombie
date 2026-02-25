@@ -59,11 +59,11 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 0, 0, 0, 0, 8, -8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmkse"]
 atlas = ExtResource("1_0cerg")
-region = Rect2(0, 48, 128, 48)
+region = Rect2(0, 48, 192, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ham1"]
 atlas = ExtResource("1_0cerg")
-region = Rect2(0, 96, 128, 48)
+region = Rect2(0, 96, 192, 48)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_gio8g"]
 diffuse_texture = SubResource("AtlasTexture_jmkse")
@@ -230,10 +230,34 @@ texture = SubResource("CanvasTexture_gio8g")
 7:2/0 = 0
 7:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_86dcy")
 7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, 0, 0, 0, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 8, -8, 8)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 0, 8, 8, -8, 8)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, -8, 8, 8, -8, 8)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 8, 8, -8, 8)
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:1/0 = 0
+10:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:1/0 = 0
+11:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 0)
+9:2/0 = 0
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0)
+10:2/0 = 0
+10:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, -8, 0)
+11:2/0 = 0
+11:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0cerg"]
 atlas = ExtResource("1_0cerg")
-region = Rect2(0, 0, 128, 48)
+region = Rect2(0, 0, 256, 48)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0cerg"]
 texture = SubResource("AtlasTexture_0cerg")
@@ -348,6 +372,26 @@ texture = SubResource("AtlasTexture_0cerg")
 5:2/0/terrains_peering_bit/top_right_corner = 1
 6:2/0 = 0
 7:2/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ham1"]
 texture = ExtResource("2_jmkse")
@@ -376,6 +420,56 @@ texture = ExtResource("2_jmkse")
 5:0/0 = 0
 6:0/0 = 0
 7:0/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+7:6/0 = 0
+6:6/0 = 0
+5:6/0 = 0
+4:6/0 = 0
+3:6/0 = 0
+2:6/0 = 0
+1:6/0 = 0
+0:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+0:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+7:11/0 = 0
+6:11/0 = 0
+5:11/0 = 0
+4:11/0 = 0
+3:11/0 = 0
+2:11/0 = 0
+1:11/0 = 0
+0:11/0 = 0
 
 [resource]
 occlusion_layer_0/light_mask = 1

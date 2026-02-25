@@ -64,7 +64,7 @@ size = Vector2(21, 16.5)
 [sub_resource type="LabelSettings" id="LabelSettings_bjvjy"]
 font = ExtResource("4_8pttm")
 font_size = 8
-font_color = Color(0.031000044, 0.62, 0, 1)
+font_color = Color(0.03137255, 0.61960787, 0, 1)
 
 [node name="Chest" type="StaticBody2D" unique_id=1413491950]
 light_mask = 2
@@ -76,19 +76,20 @@ interaction_time = 0.4
 light_mask = 2
 visibility_layer = 2
 texture_filter = 1
-position = Vector2(1, -7.5)
+position = Vector2(1, -8.5)
 sprite_frames = SubResource("SpriteFrames_v84rw")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1917662884]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(0, -4.75)
+position = Vector2(0, -5.75)
 shape = SubResource("RectangleShape2D_matvi")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1444799606]
 light_mask = 2
 visibility_layer = 2
+position = Vector2(0, -1)
 
 [node name="InteractionAreaShape" type="CollisionShape2D" parent="InteractionArea" unique_id=299716116]
 light_mask = 2
@@ -99,21 +100,20 @@ shape = SubResource("RectangleShape2D_cjixx")
 [node name="Label" parent="." unique_id=1209993131 instance=ExtResource("3_anmta")]
 unique_name_in_owner = true
 anchors_preset = 7
-anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.5
-offset_left = -25.0
-offset_top = -45.0
-offset_right = 25.0
-offset_bottom = -19.000458
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -44.0
+offset_right = 8.0
+offset_bottom = -17.0
 grow_vertical = 0
-title = ""
+title = "Item name"
 subtitle = "0$"
 
-[node name="Title" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="0" unique_id=301212175]
-text = ""
+[node name="Title" parent="Label/MarginContainer/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
+text = "Item name"
 
-[node name="Subtitle" parent="Label/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
+[node name="Subtitle" parent="Label/MarginContainer/VBoxContainer/Subtitle margin" parent_id_path=PackedInt32Array(1209993131, 1818692648) index="0" unique_id=616635276]
 text = "0$"
 label_settings = SubResource("LabelSettings_bjvjy")
 

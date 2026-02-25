@@ -7,7 +7,7 @@ extends Control
 		title = value
 		if title_label:
 			title_label.text = value
-@export var subtitle: String = 'Subtitle':
+@export_multiline() var subtitle: String = 'Subtitle':
 	set(value):
 		subtitle = value
 		if subtitle_label:

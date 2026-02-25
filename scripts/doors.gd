@@ -7,7 +7,7 @@ signal doors_closing
 var flip_h: bool = false
 @export var obenable: bool = true
 @export var is_open: bool = false
-@export var cost: int = 750:
+@export_range(0, 1000, 10, "or_greater", "suffix:$") var cost: int = 750:
 	set(value):
 		cost = value
 		if label:

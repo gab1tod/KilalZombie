@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqv0x153qlj8c"]
 
 [ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/game.gd" id="1_jmbmn"]
-[ext_resource type="PackedScene" uid="uid://b4fm6305ger1n" path="res://scenes/levels/TestLevel.tscn" id="2_qfkar"]
+[ext_resource type="PackedScene" uid="uid://galfkjv4fv0w" path="res://scenes/levels/TestLevel2.tscn" id="2_pyqeu"]
 [ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://objects/Player.tscn" id="3_n5oy5"]
 [ext_resource type="PackedScene" uid="uid://c36tdsd2hb6vk" path="res://objects/weapon/Pistol.tscn" id="4_3u4an"]
 [ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="6_rc3d6"]
@@ -60,7 +60,7 @@ color = Color(0, 0, 0, 1)
 [node name="World" type="Node2D" parent="." unique_id=35696255]
 y_sort_enabled = true
 
-[node name="TestLevel" parent="World" unique_id=1757215481 instance=ExtResource("2_qfkar")]
+[node name="TestLevel2" parent="World" unique_id=1072526264 instance=ExtResource("2_pyqeu")]
 
 [node name="Player1" parent="World" unique_id=1022930182 instance=ExtResource("3_n5oy5")]
 position = Vector2(-1, 0)

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Kilal Zombie"
-run/main_scene="uid://cba733jrew60e"
+run/main_scene="uid://cqv0x153qlj8c"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://da6bgrtvf8yyx"
 
