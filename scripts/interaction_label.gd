@@ -15,3 +15,8 @@ extends Control
 
 @onready var title_label: Label = %Title
 @onready var subtitle_label: Label = %Subtitle
+
+
+func _ready() -> void:
+	title_label.text = title
+	subtitle_label.text = subtitle

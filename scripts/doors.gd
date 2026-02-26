@@ -5,7 +5,7 @@ signal doors_openinig
 signal doors_closing
 
 var flip_h: bool = false
-@export var obenable: bool = true
+@export var openable: bool = true
 @export var is_open: bool = false
 @export_range(0, 1000, 10, "or_greater", "suffix:$") var cost: int = 750:
 	set(value):
@@ -31,6 +31,9 @@ var interacting_players: Array[Node2D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if label:
+		label.subtitle = '%d$' % cost
+	
 	if is_open:
 		left_door_animator.frame = left_door_animator.sprite_frames.get_frame_count() - 1
 		right_door_animator.frame = right_door_animator.sprite_frames.get_frame_count() - 1
@@ -40,10 +43,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint() and label:
+		label.visible = openable
+		return
+	
 	left_door_animator.scale.x = -1 if flip_h else 1
 	right_door_animator.scale.x = -1 if flip_h else 1
 	
-	var buyable = not (players.is_empty() or is_open) and obenable
+	var buyable = not (players.is_empty() or is_open) and openable
 	label.visible = buyable or Engine.is_editor_hint()
 	label.subtitle = '%d$' % cost
 	
@@ -101,7 +108,7 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 	
 
 func _on_player_interaction_start(player) -> void:
-	if is_open or player.score < cost or not obenable:
+	if is_open or player.score < cost or not openable:
 		return
 	
 	interacting_players.append(player)

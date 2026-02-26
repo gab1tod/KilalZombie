@@ -2,38 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cmiivmqoqtxby" path="res://scripts/components/custom_button.gd" id="1_lxgga"]
 [ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="2_sptvx"]
-[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="3_24tlu"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="3_lxgga"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jmbmn"]
-atlas = ExtResource("2_sptvx")
-region = Rect2(0, 32, 32, 32)
+[sub_resource type="LabelSettings" id="LabelSettings_lxgga"]
+font = ExtResource("3_lxgga")
+font_color = Color(0.9407874, 0.9407874, 0.9407874, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_7ltgk"]
-font = ExtResource("3_24tlu")
-font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_n5oy5"]
-font = ExtResource("3_24tlu")
-font_size = 48
-shadow_size = 0
-shadow_color = Color(0.43137255, 0.25882354, 0.19607843, 1)
-shadow_offset = Vector2(0, -2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_qfkar"]
-font = ExtResource("3_24tlu")
-font_size = 48
-font_color = Color(0.97, 0.89078337, 0.873, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_jmbmn"]
-font = ExtResource("3_24tlu")
-font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_3u4an"]
-font = ExtResource("3_24tlu")
-font_size = 48
-font_color = Color(0.74, 0.74, 0.74, 0.5019608)
-
-[node name="CustomButton" type="BaseButton" unique_id=1501149222 node_paths=PackedStringArray("content_disabled", "content_focused", "content_hover", "content_normal", "content_pressed")]
+[node name="CustomButton" type="BaseButton" unique_id=1501149222]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -58,20 +33,20 @@ texture_repeat = 0
 material = null
 use_parent_material = false
 clip_contents = false
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 16)
 layout_direction = 0
 layout_mode = 3
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = 0.0
-offset_top = 0.0
+offset_top = -16.0
 offset_right = 0.0
 offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+grow_horizontal = 2
+grow_vertical = 2
 rotation = 0.0
 scale = Vector2(1, 1)
 pivot_offset = Vector2(0, 0)
@@ -114,105 +89,42 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("1_lxgga")
-content_disabled = NodePath("Disabled")
-content_focused = NodePath("FocusedNinePatchRect")
-content_hover = NodePath("Hovered")
-content_normal = NodePath("Label")
-content_pressed = NodePath("PressedNinePatchRect")
+text = "Button"
+label_settings = SubResource("LabelSettings_lxgga")
 metadata/_custom_type_script = "uid://cmiivmqoqtxby"
 
-[node name="FocusedNinePatchRect" type="NinePatchRect" parent="." unique_id=946729248]
+[node name="Background" type="NinePatchRect" parent="." unique_id=18502031]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_jmbmn")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
+texture = ExtResource("2_sptvx")
+region_rect = Rect2(105, 0, 7, 7)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
-[node name="Label" type="Label" parent="FocusedNinePatchRect" unique_id=1679053529]
+[node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=1457182041]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Custom"
-label_settings = SubResource("LabelSettings_7ltgk")
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 2
 
-[node name="PressedNinePatchRect" type="NinePatchRect" parent="." unique_id=1412042560]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_jmbmn")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="PressedLabel" type="Label" parent="PressedNinePatchRect" unique_id=1807606126]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -8.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Custom"
-label_settings = SubResource("LabelSettings_n5oy5")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="." unique_id=1786280963]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Custom"
-label_settings = SubResource("LabelSettings_qfkar")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hovered" type="Label" parent="." unique_id=637537471]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Custom"
-label_settings = SubResource("LabelSettings_jmbmn")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Disabled" type="Label" parent="." unique_id=1017926524]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Custom"
-label_settings = SubResource("LabelSettings_3u4an")
+[node name="Label" type="Label" parent="Background/MarginContainer" unique_id=1670222676]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Button"
+label_settings = SubResource("LabelSettings_lxgga")
 horizontal_alignment = 1
 vertical_alignment = 1

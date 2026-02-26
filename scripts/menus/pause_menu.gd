@@ -2,6 +2,7 @@ extends CanvasLayer
 
 
 @export var menu_parent: String = 'uid://dvgauec5bim52' # Main menu
+@export var auto_focus: bool = true
 
 @onready var inhibition_timer := $InhibitionTimer
 @onready var resume_button := %ResumeButton
@@ -13,7 +14,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed("ui_up")\
+		or Input.is_action_just_pressed("ui_down"))\
+		and not get_viewport().gui_get_focus_owner():
+		resume_button.grab_focus()
+	
 	if Input.is_action_just_pressed("pause"):
 		close_menu()
 
@@ -23,7 +30,8 @@ func open_menu() -> void:
 		return
 	
 	get_tree().paused = true
-	resume_button.grab_focus()
+	if auto_focus:
+		resume_button.grab_focus()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	visible = true
 	inhibition_timer.start()
@@ -32,6 +40,7 @@ func close_menu() -> void:
 	if not inhibition_timer.is_stopped():
 		return
 	
+	get_viewport().gui_release_focus()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	visible = false
 	inhibition_timer.start()

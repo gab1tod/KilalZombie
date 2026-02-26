@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var world: Node2D
+@export var level: Node2D
 @export var wave: int = 0
 @export var hide_cursor: bool = true
 
@@ -46,8 +47,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
+		pause_menu.auto_focus = get_tree().get_first_node_in_group("Players").aim_mode == Player.AimMode.GAMEPAD
 		pause_menu.open_menu()
 	
 	if Input.is_action_just_pressed("ui_accept"):
@@ -121,3 +124,11 @@ func find_subviewports(node: Node, result: Array[SubViewport] = []) -> Array[Sub
 	for child in node.get_children():
 		find_subviewports(child, result)
 	return result
+
+
+func set_level(lvl: Node2D) -> void:
+	if level and level.is_inside_tree():
+		level.queue_free()
+	
+	level = lvl
+	world.add_child(level)

@@ -7,17 +7,16 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_3p2gp"]
 font = ExtResource("3_yx35g")
-font_size = 64
-font_color = Color(0.97, 0.9522167, 0.9215, 1)
+font_size = 35
+font_color = Color(0.95, 0.95, 0.95, 1)
 shadow_size = 0
-shadow_color = Color(0.43, 0.25972, 0.1978, 1)
 shadow_offset = Vector2(0, -2)
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1039012784]
 process_mode = 2
 script = ExtResource("1_jiu6o")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1478514806]
+[node name="Background" type="ColorRect" parent="." unique_id=1478514806]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,134 +24,100 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7058824)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=720454147]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1018789605]
+anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -164.25
-offset_top = -176.00002
-offset_right = -54.75
-offset_bottom = -58.66667
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-texture = ExtResource("2_40atx")
-region_rect = Rect2(0, 0, 32, 32)
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 11
+scale = Vector2(2, 2)
 
-[node name="InnerResize" type="Control" parent="NinePatchRect" unique_id=291397110]
+[node name="Control" type="MarginContainer" parent="CenterContainer" unique_id=432890346]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/Control" unique_id=720454147]
+self_modulate = Color(0, 0, 0, 0.39215687)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_40atx")
+region_rect = Rect2(120, 0, 8, 8)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Control/NinePatchRect" unique_id=2041412059]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 219.0
-offset_bottom = 234.66565
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.33, 0.33)
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
 
-[node name="Title" type="Label" parent="NinePatchRect/InnerResize" unique_id=421738242]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.69501
-offset_top = -163.87827
-offset_right = 65.30502
-offset_bottom = -93.878235
-grow_horizontal = 2
-grow_vertical = 2
+[node name="NinePatchRect" type="NinePatchRect" parent="CenterContainer/Control/NinePatchRect/MarginContainer" unique_id=861704048]
+layout_mode = 2
+texture = ExtResource("2_40atx")
+region_rect = Rect2(112, 0, 8, 8)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Control" unique_id=71002988]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Control/MarginContainer" unique_id=1496329046]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/Control/MarginContainer/VBoxContainer" unique_id=421738242]
+layout_mode = 2
 text = "Pause"
 label_settings = SubResource("LabelSettings_3p2gp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HFlowContainer" type="VBoxContainer" parent="NinePatchRect/InnerResize" unique_id=1344316816]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -89.53787
-offset_top = -62.86817
-offset_right = 89.53787
-offset_bottom = 99.231766
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HFlowContainer" type="VBoxContainer" parent="CenterContainer/Control/MarginContainer/VBoxContainer" unique_id=178222481]
+layout_mode = 2
 alignment = 1
 
-[node name="ResumeButton" parent="NinePatchRect/InnerResize/HFlowContainer" unique_id=1501149222 instance=ExtResource("6_3iyjm")]
+[node name="ResumeButton" parent="CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1501149222 instance=ExtResource("6_3iyjm")]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Label" parent="NinePatchRect/InnerResize/HFlowContainer/ResumeButton/FocusedNinePatchRect" parent_id_path=PackedInt32Array(1501149222, 946729248) index="0" unique_id=1679053529]
+focus_neighbor_top = NodePath("../ExitButton")
 text = "Resume"
+background_normal = Color(0.16, 0.16, 0.16, 1)
+background_hovered = Color(0.4, 0.4, 0.4, 1)
+background_focused = Color(0.4, 0.4, 0.4, 1)
+background_pressed = Color(0.6, 0.6, 0.6, 1)
 
-[node name="PressedLabel" parent="NinePatchRect/InnerResize/HFlowContainer/ResumeButton/PressedNinePatchRect" parent_id_path=PackedInt32Array(1501149222, 1412042560) index="0" unique_id=1807606126]
-text = "Resume"
-
-[node name="Label" parent="NinePatchRect/InnerResize/HFlowContainer/ResumeButton" index="2" unique_id=1786280963]
-text = "Resume"
-
-[node name="Hovered" parent="NinePatchRect/InnerResize/HFlowContainer/ResumeButton" index="3" unique_id=637537471]
-text = "Resume"
-
-[node name="Disabled" parent="NinePatchRect/InnerResize/HFlowContainer/ResumeButton" index="4" unique_id=1017926524]
-text = "Resume"
-
-[node name="RestartButton" parent="NinePatchRect/InnerResize/HFlowContainer" unique_id=460963233 instance=ExtResource("6_3iyjm")]
+[node name="RestartButton" parent="CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer" unique_id=460963233 instance=ExtResource("6_3iyjm")]
 layout_mode = 2
-
-[node name="Label" parent="NinePatchRect/InnerResize/HFlowContainer/RestartButton/FocusedNinePatchRect" parent_id_path=PackedInt32Array(460963233, 946729248) index="0" unique_id=1679053529]
 text = "Restart"
+background_normal = Color(0.16, 0.16, 0.16, 1)
+background_hovered = Color(0.4, 0.4, 0.4, 1)
+background_focused = Color(0.4, 0.4, 0.4, 1)
+background_pressed = Color(0.6, 0.6, 0.6, 1)
 
-[node name="PressedLabel" parent="NinePatchRect/InnerResize/HFlowContainer/RestartButton/PressedNinePatchRect" parent_id_path=PackedInt32Array(460963233, 1412042560) index="0" unique_id=1807606126]
-text = "Restart"
-
-[node name="Label" parent="NinePatchRect/InnerResize/HFlowContainer/RestartButton" index="2" unique_id=1786280963]
-text = "Restart"
-
-[node name="Hovered" parent="NinePatchRect/InnerResize/HFlowContainer/RestartButton" index="3" unique_id=637537471]
-text = "Restart"
-
-[node name="Disabled" parent="NinePatchRect/InnerResize/HFlowContainer/RestartButton" index="4" unique_id=1017926524]
-text = "Restart"
-
-[node name="ExitButton" parent="NinePatchRect/InnerResize/HFlowContainer" unique_id=1467172663 instance=ExtResource("6_3iyjm")]
+[node name="ExitButton" parent="CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer" unique_id=1467172663 instance=ExtResource("6_3iyjm")]
 layout_mode = 2
-
-[node name="Label" parent="NinePatchRect/InnerResize/HFlowContainer/ExitButton/FocusedNinePatchRect" parent_id_path=PackedInt32Array(1467172663, 946729248) index="0" unique_id=1679053529]
+focus_neighbor_bottom = NodePath("../ResumeButton")
 text = "Exit"
-
-[node name="PressedLabel" parent="NinePatchRect/InnerResize/HFlowContainer/ExitButton/PressedNinePatchRect" parent_id_path=PackedInt32Array(1467172663, 1412042560) index="0" unique_id=1807606126]
-text = "Exit"
-
-[node name="Label" parent="NinePatchRect/InnerResize/HFlowContainer/ExitButton" index="2" unique_id=1786280963]
-text = "Exit"
-
-[node name="Hovered" parent="NinePatchRect/InnerResize/HFlowContainer/ExitButton" index="3" unique_id=637537471]
-text = "Exit"
-
-[node name="Disabled" parent="NinePatchRect/InnerResize/HFlowContainer/ExitButton" index="4" unique_id=1017926524]
-text = "Exit"
+background_normal = Color(0.16, 0.16, 0.16, 1)
+background_hovered = Color(0.4, 0.4, 0.4, 1)
+background_focused = Color(0.4, 0.4, 0.4, 1)
+background_pressed = Color(0.6, 0.6, 0.6, 1)
 
 [node name="InhibitionTimer" type="Timer" parent="." unique_id=1252834496]
 process_mode = 3
 wait_time = 0.1
 one_shot = true
 
-[connection signal="pressed" from="NinePatchRect/InnerResize/HFlowContainer/ResumeButton" to="." method="close_menu"]
-[connection signal="pressed" from="NinePatchRect/InnerResize/HFlowContainer/RestartButton" to="." method="restart_level"]
-[connection signal="pressed" from="NinePatchRect/InnerResize/HFlowContainer/ExitButton" to="." method="quit_level"]
-
-[editable path="NinePatchRect/InnerResize/HFlowContainer/ResumeButton"]
-[editable path="NinePatchRect/InnerResize/HFlowContainer/RestartButton"]
-[editable path="NinePatchRect/InnerResize/HFlowContainer/ExitButton"]
+[connection signal="pressed" from="CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer/ResumeButton" to="." method="close_menu"]
+[connection signal="pressed" from="CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer/RestartButton" to="." method="restart_level"]
+[connection signal="pressed" from="CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer/ExitButton" to="." method="quit_level"]

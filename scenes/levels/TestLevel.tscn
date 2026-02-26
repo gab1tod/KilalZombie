@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dqp7r4yugeymp" path="res://objects/chest/VLLargeChest.tscn" id="14_c5f4f"]
 [ext_resource type="PackedScene" uid="uid://bmvylkq552c2p" path="res://objects/weapon/Thompson.tscn" id="15_r236e"]
 [ext_resource type="PackedScene" uid="uid://7t5a30v16j1" path="res://objects/weapon/Shotgun.tscn" id="16_h355u"]
-[ext_resource type="Script" path="res://scripts/components/fader.gd" id="18_iatew"]
+[ext_resource type="Script" uid="uid://60olkcpckerc" path="res://scripts/components/fader.gd" id="18_iatew"]
 
 [node name="TestLevel" type="Node2D" unique_id=1757215481]
 y_sort_enabled = true
@@ -50,48 +50,55 @@ tile_set = ExtResource("1_qhsfq")
 
 [node name="LeftDoors" parent="." unique_id=1813408072 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("2_ed8ye")]
 position = Vector2(-144, 0)
+openable = null
 cost = 3000
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(-9, 0)])
 
 [node name="RightDoors" parent="." unique_id=1771184562 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("3_ug4u0")]
 position = Vector2(144, 0)
+openable = null
 cost = 3000
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(8, 0)])
 
 [node name="TopDoors" parent="." unique_id=314853273 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("4_hyjru")]
 position = Vector2(0, -128)
-obenable = false
+openable = null
 cost = 0
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(-1, -9), Vector2i(0, -9)])
 
 [node name="BottomDoors" parent="." unique_id=926568861 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("4_hyjru")]
 position = Vector2(0, 160)
+openable = null
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(-1, 9), Vector2i(0, 9)])
 
 [node name="BottomLeftDoors" parent="." unique_id=446758911 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("3_ug4u0")]
 position = Vector2(-144, 192)
+openable = null
 cost = 1000
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(-10, 12)])
 
 [node name="BottomRightDoors" parent="." unique_id=249752055 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("2_ed8ye")]
 position = Vector2(144, 192)
+openable = null
 cost = 1000
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(9, 12)])
 
 [node name="TopLeftDoors" parent="." unique_id=702899849 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("3_ug4u0")]
 position = Vector2(-144, -192)
+openable = null
 cost = 1500
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(-10, -12)])
 
 [node name="TopRightDoors" parent="." unique_id=1725102770 node_paths=PackedStringArray("tilemap_layer") instance=ExtResource("2_ed8ye")]
 position = Vector2(144, -192)
+openable = null
 cost = 1500
 tilemap_layer = NodePath("../Walls")
 tilemap_tiles = Array[Vector2i]([Vector2i(9, -12)])
@@ -186,10 +193,10 @@ offset_right = 39.0
 title = "Assault Rifle"
 subtitle = "1300$"
 
-[node name="Title" parent="AssaultRifleChest/Label/VBoxContainer" parent_id_path=PackedInt32Array(540425951, 1209993131, 1591706196) index="0" unique_id=301212175]
+[node name="Title" parent="AssaultRifleChest/Label/MarginContainer/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(540425951, 1209993131, 1700987769) index="0" unique_id=301212175]
 text = "Assault Rifle"
 
-[node name="Subtitle" parent="AssaultRifleChest/Label/VBoxContainer" parent_id_path=PackedInt32Array(540425951, 1209993131, 1591706196) index="1" unique_id=616635276]
+[node name="Subtitle" parent="AssaultRifleChest/Label/MarginContainer/VBoxContainer/Subtitle margin" parent_id_path=PackedInt32Array(540425951, 1209993131, 1818692648) index="0" unique_id=616635276]
 text = "1300$"
 
 [node name="MachinegunChest" parent="." unique_id=138097876 instance=ExtResource("14_c5f4f")]
@@ -204,10 +211,10 @@ offset_right = 31.0
 title = "Machinegun"
 subtitle = "1250$"
 
-[node name="Title" parent="MachinegunChest/Label/VBoxContainer" parent_id_path=PackedInt32Array(138097876, 1209993131, 1591706196) index="0" unique_id=301212175]
+[node name="Title" parent="MachinegunChest/Label/MarginContainer/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(138097876, 1209993131, 1700987769) index="0" unique_id=301212175]
 text = "Machinegun"
 
-[node name="Subtitle" parent="MachinegunChest/Label/VBoxContainer" parent_id_path=PackedInt32Array(138097876, 1209993131, 1591706196) index="1" unique_id=616635276]
+[node name="Subtitle" parent="MachinegunChest/Label/MarginContainer/VBoxContainer/Subtitle margin" parent_id_path=PackedInt32Array(138097876, 1209993131, 1818692648) index="0" unique_id=616635276]
 text = "1250$"
 
 [node name="ShotgunChest" parent="." unique_id=505961573 instance=ExtResource("10_fjq0t")]

@@ -1,461 +1,78 @@
 [gd_scene format=3 uid="uid://cba733jrew60e"]
 
 [ext_resource type="Script" uid="uid://dk8qnmvw72nyi" path="res://scripts/menus/main_menu.gd" id="1_ie0q5"]
-[ext_resource type="Texture2D" uid="uid://dyjqjro80p54e" path="res://assets/UI.png" id="2_gr2do"]
+[ext_resource type="PackedScene" uid="uid://bs4hevm3eiqt4" path="res://objects/misc/CustomButton.tscn" id="3_crr1j"]
 [ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="3_g2d45"]
-[ext_resource type="Script" uid="uid://cmiivmqoqtxby" path="res://scripts/components/custom_button.gd" id="4_xai0t"]
-[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="5_0736d"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3i6w"]
-atlas = ExtResource("2_gr2do")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_8ynm5"]
+[sub_resource type="LabelSettings" id="LabelSettings_4yeqs"]
 font = ExtResource("3_g2d45")
 font_size = 64
-font_color = Color(0.97, 0.9522167, 0.9215, 1)
-shadow_size = 0
-shadow_color = Color(0.43, 0.25972, 0.1978, 1)
-shadow_offset = Vector2(0, -2)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqoy3"]
-atlas = ExtResource("2_gr2do")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_2oug6"]
-font = ExtResource("5_0736d")
-font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_lqhhu"]
-font = ExtResource("5_0736d")
-font_size = 48
-shadow_size = 0
-shadow_color = Color(0.43137255, 0.25882354, 0.19607843, 1)
-shadow_offset = Vector2(0, -2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7xww2"]
-font = ExtResource("5_0736d")
-font_size = 48
-font_color = Color(0.97, 0.89078337, 0.873, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wfobw"]
-font = ExtResource("5_0736d")
-font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_8dkih"]
-font = ExtResource("5_0736d")
-font_size = 48
-font_color = Color(0.74, 0.74, 0.74, 0.5019608)
+font_color = Color(0.95, 0.95, 0.95, 1)
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1768057687]
 script = ExtResource("1_ie0q5")
+auto_focus = false
 
-[node name="Background" type="ColorRect" parent="." unique_id=128488467]
+[node name="Background" type="ColorRect" parent="." unique_id=1380838477]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.06, 0.051, 0.042, 1)
+color = Color(0, 0, 0, 1)
 
-[node name="Container" type="Control" parent="." unique_id=1954416371]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -369.0
-offset_top = -221.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Container" unique_id=1207344635]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -246.0
-offset_bottom = -147.66699
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=958001176]
+anchors_preset = -1
+anchor_right = 0.33
+anchor_bottom = 0.33
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture = SubResource("AtlasTexture_e3i6w")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 11
+alignment = 1
 
-[node name="Title" type="Label" parent="Container" unique_id=1103598392]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.5
-offset_top = -83.25
-offset_right = 128.5
-offset_bottom = -13.25
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=1360831143]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=95794138]
+layout_mode = 2
 text = "Kilal Zombie"
-label_settings = SubResource("LabelSettings_8ynm5")
+label_settings = SubResource("LabelSettings_4yeqs")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container" unique_id=1685049688]
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=72898094]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Control" unique_id=875965296]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -4.5
-offset_right = 84.0
-offset_bottom = 71.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 56.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="SoloGameButton" type="BaseButton" parent="Container/VBoxContainer" unique_id=1615936612 node_paths=PackedStringArray("content_disabled", "content_focused", "content_hover", "content_normal", "content_pressed")]
+[node name="SoloGameButton" parent="VBoxContainer/Control/VBoxContainer" unique_id=1501149222 instance=ExtResource("3_crr1j")]
 unique_name_in_owner = true
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 2
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
-clip_contents = false
-custom_minimum_size = Vector2(0, 32)
-layout_direction = 0
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.0
-localize_numeral_system = true
-tooltip_text = ""
-tooltip_auto_translate_mode = 0
-focus_neighbor_left = NodePath("")
-focus_neighbor_top = NodePath("")
-focus_neighbor_right = NodePath("")
-focus_neighbor_bottom = NodePath("")
-focus_next = NodePath("")
-focus_previous = NodePath("")
-focus_mode = 2
-focus_behavior_recursive = 0
-mouse_filter = 0
-mouse_behavior_recursive = 0
-mouse_force_pass_scroll_events = true
-mouse_default_cursor_shape = 0
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
-theme = null
-theme_type_variation = &""
-disabled = false
-toggle_mode = false
-button_pressed = false
-action_mode = 1
-button_mask = 1
-keep_pressed_outside = false
-button_group = null
-shortcut = null
-shortcut_feedback = true
-shortcut_in_tooltip = true
-script = ExtResource("4_xai0t")
-content_disabled = NodePath("Disabled")
-content_focused = NodePath("FocusedNinePatchRect")
-content_hover = NodePath("Hovered")
-content_normal = NodePath("Label")
-content_pressed = NodePath("PressedNinePatchRect")
-metadata/_custom_type_script = "uid://cmiivmqoqtxby"
+text = "Start"
+background_normal = Color(0.16, 0.16, 0.16, 1)
+background_hovered = Color(0.4, 0.4, 0.4, 1)
+background_focused = Color(0.4, 0.4, 0.4, 1)
+background_pressed = Color(0.6, 0.6, 0.6, 1)
 
-[node name="FocusedNinePatchRect" type="NinePatchRect" parent="Container/VBoxContainer/SoloGameButton" unique_id=1223031674]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_rqoy3")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="Label" type="Label" parent="Container/VBoxContainer/SoloGameButton/FocusedNinePatchRect" unique_id=562370566]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1 Player"
-label_settings = SubResource("LabelSettings_2oug6")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PressedNinePatchRect" type="NinePatchRect" parent="Container/VBoxContainer/SoloGameButton" unique_id=1986609894]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_rqoy3")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="PressedLabel" type="Label" parent="Container/VBoxContainer/SoloGameButton/PressedNinePatchRect" unique_id=532568532]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -8.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1 Player"
-label_settings = SubResource("LabelSettings_lqhhu")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="Container/VBoxContainer/SoloGameButton" unique_id=2113142478]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1 Player"
-label_settings = SubResource("LabelSettings_7xww2")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hovered" type="Label" parent="Container/VBoxContainer/SoloGameButton" unique_id=1932634740]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1 Player"
-label_settings = SubResource("LabelSettings_wfobw")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Disabled" type="Label" parent="Container/VBoxContainer/SoloGameButton" unique_id=1815475295]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "1 Player"
-label_settings = SubResource("LabelSettings_8dkih")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="QuitButton" type="BaseButton" parent="Container/VBoxContainer" unique_id=235422859 node_paths=PackedStringArray("content_disabled", "content_focused", "content_hover", "content_normal", "content_pressed")]
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 2
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
-clip_contents = false
-custom_minimum_size = Vector2(0, 32)
-layout_direction = 0
+[node name="QuitButton" parent="VBoxContainer/Control/VBoxContainer" unique_id=597516015 instance=ExtResource("3_crr1j")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.0
-localize_numeral_system = true
-tooltip_text = ""
-tooltip_auto_translate_mode = 0
-focus_neighbor_left = NodePath("")
-focus_neighbor_top = NodePath("")
-focus_neighbor_right = NodePath("")
-focus_neighbor_bottom = NodePath("")
-focus_next = NodePath("")
-focus_previous = NodePath("")
-focus_mode = 2
-focus_behavior_recursive = 0
-mouse_filter = 0
-mouse_behavior_recursive = 0
-mouse_force_pass_scroll_events = true
-mouse_default_cursor_shape = 0
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
-theme = null
-theme_type_variation = &""
-disabled = false
-toggle_mode = false
-button_pressed = false
-action_mode = 1
-button_mask = 1
-keep_pressed_outside = false
-button_group = null
-shortcut = null
-shortcut_feedback = true
-shortcut_in_tooltip = true
-script = ExtResource("4_xai0t")
-content_disabled = NodePath("Disabled")
-content_focused = NodePath("FocusedNinePatchRect")
-content_hover = NodePath("Hovered")
-content_normal = NodePath("Label")
-content_pressed = NodePath("PressedNinePatchRect")
-metadata/_custom_type_script = "uid://cmiivmqoqtxby"
-
-[node name="FocusedNinePatchRect" type="NinePatchRect" parent="Container/VBoxContainer/QuitButton" unique_id=1221256945]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_rqoy3")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="Label" type="Label" parent="Container/VBoxContainer/QuitButton/FocusedNinePatchRect" unique_id=176828806]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
 text = "Quit"
-label_settings = SubResource("LabelSettings_2oug6")
-horizontal_alignment = 1
-vertical_alignment = 1
+background_normal = Color(0.16, 0.16, 0.16, 1)
+background_hovered = Color(0.4, 0.4, 0.4, 1)
+background_focused = Color(0.4, 0.4, 0.4, 1)
+background_pressed = Color(0.6, 0.6, 0.6, 1)
 
-[node name="PressedNinePatchRect" type="NinePatchRect" parent="Container/VBoxContainer/QuitButton" unique_id=1682160997]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_rqoy3")
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="PressedLabel" type="Label" parent="Container/VBoxContainer/QuitButton/PressedNinePatchRect" unique_id=1779764585]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -8.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quit"
-label_settings = SubResource("LabelSettings_lqhhu")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="Container/VBoxContainer/QuitButton" unique_id=99356825]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quit"
-label_settings = SubResource("LabelSettings_7xww2")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hovered" type="Label" parent="Container/VBoxContainer/QuitButton" unique_id=1821446155]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quit"
-label_settings = SubResource("LabelSettings_wfobw")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Disabled" type="Label" parent="Container/VBoxContainer/QuitButton" unique_id=648154440]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quit"
-label_settings = SubResource("LabelSettings_8dkih")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="pressed" from="Container/VBoxContainer/SoloGameButton" to="." method="start_mobile_game"]
-[connection signal="pressed" from="Container/VBoxContainer/QuitButton" to="." method="quit_game"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/SoloGameButton" to="." method="start_mobile_game"]
+[connection signal="pressed" from="VBoxContainer/Control/VBoxContainer/QuitButton" to="." method="quit_game"]

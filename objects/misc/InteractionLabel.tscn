@@ -9,13 +9,14 @@
 font = ExtResource("2_t5nrb")
 
 [sub_resource type="LabelSettings" id="LabelSettings_upif7"]
+line_spacing = -4.0
 font = ExtResource("3_rd102")
 font_size = 8
 font_color = Color(0.61, 0.61, 0.61, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upif7"]
 atlas = ExtResource("1_wo040")
-region = Rect2(96, 8, 5, 3)
+region = Rect2(97, 8, 5, 3)
 
 [node name="InteractionLabel" type="VBoxContainer" unique_id=1423243352]
 z_index = 100
@@ -46,17 +47,23 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1591706196]
+[node name="Subtitle margin" type="MarginContainer" parent="MarginContainer" unique_id=1818692648]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Subtitle margin" unique_id=1591706196]
 layout_mode = 2
 theme_override_constants/separation = -2
 alignment = 1
 
-[node name="Title margin" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1700987769]
+[node name="Title margin" type="MarginContainer" parent="MarginContainer/Subtitle margin/VBoxContainer" unique_id=1700987769]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Title margin" unique_id=301212175]
+[node name="Title" type="Label" parent="MarginContainer/Subtitle margin/VBoxContainer/Title margin" unique_id=301212175]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Title"
@@ -64,13 +71,7 @@ label_settings = SubResource("LabelSettings_rd102")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Subtitle margin" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1818692648]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 2
-
-[node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer/Subtitle margin" unique_id=616635276]
+[node name="Subtitle" type="Label" parent="MarginContainer/Subtitle margin/VBoxContainer" unique_id=616635276]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1

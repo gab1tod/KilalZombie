@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://objects/Player.tscn" id="2_dmxi2"]
 [ext_resource type="PackedScene" uid="uid://c36tdsd2hb6vk" path="res://objects/weapon/Pistol.tscn" id="3_fguxw"]
 [ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="4_fguxw"]
-[ext_resource type="PackedScene" uid="uid://b4fm6305ger1n" path="res://scenes/levels/TestLevel.tscn" id="5_6la2v"]
+[ext_resource type="PackedScene" uid="uid://galfkjv4fv0w" path="res://scenes/levels/TestLevel2.tscn" id="5_kidhh"]
 [ext_resource type="PackedScene" uid="uid://chmv1g4yrwlsc" path="res://objects/misc/PauseMenu.tscn" id="11_6la2v"]
 [ext_resource type="PackedScene" uid="uid://bs4hevm3eiqt4" path="res://objects/misc/CustomButton.tscn" id="11_kidhh"]
 [ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="19_pyk1q"]
@@ -53,29 +53,7 @@ region = Rect2(0, 48, 32, 16)
 [sub_resource type="LabelSettings" id="LabelSettings_kidhh"]
 font = ExtResource("19_pyk1q")
 font_size = 48
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 3)
-
-[sub_resource type="LabelSettings" id="LabelSettings_0l02e"]
-font = ExtResource("19_pyk1q")
-font_size = 48
-shadow_size = 0
-shadow_offset = Vector2(0, 2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6ckky"]
-font = ExtResource("19_pyk1q")
-font_size = 48
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 3)
-
-[sub_resource type="LabelSettings" id="LabelSettings_g5xpc"]
-font = ExtResource("19_pyk1q")
-font_size = 48
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 3)
+font_color = Color(0.9407874, 0.9407874, 0.9407874, 1)
 
 [node name="Main" type="Node2D" unique_id=1056158058 node_paths=PackedStringArray("world")]
 script = ExtResource("1_8btek")
@@ -125,12 +103,11 @@ texture_scale = 0.5
 light_mask = 3
 position = Vector2(1, -7)
 range_item_cull_mask = 2
-shadow_enabled = true
 shadow_item_cull_mask = 3
 texture = ExtResource("4_fguxw")
 texture_scale = 0.5
 
-[node name="TestLevel" parent="World" unique_id=1757215481 instance=ExtResource("5_6la2v")]
+[node name="TestLevel2" parent="World" unique_id=1072526264 instance=ExtResource("5_kidhh")]
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=630555242]
 wait_time = 5.0
@@ -318,71 +295,35 @@ action = "pause"
 [node name="CustomButton" parent="HUD/PauseButtonContainer" unique_id=1501149222 instance=ExtResource("11_kidhh")]
 layout_mode = 1
 anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -32.0
 offset_top = -64.0
 offset_right = -32.0
 offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
 scale = Vector2(1.5, 1.5)
-metadata/_edit_group_ = true
-
-[node name="FocusedNinePatchRect" parent="HUD/PauseButtonContainer/CustomButton" index="0" unique_id=946729248]
-texture = null
-
-[node name="Label" parent="HUD/PauseButtonContainer/CustomButton/FocusedNinePatchRect" index="0" unique_id=1679053529]
 text = "Pause"
 label_settings = SubResource("LabelSettings_kidhh")
-
-[node name="PressedNinePatchRect" parent="HUD/PauseButtonContainer/CustomButton" index="1" unique_id=1412042560]
-visible = false
-texture = null
-
-[node name="PressedLabel" parent="HUD/PauseButtonContainer/CustomButton/PressedNinePatchRect" index="0" unique_id=1807606126]
-text = "Pause"
-label_settings = SubResource("LabelSettings_0l02e")
-
-[node name="Label" parent="HUD/PauseButtonContainer/CustomButton" index="2" unique_id=1786280963]
-visible = false
-text = "Pause"
-label_settings = SubResource("LabelSettings_6ckky")
-
-[node name="Hovered" parent="HUD/PauseButtonContainer/CustomButton" index="3" unique_id=637537471]
-visible = false
-text = "Pause"
-label_settings = SubResource("LabelSettings_g5xpc")
-
-[node name="Disabled" parent="HUD/PauseButtonContainer/CustomButton" index="4" unique_id=1017926524]
-visible = false
-text = "Pause"
+background_normal = Color(0.4, 0.4, 0.4, 0)
+background_hovered = Color(0.4, 0.4, 0.4, 0.39215687)
+background_focused = Color(0.4, 0.4, 0.4, 0.39215687)
+background_pressed = Color(0.6, 0.6, 0.6, 0.78431374)
+metadata/_edit_group_ = true
 
 [node name="PauseMenu" parent="." unique_id=1039012784 instance=ExtResource("11_6la2v")]
 visible = false
 menu_parent = "uid://cba733jrew60e"
+auto_focus = false
 
-[node name="NinePatchRect" parent="PauseMenu" index="1" unique_id=720454147]
-offset_left = -328.0
-offset_top = -232.0
-offset_right = -218.5
-offset_bottom = -154.0
-scale = Vector2(6, 6)
-
-[node name="Title" parent="PauseMenu/NinePatchRect/InnerResize" parent_id_path=PackedInt32Array(1039012784, 291397110) index="0" unique_id=421738242]
-offset_top = -148.252
-offset_bottom = -78.25197
-
-[node name="HFlowContainer" parent="PauseMenu/NinePatchRect/InnerResize" parent_id_path=PackedInt32Array(1039012784, 291397110) index="1" unique_id=1344316816]
-offset_top = -95.19139
-offset_bottom = 66.908554
+[node name="CenterContainer" parent="PauseMenu" index="1" unique_id=1018789605]
+anchor_right = 0.33
+anchor_bottom = 0.33
+scale = Vector2(3, 3)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]
 [connection signal="pressed" from="HUD/PauseButtonContainer/CustomButton" to="PauseMenu" method="open_menu"]
 
-[editable path="HUD/PauseButtonContainer/CustomButton"]
 [editable path="PauseMenu"]
-[editable path="PauseMenu/NinePatchRect/InnerResize/HFlowContainer/ResumeButton"]
-[editable path="PauseMenu/NinePatchRect/InnerResize/HFlowContainer/RestartButton"]
-[editable path="PauseMenu/NinePatchRect/InnerResize/HFlowContainer/ExitButton"]

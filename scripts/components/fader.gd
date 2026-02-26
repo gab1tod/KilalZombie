@@ -1,11 +1,13 @@
-extends Node2D
+extends CanvasItem
 
 signal fading_out
+signal faded_out
 signal fading_in
+signal faded_in
 
 
 @export var fade_duration: float = 0.5
-@export var target: Node2D:
+@export var target: CanvasItem:
 	set(value):
 		if value:
 			target = value
@@ -27,6 +29,7 @@ func fade_out() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(target, 'modulate', Color.TRANSPARENT, fade_duration)
 	tween.tween_callback(target.hide)
+	tween.tween_callback(faded_out.emit)
 
 func fade_in() -> void:
 	fading_in.emit()
@@ -34,3 +37,4 @@ func fade_in() -> void:
 	target.show()
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(target, 'modulate', Color.WHITE, fade_duration)
+	tween.tween_callback(faded_in.emit)
