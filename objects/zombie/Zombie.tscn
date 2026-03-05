@@ -752,7 +752,7 @@ collision_mask = 0
 script = ExtResource("1_yqk2c")
 speed = 20.0
 separation_radius = 16.0
-attack_radius = 30
+attack_radius = 15
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1309570513]
 modulate = Color(1, 1, 1, 0.5019608)
@@ -769,7 +769,7 @@ visibility_layer = 2
 position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_uff4m")
 animation = &"idle_face"
-frame_progress = 0.78672594
+frame_progress = 0.56666887
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1151477161]
 light_mask = 2
@@ -779,7 +779,7 @@ shape = SubResource("CapsuleShape2D_t3ikf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1477986655]
 path_desired_distance = 10.0
-target_desired_distance = 20.0
+target_desired_distance = 18.0
 path_postprocessing = 1
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=254528939]

@@ -24,12 +24,16 @@ var dead: bool:
 			die()
 	get():
 		return state == ZombieState.DEAD
+
+@export var show_debug: bool = false
+
 @onready var animator: AnimatedSprite2D = %Animator
 @onready var navigator := $NavigationAgent2D
 @onready var cooldown_timer := $AttackCooldownTimer
 @onready var collider := $CollisionShape2D
 @onready var head_blood_emitter: CPUParticles2D = %HeadBloodEmitter
 var target: Node2D
+var direction: Vector2 = Vector2.ZERO
 
 enum ZombieState { IDLE, WALKING, DEAD, ATTACKING }
 static var state_animation: Array[String] = [ 'idle', 'walk', 'death', 'attack' ]
@@ -78,17 +82,19 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	var next_pos = navigator.get_next_path_position()
-	var to_target = (next_pos - global_position).normalized()
+	direction = (next_pos - global_position).normalized()
+	queue_redraw()
 	var sep = get_separation()
 	
-	velocity = to_target * speed + sep
+	velocity = direction * speed + sep
 	
 	move_and_slide()
 
 
 func _draw() -> void:
-	if Engine.is_editor_hint():
-		draw_circle(Vector2.ZERO, attack_radius, Color.RED, false)
+	if Engine.is_editor_hint() or show_debug:
+		draw_line(Vector2.ZERO, direction * 20, Color.BLUE)
+		draw_circle(direction * attack_radius, attack_radius, Color.RED, false)
 
 
 func get_target():
@@ -183,5 +189,5 @@ func _on_animator_frame_changed() -> void:
 	if dead and animator.get_frame() == 3:
 		head_blood_emitter.emitting = true
 	if state == ZombieState.ATTACKING and animator.get_frame() == 2:
-		if (target.global_position - global_position).length() < attack_radius:
+		if (target.global_position - (global_position + direction * attack_radius)).length() < attack_radius:
 			target.take_damage(attack_damage)

@@ -223,7 +223,9 @@ uppercase = true
 
 [node name="Left Joystick" parent="HUD" unique_id=1332584655 instance=ExtResource("22_dmxi2")]
 modulate = Color(1, 1, 1, 0.39215687)
-offset_top = -300.0
+offset_left = 75.0
+offset_top = -250.0
+offset_right = 325.0
 offset_bottom = 0.0
 joystick_mode = 1
 action_left = "p0_move_left"
@@ -233,13 +235,13 @@ action_down = "p0_move_down"
 
 [node name="InteractionButtonContainer" type="Control" parent="HUD/Left Joystick" unique_id=1840848671]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 
 [node name="Interaction Button" type="TouchScreenButton" parent="HUD/Left Joystick/InteractionButtonContainer" unique_id=1959549051]
-position = Vector2(-96, -64)
+position = Vector2(0, -96)
 scale = Vector2(3, 3)
 texture_normal = SubResource("AtlasTexture_dmxi2")
 texture_pressed = SubResource("AtlasTexture_fguxw")
@@ -250,9 +252,9 @@ modulate = Color(1, 1, 1, 0.39215687)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -300.0
-offset_top = -300.0
-offset_right = 0.0
+offset_left = -325.0
+offset_top = -250.0
+offset_right = -75.0
 offset_bottom = 0.0
 grow_horizontal = 0
 joystick_mode = 1
@@ -263,10 +265,13 @@ action_down = "p0_aim_down"
 
 [node name="ReloadButtonContainer" type="Control" parent="HUD/Right Joystick" unique_id=98873287]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 
 [node name="Reload Button" type="TouchScreenButton" parent="HUD/Right Joystick/ReloadButtonContainer" unique_id=819110308]
-position = Vector2(0, -64)
+position = Vector2(-96, -96)
 scale = Vector2(3, 3)
 texture_normal = SubResource("AtlasTexture_13t06")
 texture_pressed = SubResource("AtlasTexture_h881d")
@@ -300,9 +305,9 @@ anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -32.0
-offset_top = -64.0
+offset_top = -84.0
 offset_right = -32.0
-offset_bottom = -32.0
+offset_bottom = -44.0
 scale = Vector2(1.5, 1.5)
 text = "Pause"
 label_settings = SubResource("LabelSettings_kidhh")
@@ -321,6 +326,15 @@ auto_focus = false
 anchor_right = 0.33
 anchor_bottom = 0.33
 scale = Vector2(3, 3)
+
+[node name="ResumeButton" parent="PauseMenu/CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer" parent_id_path=PackedInt32Array(1039012784, 178222481) index="0" unique_id=1501149222]
+custom_minimum_size = Vector2(0, 20)
+
+[node name="RestartButton" parent="PauseMenu/CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer" parent_id_path=PackedInt32Array(1039012784, 178222481) index="1" unique_id=460963233]
+custom_minimum_size = Vector2(0, 20)
+
+[node name="ExitButton" parent="PauseMenu/CenterContainer/Control/MarginContainer/VBoxContainer/HFlowContainer" parent_id_path=PackedInt32Array(1039012784, 178222481) index="2" unique_id=1467172663]
+custom_minimum_size = Vector2(0, 20)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]
