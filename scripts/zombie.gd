@@ -1,3 +1,4 @@
+@tool
 extends CharacterBody2D
 
 signal on_death
@@ -10,6 +11,10 @@ signal on_revive
 @export var separation_radius: float = 24
 @export var separation_force: float = 100
 @export var attack_damage: int = 50
+@export var attack_radius: int = 10:
+	set(value):
+		attack_radius = value
+		queue_redraw()
 var hurt := false
 var dead: bool:
 	set(value):
@@ -26,8 +31,8 @@ var dead: bool:
 @onready var head_blood_emitter: CPUParticles2D = %HeadBloodEmitter
 var target: Node2D
 
-enum ZombieState { IDLE, WALKING, DEAD }
-static var state_animation: Array[String] = [ 'idle', 'walk', 'death' ]
+enum ZombieState { IDLE, WALKING, DEAD, ATTACKING }
+static var state_animation: Array[String] = [ 'idle', 'walk', 'death', 'attack' ]
 var state := ZombieState.IDLE
 
 
@@ -38,9 +43,13 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func  _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	if not dead:
 		get_target()
-		state = ZombieState.WALKING if target else ZombieState.IDLE
+		if state != ZombieState.ATTACKING:
+			state = ZombieState.WALKING if target else ZombieState.IDLE
 	
 	handle_animations()
 	
@@ -53,6 +62,9 @@ func  _process(delta: float) -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	if not (target and state == ZombieState.WALKING):
 		return
 	
@@ -72,6 +84,11 @@ func _physics_process(delta: float) -> void:
 	velocity = to_target * speed + sep
 	
 	move_and_slide()
+
+
+func _draw() -> void:
+	if Engine.is_editor_hint():
+		draw_circle(Vector2.ZERO, attack_radius, Color.RED, false)
 
 
 func get_target():
@@ -111,9 +128,17 @@ func get_separation() -> Vector2:
 
 
 func attack() -> void:
-	if cooldown_timer.is_stopped():
-		target.take_damage(attack_damage)
-		cooldown_timer.start()
+	if not cooldown_timer.is_stopped():
+		return
+	
+	animator.frame = 0
+	state = ZombieState.ATTACKING
+	handle_animations()
+	cooldown_timer.start()
+	await animator.animation_finished
+	state = ZombieState.IDLE
+	handle_animations()
+	animator.play()
 
 
 func take_damage(damage: int) -> void:
@@ -134,6 +159,7 @@ func revive(new_health: int = 100) -> void:
 	state = ZombieState.IDLE
 	on_revive.emit()
 	handle_animations()
+	animator.play()
 
 func die(by_player: bool = false) -> void:
 	if dead:
@@ -156,3 +182,6 @@ func die(by_player: bool = false) -> void:
 func _on_animator_frame_changed() -> void:
 	if dead and animator.get_frame() == 3:
 		head_blood_emitter.emitting = true
+	if state == ZombieState.ATTACKING and animator.get_frame() == 2:
+		if (target.global_position - global_position).length() < attack_radius:
+			target.take_damage(attack_damage)

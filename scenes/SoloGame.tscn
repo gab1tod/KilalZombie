@@ -64,7 +64,7 @@ y_sort_enabled = true
 
 [node name="Player1" parent="World" unique_id=1022930182 instance=ExtResource("3_n5oy5")]
 position = Vector2(-1, 0)
-score = 10000
+score = 100000
 
 [node name="Camera2D" type="Camera2D" parent="World/Player1" unique_id=377866040]
 zoom = Vector2(2, 2)

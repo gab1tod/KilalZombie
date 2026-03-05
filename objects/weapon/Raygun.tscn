@@ -21,55 +21,55 @@ region = Rect2(144, 0, 48, 24)
 atlas = ExtResource("2_5ymky")
 region = Rect2(0, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tephd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubxl8"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(192, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g751c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_52jfw"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(240, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_righs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vneub"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(288, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m2e3f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwqhk"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(336, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4ioa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrpkt"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(384, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_35wwp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy6f8"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(432, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7v2bp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7854e"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(480, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_me2un"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q7ja"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(528, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3gjbr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6jtf"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(576, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gg4u6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3obi"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(624, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eqd53"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8moyj"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(672, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3cy0l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm2xd"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(720, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7nn36"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr27g"]
 atlas = ExtResource("2_5ymky")
 region = Rect2(768, 0, 48, 24)
 
@@ -94,43 +94,43 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tephd")
+"texture": SubResource("AtlasTexture_ubxl8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g751c")
+"texture": SubResource("AtlasTexture_52jfw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_righs")
+"texture": SubResource("AtlasTexture_vneub")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m2e3f")
+"texture": SubResource("AtlasTexture_xwqhk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k4ioa")
+"texture": SubResource("AtlasTexture_nrpkt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_35wwp")
+"texture": SubResource("AtlasTexture_wy6f8")
 }, {
 "duration": 3.0,
-"texture": SubResource("AtlasTexture_7v2bp")
+"texture": SubResource("AtlasTexture_7854e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_me2un")
+"texture": SubResource("AtlasTexture_7q7ja")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3gjbr")
+"texture": SubResource("AtlasTexture_d6jtf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gg4u6")
+"texture": SubResource("AtlasTexture_b3obi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eqd53")
+"texture": SubResource("AtlasTexture_8moyj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3cy0l")
+"texture": SubResource("AtlasTexture_qm2xd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7nn36")
+"texture": SubResource("AtlasTexture_yr27g")
 }],
 "loop": false,
 "name": &"reload",

@@ -93,8 +93,10 @@ func shoot() -> void:
 	b.damage = bullet_damage
 	b.color = bullet_color
 	b.direction = Vector2.RIGHT.rotated(aim_angle + randf_range(-precision, precision))
-	b.global_position = barrel.global_position
-	b.last_position = barrel.global_position
+	b.global_position = global_position
+	b.last_position = global_position
+	if b.move(barrel.global_position):
+		b.last_position = barrel.global_position
 	
 	on_shoot.emit()
 	amo -= 1
@@ -106,7 +108,8 @@ func shoot() -> void:
 		animator.frame = 0
 		reload(magazine_capacity)
 	elif burst_count < burst:
-		if burst_delay > 0: get_tree().create_timer(burst_delay).timeout
+		if burst_delay > 0:
+			await get_tree().create_timer(burst_delay).timeout
 		ready_to_shoot = true
 		shoot()
 	else:

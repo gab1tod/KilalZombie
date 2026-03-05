@@ -5,50 +5,50 @@
 [ext_resource type="PackedScene" uid="uid://2lphpl47art8" path="res://objects/misc/InteractionLabel.tscn" id="3_ldl2o"]
 [ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="4_t67ih"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkbx8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eled7"]
 atlas = ExtResource("2_7s6un")
-region = Rect2(0, 74, 32, 37)
+region = Rect2(0, 76, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7s6un"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewq0v"]
 atlas = ExtResource("2_7s6un")
-region = Rect2(32, 74, 32, 37)
+region = Rect2(32, 76, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l8rqj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jy7x"]
 atlas = ExtResource("2_7s6un")
-region = Rect2(64, 74, 32, 37)
+region = Rect2(64, 76, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t67ih"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo3ak"]
 atlas = ExtResource("2_7s6un")
-region = Rect2(96, 74, 32, 37)
+region = Rect2(96, 76, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_23bed"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7kti"]
 atlas = ExtResource("2_7s6un")
-region = Rect2(128, 74, 32, 37)
+region = Rect2(128, 76, 32, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4b4b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4qk5"]
 atlas = ExtResource("2_7s6un")
-region = Rect2(160, 74, 32, 37)
+region = Rect2(160, 76, 32, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v84rw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dkbx8")
+"texture": SubResource("AtlasTexture_eled7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7s6un")
+"texture": SubResource("AtlasTexture_ewq0v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l8rqj")
+"texture": SubResource("AtlasTexture_1jy7x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t67ih")
+"texture": SubResource("AtlasTexture_uo3ak")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_23bed")
+"texture": SubResource("AtlasTexture_s7kti")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k4b4b")
+"texture": SubResource("AtlasTexture_m4qk5")
 }],
 "loop": false,
 "name": &"default",
@@ -76,7 +76,7 @@ interaction_time = 0.4
 light_mask = 2
 visibility_layer = 2
 texture_filter = 1
-position = Vector2(0, -4)
+position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_v84rw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=53699318]
@@ -105,14 +105,14 @@ offset_top = -43.0
 offset_right = 8.0
 offset_bottom = -16.0
 grow_vertical = 0
-title = "Item name"
+title = ""
 subtitle = "0$"
 metadata/_edit_group_ = true
 
-[node name="Title" parent="Label/MarginContainer/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
-text = "Item name"
+[node name="Title" parent="Label/MarginContainer/Subtitle margin/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
+text = ""
 
-[node name="Subtitle" parent="Label/MarginContainer/VBoxContainer/Subtitle margin" parent_id_path=PackedInt32Array(1209993131, 1818692648) index="0" unique_id=616635276]
+[node name="Subtitle" parent="Label/MarginContainer/Subtitle margin/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
 text = "0$"
 label_settings = SubResource("LabelSettings_eled7")
 

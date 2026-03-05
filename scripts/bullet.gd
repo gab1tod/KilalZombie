@@ -24,13 +24,18 @@ func _physics_process(delta: float) -> void:
 	var displacement = direction * speed * delta
 	var next_position = last_position + displacement
 	
-	var hit = raycast(last_position, next_position)
+	move(next_position)
+	
+	line.points[0] = -displacement
+
+func move(target_pos: Vector2) -> bool:
+	var hit = raycast(global_position, target_pos)
 	if hit :
 		on_hit(hit)
 	else:
-		global_position = next_position
+		global_position = target_pos
 	
-	line.points[0] = -displacement
+	return not hit
 
 func on_hit(hit: Dictionary):
 	var collider = hit.collider

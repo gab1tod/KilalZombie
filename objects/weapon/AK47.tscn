@@ -21,57 +21,69 @@ region = Rect2(144, 0, 48, 24)
 atlas = ExtResource("2_bboe4")
 region = Rect2(0, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uqhaw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh411"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(192, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rbjwm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_222k4"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(240, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kt0jk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aexn"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(288, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3i01"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgrxg"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(336, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4hdn1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3733t"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(384, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ledax"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaemc"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(432, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hthfv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xmtk"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(480, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mti0h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y320r"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(528, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mva1y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ys16"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(576, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l23t2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0x6b"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(624, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrwjh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5hwi"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(672, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o18id"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcr6w"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(720, 0, 48, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_60bn8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdrws"]
 atlas = ExtResource("2_bboe4")
 region = Rect2(768, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqm4w"]
+atlas = ExtResource("2_bboe4")
+region = Rect2(816, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtds1"]
+atlas = ExtResource("2_bboe4")
+region = Rect2(864, 0, 48, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niu64"]
+atlas = ExtResource("2_bboe4")
+region = Rect2(912, 0, 48, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ki372"]
 animations = [{
@@ -94,50 +106,59 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uqhaw")
+"texture": SubResource("AtlasTexture_wh411")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rbjwm")
+"texture": SubResource("AtlasTexture_222k4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kt0jk")
+"texture": SubResource("AtlasTexture_3aexn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s3i01")
+"texture": SubResource("AtlasTexture_tgrxg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4hdn1")
+"texture": SubResource("AtlasTexture_3733t")
 }, {
 "duration": 3.0,
-"texture": SubResource("AtlasTexture_ledax")
+"texture": SubResource("AtlasTexture_aaemc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hthfv")
+"texture": SubResource("AtlasTexture_3xmtk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mti0h")
+"texture": SubResource("AtlasTexture_y320r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mva1y")
+"texture": SubResource("AtlasTexture_1ys16")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l23t2")
+"texture": SubResource("AtlasTexture_q0x6b")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_q5hwi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hrwjh")
-}, {
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_o18id")
+"texture": SubResource("AtlasTexture_mcr6w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_60bn8")
+"texture": SubResource("AtlasTexture_pdrws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqm4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtds1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niu64")
 }],
 "loop": false,
 "name": &"reload",
 "speed": 12.0
 }]
 
-[node name="Weapon" type="Node2D" groups=["Weapons"]]
+[node name="Weapon" type="Node2D" unique_id=237885515 groups=["Weapons"]]
 script = ExtResource("1_borso")
 precision = 0.03
 fire_rate = 10.0
@@ -145,21 +166,22 @@ magazine_capacity = 30
 amo = 30
 bullet_damage = 150
 
-[node name="CycleTimer" type="Timer" parent="."]
+[node name="CycleTimer" type="Timer" parent="." unique_id=1707111770]
 wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=272588178]
 sprite_frames = SubResource("SpriteFrames_ki372")
 animation = &"fire"
 frame = 3
+frame_progress = 1.0
 offset = Vector2(12, -3)
 
-[node name="Barrel" type="Marker2D" parent="AnimatedSprite2D"]
+[node name="Barrel" type="Marker2D" parent="AnimatedSprite2D" unique_id=1362409184]
 position = Vector2(18, -2.5)
 
-[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" unique_id=1395555400]
 position = Vector2(28, -2.5)
 enabled = false
 color = Color(2.0331757, 1.7362787, 0.54869056, 1)
@@ -167,7 +189,7 @@ shadow_enabled = true
 texture = ExtResource("3_24ubs")
 texture_scale = 0.3
 
-[node name="Crosshair" type="Sprite2D" parent="."]
+[node name="Crosshair" type="Sprite2D" parent="." unique_id=1602934742]
 z_index = 10
 position = Vector2(100, 0)
 texture = ExtResource("3_kwkb1")

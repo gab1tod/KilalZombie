@@ -159,13 +159,13 @@ y_sort_enabled = true
 [node name="Revolver Chest" parent="Chests" unique_id=1500976081 instance=ExtResource("7_kscf2")]
 position = Vector2(72, -56)
 item_resource = ExtResource("8_kscf2")
-item_name = "Python"
+item_name = "Revolver"
 item_cost = 500
 
 [node name="Pistol Chest" parent="Chests" unique_id=1413491950 instance=ExtResource("8_sa8n6")]
 position = Vector2(176, 56)
 item_resource = ExtResource("9_q0xoe")
-item_name = "M1911"
+item_name = "Pistol"
 item_cost = 500
 
 [node name="Rifle Chest" parent="Chests" unique_id=69411030 instance=ExtResource("14_bs50n")]

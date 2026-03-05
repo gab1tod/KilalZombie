@@ -241,10 +241,12 @@ func revive(helper: Player) -> void:
 
 
 func set_weapon(wp: Weapon) -> void:
-	remove_weapon()
+	var prev_weapon = remove_weapon()
 	weapon = wp
 	weapon.shooter = self
 	weapon.on_shoot.connect(_on_weapon_shoots)
+	if prev_weapon:
+		weapon.aim_angle = prev_weapon.aim_angle
 	
 	var weapon_parent = weapon.get_parent()
 	if weapon_parent:
@@ -257,14 +259,16 @@ func set_weapon(wp: Weapon) -> void:
 	await get_tree().process_frame
 	weapon.crosshair.visibility_layer = (1 << (device_id + 1))
 
-func remove_weapon() -> void:
+func remove_weapon() -> Weapon:
 	if not is_instance_valid(weapon):
-		return
+		return null
 	
+	var res = weapon
 	weapon.shooter = null
 	weapon.on_shoot.disconnect(_on_weapon_shoots)
 	weapon.queue_free()
 	weapon = null
+	return res
 
 func _on_weapon_shoots() -> void:
 	if aim_mode == AimMode.GAMEPAD:
