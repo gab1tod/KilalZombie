@@ -37,13 +37,6 @@ shadow_offset = Vector2(0, 4)
 [node name="Main" type="Node2D" unique_id=782352261 node_paths=PackedStringArray("world")]
 script = ExtResource("1_jmbmn")
 world = NodePath("World")
-announcer_fade_duration = 0.7
-announcer_remain_duration = 2.0
-nb_zombies_linear = 3.0
-hp_zombies_base = 77
-hp_zombies_linear = 22.0
-hp_zombies_exponential = 1.9
-spawn_time_linear = -0.5
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1894700173]
 layer = -100
@@ -90,6 +83,9 @@ shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_jmbmn")
 texture_scale = 1.53
 height = 32.0
+
+[node name="AudioListener2D" type="AudioListener2D" parent="World/Player1" unique_id=1544188185]
+current = true
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=704024890]
 wait_time = 5.0

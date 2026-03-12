@@ -6,12 +6,12 @@ extends Node2D
 @export var hide_cursor: bool = true
 
 @export_group("Zombie waves")
-@export var announcer_fade_duration: float = 1
-@export var announcer_remain_duration: float = 1.5
+@export var announcer_fade_duration: float = 0.7
+@export var announcer_remain_duration: float = 2
 
 @export_subgroup("Number", "nb_zombies")
 @export var nb_zombies_base: int = 7
-@export var nb_zombies_linear: float = 2
+@export var nb_zombies_linear: float = 3
 @export var nb_zombies_exponential: float = 1.2
 var nb_zombies_to_spawn: int = 0
 var nb_zombies_to_kill: int = 0
@@ -23,11 +23,11 @@ var nb_zombies_to_kill: int = 0
 var wave_zombies_health: int = 0
 
 @export_subgroup("Speed", "speed_zombies")
-@export var speed_zombies_base: int = 15
+@export var speed_zombies_base: int = 20
 @export var speed_zombies_linear: float = 2
+@export var speed_zombies_min: float = 15
 @export var speed_zombies_max: float = 85
-@export var speed_zombies_random: float = 5
-var wave_zombies_speed: float = 0
+var wave_zombies_max_speed: float = 0
 
 @export_subgroup("Spawn interval", "spawn_time")
 @export var spawn_time_base: float = 5
@@ -86,8 +86,8 @@ func _on_spawn_timer_timeout() -> void:
 	var zombie = Zombie.instantiate()
 	zombie.health = wave_zombies_health
 	
-	var speed_random = sqrt(randf()) * speed_zombies_random
-	zombie.speed = min(wave_zombies_speed + speed_random, speed_zombies_max)
+	var zombie_speed = speed_zombies_min + sqrt(randf()) * (wave_zombies_max_speed - speed_zombies_min)
+	zombie.speed = min(zombie_speed, speed_zombies_max)
 	
 	zombie.on_death.connect(_on_zombie_death)
 	nb_zombies_to_spawn -= 1
@@ -117,7 +117,7 @@ func _on_rest_timer_timeout() -> void:
 	nb_zombies_to_spawn = get_nb_zombies()
 	nb_zombies_to_kill = nb_zombies_to_spawn
 	wave_zombies_health = get_hp_zombies()
-	wave_zombies_speed = get_speed_zombies()
+	wave_zombies_max_speed = get_speed_zombies()
 	wave_spawn_time = get_spawn_time()
 	$SpawnTimer.start(wave_spawn_time)
 	announce('Wave %d' % wave)

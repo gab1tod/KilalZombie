@@ -22,6 +22,7 @@ var is_trigger_pulled: bool = false
 var must_reload: bool = false
 var is_reloading: bool = false
 
+@export var audio_pitch_spread: float = 0.1
 var gun_distance: float = 7
 var distance_y_ratio: float = 0.5
 
@@ -45,6 +46,8 @@ var flip_v: bool = false
 @onready var animator := $AnimatedSprite2D
 @onready var barrel := $AnimatedSprite2D/Barrel
 @onready var light := $AnimatedSprite2D/PointLight2D
+@onready var fire_audio: AudioStreamPlayer2D = %FireAudioPlayer
+@onready var reload_audio: AudioStreamPlayer2D = %ReloadAudioPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -84,6 +87,9 @@ func shoot() -> void:
 	cycle.start(1/fire_rate)
 	animator.frame = 0
 	animator.play("fire")
+	if fire_audio:
+		fire_audio.play()
+		fire_audio.pitch_scale = 1 + randf_range(-audio_pitch_spread, audio_pitch_spread)
 	flash_light()
 	
 	var b = bullet.instantiate()
@@ -128,6 +134,7 @@ func reload(bullets: int) -> void:
 	
 	animator.frame = 0
 	animator.play("reload")
+	if reload_audio: reload_audio.play()
 	on_reload.emit()
 	await animator.animation_finished
 	if shooter.aim_mode == shooter.AimMode.GAMEPAD:
