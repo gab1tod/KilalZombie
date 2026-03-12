@@ -4,7 +4,8 @@ extends CharacterBody2D
 signal on_death
 signal on_revive
 
-@export var speed: float = 100
+var base_speed: float = 20
+@export var speed: float = 20
 @export var health: int = 100
 @export var hit_highlight_color := Color(18.892, 18.892, 18.892)
 
@@ -115,6 +116,10 @@ func handle_animations() -> void:
 	animator.flip_h = dir.x < 0
 	
 	animator.animation = anim_name
+	if state == ZombieState.WALKING:
+		animator.speed_scale = speed / base_speed
+	else:
+		animator.speed_scale = 1
 
 
 func get_separation() -> Vector2:
@@ -134,7 +139,7 @@ func get_separation() -> Vector2:
 
 
 func attack() -> void:
-	if not cooldown_timer.is_stopped():
+	if not cooldown_timer.is_stopped() or dead:
 		return
 	
 	animator.frame = 0

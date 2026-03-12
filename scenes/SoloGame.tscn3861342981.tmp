@@ -1,0 +1,218 @@
+[gd_scene format=3 uid="uid://cqv0x153qlj8c"]
+
+[ext_resource type="Script" uid="uid://dbtls5dkc4yjt" path="res://scripts/game.gd" id="1_jmbmn"]
+[ext_resource type="PackedScene" uid="uid://galfkjv4fv0w" path="res://scenes/levels/TestLevel2.tscn" id="2_pyqeu"]
+[ext_resource type="PackedScene" uid="uid://budp1wl2w7ma1" path="res://objects/Player.tscn" id="3_n5oy5"]
+[ext_resource type="PackedScene" uid="uid://c36tdsd2hb6vk" path="res://objects/weapon/Pistol.tscn" id="4_3u4an"]
+[ext_resource type="FontFile" uid="uid://b5cfngrx3aqye" path="res://assets/fonts/Custom/BasicPixel.ttf" id="6_rc3d6"]
+[ext_resource type="Script" uid="uid://bldepu4wqtu8p" path="res://scripts/components/attribute_label.gd" id="7_vuka0"]
+[ext_resource type="FontFile" uid="uid://ckrrv3c1332yu" path="res://assets/fonts/Jersey_10/Jersey10-Regular.ttf" id="8_0nod3"]
+[ext_resource type="PackedScene" uid="uid://chmv1g4yrwlsc" path="res://objects/misc/PauseMenu.tscn" id="8_pyqeu"]
+
+[sub_resource type="Gradient" id="Gradient_2wi03"]
+offsets = PackedFloat32Array(0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jmbmn"]
+gradient = SubResource("Gradient_2wi03")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rarhs"]
+font = ExtResource("6_rc3d6")
+font_size = 48
+shadow_size = 8
+shadow_color = Color(0.09, 0.036, 0.054899994, 1)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wp0k4"]
+font = ExtResource("8_0nod3")
+font_size = 64
+shadow_size = 0
+shadow_offset = Vector2(0, 4)
+
+[node name="Main" type="Node2D" unique_id=782352261 node_paths=PackedStringArray("world")]
+script = ExtResource("1_jmbmn")
+world = NodePath("World")
+announcer_fade_duration = 0.7
+announcer_remain_duration = 2.0
+nb_zombies_linear = 3.0
+hp_zombies_base = 77
+hp_zombies_linear = 22.0
+hp_zombies_exponential = 1.9
+spawn_time_linear = -0.5
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1894700173]
+layer = -100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=283205465]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="World" type="Node2D" parent="." unique_id=35696255]
+y_sort_enabled = true
+
+[node name="TestLevel2" parent="World" unique_id=1072526264 instance=ExtResource("2_pyqeu")]
+
+[node name="Player1" parent="World" unique_id=1022930182 instance=ExtResource("3_n5oy5")]
+position = Vector2(-1, 0)
+score = 100000
+
+[node name="Camera2D" type="Camera2D" parent="World/Player1" unique_id=377866040]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Weapon" parent="World/Player1" unique_id=142044290 instance=ExtResource("4_3u4an")]
+
+[node name="SpriteLight" type="PointLight2D" parent="World/Player1" unique_id=318101690]
+light_mask = 3
+position = Vector2(1, -7)
+color = Color(0.9, 0.9, 0.9, 1)
+shadow_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_jmbmn")
+texture_scale = 1.53
+height = 32.0
+
+[node name="ShadowLight" type="PointLight2D" parent="World/Player1" unique_id=846276881]
+light_mask = 3
+position = Vector2(1, -7)
+color = Color(0.9, 0.9, 0.9, 1)
+range_item_cull_mask = 2
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_jmbmn")
+texture_scale = 1.53
+height = 32.0
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=704024890]
+wait_time = 5.0
+
+[node name="RestTimer" type="Timer" parent="." unique_id=1544715842]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=381546104]
+
+[node name="BottomLeft" type="VBoxContainer" parent="HUD" unique_id=1439144189]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -84.0
+offset_right = 144.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_constants/separation = -8
+
+[node name="Zombies Health" type="Label" parent="HUD/BottomLeft" unique_id=691003902 node_paths=PackedStringArray("target")]
+visible = false
+layout_mode = 2
+text = "Zombies health: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("7_vuka0")
+target = NodePath("../../..")
+attribute_path = &"wave_zombies_health"
+
+[node name="Zombies Number" type="Label" parent="HUD/BottomLeft" unique_id=1457138044 node_paths=PackedStringArray("target")]
+visible = false
+layout_mode = 2
+text = "Zombies: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("7_vuka0")
+target = NodePath("../../..")
+attribute_path = &"nb_zombies_to_kill"
+
+[node name="Wave" type="Label" parent="HUD/BottomLeft" unique_id=1861739628 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Wave: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("7_vuka0")
+target = NodePath("../../..")
+attribute_path = &"wave"
+
+[node name="Score" type="Label" parent="HUD/BottomLeft" unique_id=1996519176 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Score: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("7_vuka0")
+target = NodePath("../../../World/Player1")
+attribute_path = &"score"
+
+[node name="BottomRight" type="VBoxContainer" parent="HUD" unique_id=1937133587]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -50.0
+offset_right = -15.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_constants/separation = -8
+alignment = 2
+
+[node name="Health" type="Label" parent="HUD/BottomRight" unique_id=183129383 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Health: %d%%"
+label_settings = SubResource("LabelSettings_rarhs")
+horizontal_alignment = 2
+script = ExtResource("7_vuka0")
+target = NodePath("../../../World/Player1")
+attribute_path = &"health"
+
+[node name="Amo" type="HBoxContainer" parent="HUD/BottomRight" unique_id=48966258]
+layout_mode = 2
+alignment = 2
+
+[node name="Gun amo" type="Label" parent="HUD/BottomRight/Amo" unique_id=1070609205 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "Gun amo: %d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("7_vuka0")
+target = NodePath("../../../../World/Player1")
+attribute_path = &"weapon.amo"
+
+[node name="Gun capacity" type="Label" parent="HUD/BottomRight/Amo" unique_id=1087529100 node_paths=PackedStringArray("target")]
+layout_mode = 2
+text = "/%d"
+label_settings = SubResource("LabelSettings_rarhs")
+script = ExtResource("7_vuka0")
+target = NodePath("../../../../World/Player1")
+attribute_path = &"weapon.magazine_capacity"
+
+[node name="Announcer" type="Label" parent="HUD" unique_id=996562050]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -125.0
+offset_right = 87.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wave 1"
+label_settings = SubResource("LabelSettings_wp0k4")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PauseMenu" parent="." unique_id=1039012784 instance=ExtResource("8_pyqeu")]
+visible = false
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="RestTimer" to="." method="_on_rest_timer_timeout"]

@@ -747,10 +747,9 @@ colors = PackedColorArray(0.23137255, 0.09019608, 0.14509805, 1, 0.4509804, 0.09
 [node name="Zombie" type="CharacterBody2D" unique_id=1382047410 groups=["Zombies"]]
 light_mask = 2
 visibility_layer = 2
-collision_layer = 2
+collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_yqk2c")
-speed = 20.0
 separation_radius = 16.0
 attack_radius = 15
 
@@ -769,7 +768,7 @@ visibility_layer = 2
 position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_uff4m")
 animation = &"idle_face"
-frame_progress = 0.56666887
+frame_progress = 0.8886849
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1151477161]
 light_mask = 2

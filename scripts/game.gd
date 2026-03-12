@@ -10,20 +10,27 @@ extends Node2D
 @export var announcer_remain_duration: float = 1.5
 
 @export_subgroup("Number", "nb_zombies")
-@export var nb_zombies_base: int = 5
+@export var nb_zombies_base: int = 7
 @export var nb_zombies_linear: float = 2
 @export var nb_zombies_exponential: float = 1.2
 var nb_zombies_to_spawn: int = 0
 var nb_zombies_to_kill: int = 0
 
 @export_subgroup("Health", "hp_zombies")
-@export var hp_zombies_base: int = 89
+@export var hp_zombies_base: int = 100
 @export var hp_zombies_linear: float = 10
 @export var hp_zombies_exponential: float = 1.8
 var wave_zombies_health: int = 0
 
+@export_subgroup("Speed", "speed_zombies")
+@export var speed_zombies_base: int = 15
+@export var speed_zombies_linear: float = 2
+@export var speed_zombies_max: float = 85
+@export var speed_zombies_random: float = 5
+var wave_zombies_speed: float = 0
+
 @export_subgroup("Spawn interval", "spawn_time")
-@export var spawn_time_base: float = 5.2
+@export var spawn_time_base: float = 5
 @export var spawn_time_linear: float = -0.2
 var wave_spawn_time: float = 0
 
@@ -64,7 +71,11 @@ func _on_spawn_timer_timeout() -> void:
 		$SpawnTimer.stop()
 		return
 	
-	var spawn_points = get_tree().get_nodes_in_group("SpawnPoints")
+	var spawn_rooms = get_tree().get_nodes_in_group("Rooms").filter(is_spawnable_room)
+	var spawn_points = []
+	for r in spawn_rooms:
+		spawn_points.append_array(r.spawners)
+	
 	var spawner = spawn_points.pick_random()
 	if not spawner:
 		printerr("Missing spawn point")
@@ -74,9 +85,21 @@ func _on_spawn_timer_timeout() -> void:
 	
 	var zombie = Zombie.instantiate()
 	zombie.health = wave_zombies_health
+	
+	var speed_random = sqrt(randf()) * speed_zombies_random
+	zombie.speed = min(wave_zombies_speed + speed_random, speed_zombies_max)
+	
 	zombie.on_death.connect(_on_zombie_death)
 	nb_zombies_to_spawn -= 1
 	spawner.spawn(world, zombie)
+
+func is_spawnable_room(r: SpawnerRoom) -> bool:
+	if r.has_players():
+		return true
+	for n in r.neighbors:
+		if n.has_players():
+			return true
+	return false
 
 func _on_zombie_death() -> void:
 	nb_zombies_to_kill -= 1
@@ -94,18 +117,26 @@ func _on_rest_timer_timeout() -> void:
 	nb_zombies_to_spawn = get_nb_zombies()
 	nb_zombies_to_kill = nb_zombies_to_spawn
 	wave_zombies_health = get_hp_zombies()
+	wave_zombies_speed = get_speed_zombies()
 	wave_spawn_time = get_spawn_time()
 	$SpawnTimer.start(wave_spawn_time)
 	announce('Wave %d' % wave)
 
 func get_nb_zombies() -> int:
-	return floor(nb_zombies_base + wave * nb_zombies_linear + pow(wave, nb_zombies_exponential))
+	var i = wave - 1
+	return floor(nb_zombies_base + i * nb_zombies_linear + pow(i, nb_zombies_exponential))
 
 func get_hp_zombies() -> int:
-	return floor(hp_zombies_base + wave * hp_zombies_linear + pow(wave, hp_zombies_exponential))
+	var i = wave - 1
+	return floor(hp_zombies_base + i * hp_zombies_linear + pow(i, hp_zombies_exponential))
+
+func get_speed_zombies() -> float:
+	var i = wave - 1
+	return speed_zombies_base + i * speed_zombies_linear
 	
 func get_spawn_time() -> int:
-	return max(spawn_time_base + wave * spawn_time_linear, 0)
+	var i = wave - 1
+	return max(spawn_time_base + i * spawn_time_linear, 0)
 
 func announce(text) -> void:
 	announcer_label.text = text

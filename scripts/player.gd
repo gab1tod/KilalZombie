@@ -37,6 +37,7 @@ var dead: bool = false
 var is_being_revived: bool = false
 var is_reviving: bool = false
 var was_revived: bool = false
+var direction: Vector2 = Vector2.ZERO
 
 @onready var animator := $AnimatedSprite2D
 @onready var weapon_socket := $WeaponSocket
@@ -76,7 +77,13 @@ func _process(delta: float) -> void:
 	handle_interaction()
 
 func handle_animations() -> void:
-	var anim_name = "walk" if velocity.length() > 0 else "idle"
+	var anim_name = "idle"
+	if velocity.length() > 0:
+		anim_name = "walk"
+		animator.speed_scale = 0.5 + direction.length() / 2
+	else:
+		animator.speed_scale = 1
+		
 	var aim_dir = Vector2.from_angle(weapon.aim_angle)
 	var looking_back = aim_dir.y < -0.33
 	
@@ -96,7 +103,7 @@ func handle_animations() -> void:
 	hurt = false
 
 func handle_movement() -> void:
-	var direction := Vector2.ZERO
+	direction = Vector2.ZERO
 	direction.x = Input.get_axis("p%d_move_left" % device_id, "p%d_move_right" % device_id)
 	direction.y = Input.get_axis("p%d_move_up" % device_id, "p%d_move_down" % device_id)
 	
@@ -116,15 +123,15 @@ func handle_aim(delta: float = 0) -> void:
 		if aim_target.length() > aim_deadzone:
 			# aim assist
 			if aim_assist:
-				var zombies = get_tree().get_nodes_in_group("Zombies")
+				var zombies = get_tree().get_nodes_in_group("Zombies").filter(is_zombie_aimable)
 				zombies.sort_custom(func(a, b):
-					var delta_a = (a.global_position - weapon_socket.global_position).length()
-					var delta_b = (b.global_position - weapon_socket.global_position).length()
+					var delta_a = (a.global_position - global_position).length()
+					var delta_b = (b.global_position - global_position).length()
 					
 					return delta_a < delta_b
 				)
 				for zombie in zombies:
-					var delta_z = zombie.global_position - weapon_socket.global_position
+					var delta_z = zombie.global_position - global_position
 					var delta_angle = abs(delta_z.angle() - aim_target.angle())
 					if delta_angle <= aim_assist_angle:
 						aim_target = delta_z
@@ -179,6 +186,13 @@ func _input(event: InputEvent) -> void:
 
 func is_aimmode_enabled(mode: AimMode) -> bool:
 	return aim_mode_flags & (1 << mode)
+
+func is_zombie_aimable(z: Node2D) -> bool:
+	if z.dead:
+		return false
+	
+	var hit = raycast(global_position, z.global_position)
+	return hit and hit.collider.is_in_group("Zombies")
 
 
 func earn_points(points: int) -> void:
@@ -300,3 +314,12 @@ func _on_reviving_start(player: Player) -> void:
 func _on_reviving_stop(player: Player) -> void:
 	is_reviving = false
 	animator.play()
+
+func raycast(from: Vector2, to: Vector2) -> Dictionary:
+	var space_state = get_world_2d().direct_space_state
+
+	var query = PhysicsRayQueryParameters2D.create(from, to)
+	query.collision_mask = 1
+	query.exclude = [self]
+
+	return space_state.intersect_ray(query)

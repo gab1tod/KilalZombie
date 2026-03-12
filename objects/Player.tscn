@@ -445,6 +445,7 @@ visibility_layer = 341
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_g2els")
+hit_highlight_color = Color(2.454, 0, 0, 1)
 speed = 100.0
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=60437532]
@@ -495,9 +496,8 @@ shape = SubResource("RectangleShape2D_3li8b")
 unique_name_in_owner = true
 visible = false
 anchors_preset = 7
-anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -22.0
 offset_top = -32.0
 offset_right = 22.0
@@ -505,10 +505,10 @@ offset_bottom = -15.000458
 grow_vertical = 0
 title = "Revive"
 
-[node name="Title" parent="ReviveLabel/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="0" unique_id=301212175]
+[node name="Title" parent="ReviveLabel/MarginContainer/Subtitle margin/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
 text = "Revive"
 
-[node name="Subtitle" parent="ReviveLabel/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
+[node name="Subtitle" parent="ReviveLabel/MarginContainer/Subtitle margin/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
 visible = false
 label_settings = SubResource("LabelSettings_reqkl")
 
