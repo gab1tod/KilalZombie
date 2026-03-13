@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_borso"]
 [ext_resource type="Texture2D" uid="uid://xrp1h5nf17rv" path="res://assets/weapons/AK47.png" id="2_bboe4"]
 [ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="3_24ubs"]
+[ext_resource type="AudioStream" uid="uid://b2llrhuosemum" path="res://assets/sound/weapons/ak47_fire.mp3" id="3_222k4"]
 [ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="3_kwkb1"]
+[ext_resource type="AudioStream" uid="uid://ya3yloqww3od" path="res://assets/sound/weapons/ak47_reload.mp3" id="6_3aexn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_24ubs"]
 atlas = ExtResource("2_bboe4")
@@ -181,6 +183,12 @@ offset = Vector2(12, -3)
 [node name="Barrel" type="Marker2D" parent="AnimatedSprite2D" unique_id=1362409184]
 position = Vector2(18, -2.5)
 
+[node name="FireAudioPlayer" type="AudioStreamPlayer2D" parent="AnimatedSprite2D/Barrel" unique_id=1012946167]
+unique_name_in_owner = true
+position = Vector2(-18, 2.5)
+stream = ExtResource("3_222k4")
+max_polyphony = 10
+
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" unique_id=1395555400]
 position = Vector2(28, -2.5)
 enabled = false
@@ -194,5 +202,10 @@ z_index = 10
 position = Vector2(100, 0)
 texture = ExtResource("3_kwkb1")
 offset = Vector2(0.5, 0.5)
+
+[node name="ReloadAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=434217363]
+unique_name_in_owner = true
+stream = ExtResource("6_3aexn")
+pitch_scale = 0.83
 
 [connection signal="timeout" from="CycleTimer" to="." method="_on_cycle"]
