@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bsr8wc8defy1t" path="res://scripts/weapon.gd" id="1_5ymky"]
 [ext_resource type="Texture2D" uid="uid://b2agp1lkkibpe" path="res://assets/weapons/Raygun.png" id="2_5ymky"]
+[ext_resource type="AudioStream" uid="uid://bppj71e4iq4ly" path="res://assets/sound/weapons/raygun_fire.mp3" id="3_52jfw"]
 [ext_resource type="Texture2D" uid="uid://dhnm5qkeg7ste" path="res://assets/pointlight.png" id="3_680uf"]
 [ext_resource type="Texture2D" uid="uid://duk44116kkv7a" path="res://assets/crosshair.png" id="4_h2en4"]
+[ext_resource type="AudioStream" uid="uid://rt44v6rbdvwi" path="res://assets/sound/weapons/raygun_reload.mp3" id="6_vneub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ry2dr"]
 atlas = ExtResource("2_5ymky")
@@ -160,6 +162,12 @@ offset = Vector2(16, -2)
 [node name="Barrel" type="Marker2D" parent="AnimatedSprite2D" unique_id=1038633046]
 position = Vector2(10, -3)
 
+[node name="FireAudioPlayer" type="AudioStreamPlayer2D" parent="AnimatedSprite2D/Barrel" unique_id=1022578883]
+unique_name_in_owner = true
+stream = ExtResource("3_52jfw")
+volume_db = 10.0
+max_polyphony = 5
+
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" unique_id=1140011261]
 position = Vector2(15, -3)
 enabled = false
@@ -173,5 +181,10 @@ z_index = 10
 position = Vector2(100, 0)
 texture = ExtResource("4_h2en4")
 offset = Vector2(0.5, 0.5)
+
+[node name="ReloadAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1099741818]
+unique_name_in_owner = true
+stream = ExtResource("6_vneub")
+pitch_scale = 0.8
 
 [connection signal="timeout" from="CycleTimer" to="." method="_on_cycle"]

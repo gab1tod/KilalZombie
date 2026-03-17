@@ -87,9 +87,8 @@ func shoot() -> void:
 	cycle.start(1/fire_rate)
 	animator.frame = 0
 	animator.play("fire")
-	if fire_audio:
-		fire_audio.play()
-		fire_audio.pitch_scale = 1 + randf_range(-audio_pitch_spread, audio_pitch_spread)
+	fire_audio.play()
+	fire_audio.pitch_scale = 1 + randf_range(-audio_pitch_spread, audio_pitch_spread)
 	flash_light()
 	
 	var b = bullet.instantiate()
@@ -134,7 +133,7 @@ func reload(bullets: int) -> void:
 	
 	animator.frame = 0
 	animator.play("reload")
-	if reload_audio: reload_audio.play()
+	reload_audio.play()
 	on_reload.emit()
 	await animator.animation_finished
 	if shooter.aim_mode == shooter.AimMode.GAMEPAD:
