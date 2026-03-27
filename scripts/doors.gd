@@ -28,6 +28,7 @@ var interacting_players: Array[Node2D]
 @onready var right_door_animator := $RightDoorAnimator
 @onready var center_collision_shape := $CentralCollisionShape
 @onready var label := %Label
+@onready var sfx: AudioStreamPlayer2D = %SFX
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -63,6 +64,8 @@ func open() -> void:
 	if is_open:
 		return
 	
+	sfx.pitch_scale = 0.9 + randf() * 0.2
+	sfx.play()
 	is_open = true
 	doors_openinig.emit()
 	left_door_animator.play()

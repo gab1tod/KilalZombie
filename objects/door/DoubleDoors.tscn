@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c52c5oo1f3trm" path="res://assets/Doors.png" id="2_p0url"]
 [ext_resource type="FontFile" uid="uid://cn3fg50puxwms" path="res://assets/fonts/Bytesized/Bytesized-Regular.ttf" id="3_p0url"]
 [ext_resource type="PackedScene" uid="uid://2lphpl47art8" path="res://objects/misc/InteractionLabel.tscn" id="3_s04ls"]
+[ext_resource type="AudioStream" uid="uid://cddslsugmd5gg" path="res://assets/sound/door_opening.mp3" id="5_a6aar"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_657j4"]
 atlas = ExtResource("2_p0url")
@@ -192,12 +193,16 @@ grow_vertical = 0
 title = "Open"
 subtitle = "750$"
 
-[node name="Title" parent="Label/MarginContainer/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
+[node name="Title" parent="Label/MarginContainer/Subtitle margin/VBoxContainer/Title margin" parent_id_path=PackedInt32Array(1209993131, 1700987769) index="0" unique_id=301212175]
 text = "Open"
 
-[node name="Subtitle" parent="Label/MarginContainer/VBoxContainer/Subtitle margin" parent_id_path=PackedInt32Array(1209993131, 1818692648) index="0" unique_id=616635276]
+[node name="Subtitle" parent="Label/MarginContainer/Subtitle margin/VBoxContainer" parent_id_path=PackedInt32Array(1209993131, 1591706196) index="1" unique_id=616635276]
 text = "750$"
 label_settings = SubResource("LabelSettings_a6aar")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=654753566]
+unique_name_in_owner = true
+stream = ExtResource("5_a6aar")
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

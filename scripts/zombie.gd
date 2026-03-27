@@ -33,6 +33,9 @@ var dead: bool:
 @onready var cooldown_timer := $AttackCooldownTimer
 @onready var collider := $CollisionShape2D
 @onready var head_blood_emitter: CPUParticles2D = %HeadBloodEmitter
+@onready var sfx_die_1: AudioStreamPlayer2D = %SFX1
+@onready var sfx_die_2: AudioStreamPlayer2D = %SFX2
+
 var target: Node2D
 var direction: Vector2 = Vector2.ZERO
 
@@ -193,6 +196,12 @@ func die(by_player: bool = false) -> void:
 func _on_animator_frame_changed() -> void:
 	if dead and animator.get_frame() == 3:
 		head_blood_emitter.emitting = true
+		if (randi() % 10 < 5):
+			sfx_die_1.pitch_scale = 0.8 + randf() * 0.4
+			sfx_die_1.play()
+		else:
+			sfx_die_2.pitch_scale = 0.8 + randf() * 0.4
+			sfx_die_2.play()
 	if state == ZombieState.ATTACKING and animator.get_frame() == 2:
 		if (target.global_position - (global_position + direction * attack_radius)).length() < attack_radius:
 			target.take_damage(attack_damage)

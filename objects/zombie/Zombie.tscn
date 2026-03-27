@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d2tm3ktnottty" path="res://scripts/zombie.gd" id="1_yqk2c"]
 [ext_resource type="Texture2D" uid="uid://d0s8sp46daq3m" path="res://assets/player.png" id="2_71yia"]
 [ext_resource type="Texture2D" uid="uid://bps7lteatv62v" path="res://assets/ZombieRework.png" id="3_e3o22"]
+[ext_resource type="AudioStream" uid="uid://dko6favwn8de1" path="res://assets/sound/head_explode-2.mp3" id="4_71yia"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jli3d"]
 atlas = ExtResource("2_71yia")
@@ -768,7 +769,7 @@ visibility_layer = 2
 position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_uff4m")
 animation = &"idle_face"
-frame_progress = 0.8886849
+frame_progress = 0.7977929
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1151477161]
 light_mask = 2
@@ -804,5 +805,13 @@ initial_velocity_min = 50.0
 initial_velocity_max = 200.0
 scale_amount_max = 3.0
 color_initial_ramp = SubResource("Gradient_yqk2c")
+
+[node name="SFX1" type="AudioStreamPlayer2D" parent="." unique_id=249921913]
+unique_name_in_owner = true
+stream = ExtResource("4_71yia")
+
+[node name="SFX2" type="AudioStreamPlayer2D" parent="." unique_id=1518779529]
+unique_name_in_owner = true
+stream = ExtResource("4_71yia")
 
 [connection signal="frame_changed" from="Animator" to="." method="_on_animator_frame_changed"]
