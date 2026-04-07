@@ -66,6 +66,7 @@ position_smoothing_enabled = true
 [node name="Weapon" parent="World/Player1" unique_id=142044290 instance=ExtResource("4_3u4an")]
 
 [node name="SpriteLight" type="PointLight2D" parent="World/Player1" unique_id=318101690]
+visible = false
 light_mask = 3
 position = Vector2(1, -7)
 color = Color(0.9, 0.9, 0.9, 1)
@@ -75,6 +76,7 @@ texture_scale = 1.53
 height = 32.0
 
 [node name="ShadowLight" type="PointLight2D" parent="World/Player1" unique_id=846276881]
+visible = false
 light_mask = 3
 position = Vector2(1, -7)
 color = Color(0.9, 0.9, 0.9, 1)

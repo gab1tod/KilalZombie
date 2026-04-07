@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://rtfo7af6i4rx" path="res://objects/weapon/Raygun.tscn" id="17_l0wcq"]
 [ext_resource type="PackedScene" uid="uid://d0doy4t1m4hj6" path="res://objects/weapon/AK47.tscn" id="18_stixe"]
 [ext_resource type="Script" uid="uid://cuit3qnefj3gr" path="res://scripts/spawner_room.gd" id="22_akbjh"]
+[ext_resource type="PackedScene" uid="uid://bxg163vdcd7mk" path="res://objects/misc/SideTorch.tscn" id="22_fm46c"]
+[ext_resource type="PackedScene" uid="uid://mg47qa4jjwan" path="res://objects/misc/Torch.tscn" id="25_id6r7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aflum"]
 size = Vector2(31, 39)
@@ -199,6 +201,64 @@ item_resource = ExtResource("15_fmul0")
 item_name = "Shotgun"
 item_cost = 2000
 
+[node name="Torches" type="Node2D" parent="." unique_id=1272028151]
+
+[node name="Torch R0-1" parent="Torches" unique_id=1461989362 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(16, -72)
+
+[node name="Torch R1-1" parent="Torches" unique_id=747445393 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(-352, -24)
+
+[node name="Torch R2-1" parent="Torches" unique_id=2024396876 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(408, -168)
+
+[node name="Torch R3-1" parent="Torches" unique_id=19460443 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(112, 88)
+
+[node name="Torch R3-2" parent="Torches" unique_id=2012719876 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(-64, 168)
+
+[node name="Torch R3-3" parent="Torches" unique_id=758691839 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(-424, 200)
+
+[node name="Torch R3-4" parent="Torches" unique_id=41723448 instance=ExtResource("25_id6r7")]
+position = Vector2(-176, 338)
+
+[node name="Torch R4-1" parent="Torches" unique_id=793161725 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(296, 88)
+
+[node name="Torch R4-2" parent="Torches" unique_id=176876200 instance=ExtResource("22_fm46c")]
+position = Vector2(565, 160)
+
+[node name="Torch R4-3" parent="Torches" unique_id=428716056 instance=ExtResource("25_id6r7")]
+position = Vector2(272, 322)
+
+[node name="Torch R5-1" parent="Torches" unique_id=838772677 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(-152, -248)
+
+[node name="Torch R6-1" parent="Torches" unique_id=538072476 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(224, -344)
+
+[node name="Torch R6-2" parent="Torches" unique_id=1858854781 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(528, -344)
+
+[node name="Torch R7-1" parent="Torches" unique_id=368339210 instance=ExtResource("25_id6r7")]
+z_index = 2
+position = Vector2(-448, -232)
+
+[node name="Torch R8-1" parent="Torches" unique_id=1437197942 instance=ExtResource("22_fm46c")]
+position = Vector2(693, -136)
+
 [node name="Spawners" type="Node2D" parent="." unique_id=1659834580]
 y_sort_enabled = true
 
@@ -210,6 +270,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 0" unique_id=1259954570]
 polygon = PackedVector2Array(-112, -88, 192, -88, 192, 72, 80, 72, 80, 136, -112, 136)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R0-1" parent="Spawners/Room 0" unique_id=865816069 instance=ExtResource("4_qewnn")]
 position = Vector2(-96, -56)
@@ -248,6 +309,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 2" unique_id=476958660]
 polygon = PackedVector2Array(192, -184, 560, -184, 560, -24, 352, -24, 352, 72, 192, 72)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R2-1" parent="Spawners/Room 2" unique_id=2097788519 instance=ExtResource("4_qewnn")]
 position = Vector2(208, -152)
@@ -270,6 +332,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 3" unique_id=1247717331]
 polygon = PackedVector2Array(-464, 184, -208, 184, -208, 136, 80, 136, 80, 72, 224, 72, 224, 328, 0, 328, 0, 344, -208, 344, -208, 328, -464, 328)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R3-1" parent="Spawners/Room 3" unique_id=2002943380 instance=ExtResource("4_qewnn")]
 modulate = Color(1.143, 1.249, 1.267, 1)
@@ -310,6 +373,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 4" unique_id=1779976623]
 polygon = PackedVector2Array(224, 72, 224, 328, 576, 328, 576, -24, 352, -24, 352, 72)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R4-1" parent="Spawners/Room 4" unique_id=1864303458 instance=ExtResource("4_qewnn")]
 modulate = Color(1.143, 1.249, 1.267, 1)
@@ -340,6 +404,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 5" unique_id=1276946574]
 polygon = PackedVector2Array(-208, 24, -112, 24, -112, -88, 192, -88, 192, -264, -272, -264, -272, -88, -208, -88)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R5-1" parent="Spawners/Room 5" unique_id=1503787217 instance=ExtResource("4_qewnn")]
 modulate = Color(1.143, 1.249, 1.267, 1)
@@ -365,6 +430,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 6" unique_id=391978403]
 polygon = PackedVector2Array(48, -360, 576, -360, 576, -184, 192, -184, 192, -264, 48, -264)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R6-1" parent="Spawners/Room 6" unique_id=1917834860 instance=ExtResource("4_qewnn")]
 modulate = Color(1.143, 1.249, 1.267, 1)
@@ -390,6 +456,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 7" unique_id=1555666492]
 polygon = PackedVector2Array(-544, -248, -272, -248, -272, -40, -544, -40)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R7-1" parent="Spawners/Room 7" unique_id=834787251 instance=ExtResource("4_qewnn")]
 modulate = Color(1.143, 1.249, 1.267, 1)
@@ -410,6 +477,7 @@ metadata/_custom_type_script = "uid://cuit3qnefj3gr"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spawners/Room 8" unique_id=209814191]
 polygon = PackedVector2Array(576, -360, 704, -360, 704, 64, 576, 64)
+metadata/_edit_lock_ = true
 
 [node name="Spawner R8-1" parent="Spawners/Room 8" unique_id=209759019 instance=ExtResource("4_qewnn")]
 position = Vector2(688, 40)
@@ -490,7 +558,7 @@ polygon = PackedVector2Array(576, -248, 579, -248, 579, -312, 576, -312)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=110520435]
 top_level = true
-color = Color(0.31820002, 0.32192665, 0.43, 1)
+color = Color(0.18219194, 0.18691243, 0.25299937, 1)
 metadata/_edit_lock_ = true
 
 [connection signal="doors_openinig" from="Doors/Doors 0-1" to="Spawners/Room 1" method="enable"]
@@ -501,6 +569,7 @@ metadata/_edit_lock_ = true
 [connection signal="doors_openinig" from="Doors/Doors 0-5" to="RoomCovers/Cover R5" method="fade_out"]
 [connection signal="doors_openinig" from="Doors/Doors 1-3" to="Spawners/Room 1" method="enable"]
 [connection signal="doors_openinig" from="Doors/Doors 1-3" to="Spawners/Room 3" method="enable"]
+[connection signal="doors_openinig" from="Doors/Doors 1-3" to="RoomCovers/Cover R1" method="fade_out"]
 [connection signal="doors_openinig" from="Doors/Doors 1-3" to="RoomCovers/Cover R3" method="fade_out"]
 [connection signal="doors_openinig" from="Doors/Doors 2-4" to="Spawners/Room 2" method="enable"]
 [connection signal="doors_openinig" from="Doors/Doors 2-4" to="Spawners/Room 4" method="enable"]
